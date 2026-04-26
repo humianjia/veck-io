@@ -18,9 +18,9 @@ function addBrandingToIframe(filePath) {
         if (!oldSrc.includes('branding') && !oldSrc.includes('logo')) {
             // 在URL末尾添加品牌参数
             if (oldSrc.includes('?')) {
-                newSrc = oldSrc + '&branding=veck.io&logo=https://veckio.space/favicon.ico';
+                newSrc = oldSrc + '&branding=Veck.io&logo=https://veckio.space/favicon.ico';
             } else {
-                newSrc = oldSrc + '?branding=veck.io&logo=https://veckio.space/favicon.ico';
+                newSrc = oldSrc + '?branding=Veck.io&logo=https://veckio.space/favicon.ico';
             }
 
             content = content.replace(iframePattern, `<iframe id="game-iframe" src="${newSrc}" allowfullscreen></iframe>`);
