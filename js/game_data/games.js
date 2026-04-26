@@ -2,7 +2,7 @@ var gamesData = [
     {
         "id": "veck io",
         "name": "Veck.io",
-        "imageUrl": "img/icon/veckio.jpg",
+        "imageUrl": "img/icon/veckIo.jpg",
         "gameType": "Index",
         "rating": "4.8",
         "description": "Veck.io is a fast, browser-based FPS that delivers quick, intense multiplayer battles without downloads or installation. Designed for pure reflex-driven combat, the game features smooth low-poly visuals, tight gunplay, and compact maps that keep action constant. Whether you want to jump into solo fights or coordinate with friends, Veck.io offers an accessible, competitive shooter experience directly in your browser.",
