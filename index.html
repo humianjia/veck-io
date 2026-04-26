@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veck.io - Free Online FPS Shooter Game | Multiplayer Browser Game</title>
+    <meta name="description" content="Veck.io is a fast, browser-based FPS that delivers quick, intense multiplayer battles without downloads. Play veck io for free - smooth low-poly visuals, tight gunplay, and compact maps. Join solo fights or coordinate with friends in this accessible competitive shooter experience.">
+    <meta name="keywords" content="veck io, veck io game, veck io FPS, veck io shooter, veck io multiplayer, veck io online, veck io free, veck io browser, veck io play, veck io action, veck io battle, veck io combat, veck io io games, veck io shooting, veck io first person shooter, veck io competitive, veck io reflex, veck io skill, veck io fast paced, veck io no download">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Veck.io">
+    <link rel="canonical" href="https://veck.io/">
+    <meta property="og:title" content="Veck.io - Free Online FPS Shooter Game">
+    <meta property="og:description" content="Play veck io - a fast browser-based FPS multiplayer game. No download required, instant action!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://veck.io/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Veck.io - Free Online FPS Shooter Game">
+    <meta name="twitter:description" content="Play veck io - a fast browser-based FPS multiplayer game. No download required, instant action!">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%234ecca3'/><stop offset='100%25' stop-color='%2300d4ff'/></linearGradient></defs><circle cx='25' cy='25' r='20' fill='none' stroke='url(%23g)' stroke-width='3'/><circle cx='25' cy='25' r='12' fill='none' stroke='url(%23g)' stroke-width='2'/><circle cx='25' cy='25' r='4' fill='%234ecca3'/></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+    <!-- 鼠标跟随光效 -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4ecca3;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <circle cx="25" cy="25" r="20" fill="none" stroke="url(#grad1)" stroke-width="3"/>
+                <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+                <circle cx="25" cy="25" r="4" fill="#4ecca3"/>
+                <line x1="25" y1="0" x2="25" y2="15" stroke="#4ecca3" stroke-width="2"/>
+                <line x1="25" y1="35" x2="25" y2="50" stroke="#4ecca3" stroke-width="2"/>
+                <line x1="0" y1="25" x2="15" y2="25" stroke="#4ecca3" stroke-width="2"/>
+                <line x1="35" y1="25" x2="50" y2="25" stroke="#4ecca3" stroke-width="2"/>
+            </svg>
+            <span class="logo-text">Veck<span class="logo-io">.io</span></span>
+        </div>
+        <nav class="nav-categories"> 
+            <a href="categories.html?category=fps" class="nav-item">FPS</a>
+            <a href="categories.html?category=battle-royale" class="nav-item">Battle Royale</a>
+            <a href="categories.html?category=sniper" class="nav-item">Sniper</a>
+            <a href="categories.html?category=multiplayer" class="nav-item">Multiplayer</a>
+            <a href="categories.html?category=action" class="nav-item">Action</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索游戏...">
+            <i class="fas fa-search"></i>
+        </div>
+    </header>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 中间主内容 -->
+        <main class="main-content">
+            <!-- 游戏展示区 -->
+            <div class="game-showcase">
+                <div class="game-frame">
+                    <iframe id="game-iframe" src="" allowfullscreen></iframe>
+                </div>
+                <div class="game-controls">
+                    <div class="game-title-section">
+                        <img src="" id="game-icon" class="game-icon" alt="Icon">
+                        <span class="game-title" id="current-game-title">Gummy merge</span>
+                    </div>
+                    <div class="game-actions">
+                        <i class="fas fa-expand" onclick="toggleFullscreen()"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 相关推荐 -->
+            <div class="related-games">
+                <h3 class="section-title">Popular Shooter Games</h3>
+                <div class="games-grid" id="related-games-container">
+                    <!-- 21个游戏卡片将由JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <!-- 内容区域 - 游戏介绍 -->
+            <div class="content-section">
+                <div class="game-info">
+                    <div class="info-header">Welcome to Veck.io - A fast, browser-based 3D multiplayer FPS that delivers quick, intense arena battles. No downloads or installations required - just jump in and start shooting!</div>
+                    <div class="info-content">
+                        <h2>WHAT IS VECK.IO?</h2>
+                        <p><strong>Veck.io</strong> is a browser-based 3D first-person shooter inspired by classic arena FPS games. It focuses on <strong>speed, accuracy, and movement</strong> rather than complex progression systems. Every match is short, intense, and action-packed, making Veck.io ideal for quick gaming sessions at school, work, or home.</p>
+                        <p>As an <strong>.io shooter game</strong>, Veck.io emphasizes multiplayer combat, instant matchmaking, and lightweight performance. Built with modern web technologies, it delivers clean <strong>low-poly 3D graphics</strong> while remaining lightweight and smooth on both high-end and low-end devices.</p>
+
+                        <h3>VECK.IO GAMEPLAY</h3>
+                        <p>In Veck.io, you spawn into <strong>compact arena maps</strong> where quick reflexes decide the outcome. You can <strong>run, jump, strafe, and slide</strong> to outplay opponents while mastering different weapons. The controls feel familiar to anyone who has played modern FPS games, making Veck.io easy to learn but hard to master.</p>
+                        <p>The fast respawn system ensures <strong>non-stop action</strong>, so you spend more time playing and less time waiting. The gameplay rewards aggressive yet smart play - constant motion makes you harder to hit, while good positioning lets you peek angles, control chokepoints, and catch opponents off guard.</p>
+
+                        <h3>VECK.IO GAME MODES</h3>
+                        <ul>
+                            <li><strong>Free For All:</strong> Every player fights for themselves - eliminate as many opponents as possible using pure skill and fast reflexes</li>
+                            <li><strong>1v1 Duel:</strong> Face a single opponent in intense duels where aim, movement, and reaction time decide the winner</li>
+                            <li><strong>2v2 Team:</strong> Teamwork becomes essential - coordinate attacks, positioning, and strategy with your teammate</li>
+                            <li><strong>3v3 Team:</strong> Balanced team-based combat with increased intensity - work together to control the map</li>
+                            <li><strong>4v4 Team:</strong> Large-scale team action with more chaos and strategic depth</li>
+                            <li><strong>Private Rooms:</strong> Create or join private rooms, invite friends, and customize match rules</li>
+                            <li><strong>Gun Game:</strong> Fast-paced weapon progression mode</li>
+                        </ul>
+
+                        <h3>VECK.IO WEAPONS</h3>
+                        <p>Veck.io features <strong>40+ weapons</strong> across different categories:</p>
+                        <ul>
+                            <li><strong>Guns:</strong> Assault Rifle, Burst Rifle, Handgun, Sniper Rifle, Rocket Launcher, AK-47</li>
+                            <li><strong>Melee:</strong> Stabber, Scythe, Karambit, Katana, War Axe, Shield</li>
+                            <li><strong>Special:</strong> Shurikens, Split Fang, War Horn, Grenades, Flash, Smoke</li>
+                            <li><strong>Armory:</strong> Snowball Gun, Water Gun, Slingshot, Grenade Launcher, Paintball Gun</li>
+                            <li><strong>Quick Switch:</strong> Shotgun, SMG, Bow - use keys 1-9 for instant weapon swaps</li>
+                        </ul>
+
+                        <h3>VECK.IO KEY FEATURES</h3>
+                        <ul>
+                            <li><strong>Browser-Based:</strong> Play directly online with no download or installation required</li>
+                            <li><strong>Fast-Paced FPS:</strong> Quick matches with constant action in compact, competitive maps</li>
+                            <li><strong>Multiplayer Combat:</strong> Battle real players in online arenas with instant matchmaking</li>
+                            <li><strong>Low-Poly 3D Graphics:</strong> Clean visuals optimized for smooth performance</li>
+                            <li><strong>Skins & Cosmetics:</strong> Customize your character with skins like Karambit Gold, Meme Frog Suit, and more - all cosmetic items ensure fairness</li>
+                            <li><strong>Daily Rewards:</strong> Earn coins and unlock new skins by playing regularly</li>
+                            <li><strong>Global Leaderboards:</strong> Compete with players worldwide and climb the ranks</li>
+                            <li><strong>Social Features:</strong> Join clans, create private rooms, and chat with other players</li>
+                            <li><strong>Multiple Servers:</strong> Join servers across United States, Europe, Asia, and more</li>
+                        </ul>
+
+                        <h3>VECK.IO CONTROLS</h3>
+                        <ul>
+                            <li><strong>Move:</strong> W, A, S, D or Arrow Keys</li>
+                            <li><strong>Aim:</strong> Mouse</li>
+                            <li><strong>Shoot:</strong> Left Mouse Button</li>
+                            <li><strong>Scope:</strong> Right Mouse Button</li>
+                            <li><strong>Jump:</strong> Space Bar</li>
+                            <li><strong>Slide:</strong> Shift</li>
+                            <li><strong>Reload:</strong> R</li>
+                            <li><strong>Switch Weapons:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9</li>
+                            <li><strong>Scoreboard:</strong> Tab</li>
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <span class="tag"><i class="fas fa-bullseye"></i> VECK IO</span>
+                        <span class="tag"><i class="fas fa-gamepad"></i> FPS</span>
+                        <span class="tag"><i class="fas fa-crosshairs"></i> SHOOTER</span>
+                        <span class="tag"><i class="fas fa-users"></i> MULTIPLAYER</span>
+                        <span class="tag"><i class="fas fa-gun"></i> ACTION</span>
+                        <span class="tag"><i class="fas fa-rocket"></i> BATTLE</span>
+                        <span class="tag"><i class="fas fa-gamepad"></i> 3D GAME</span>
+                        <span class="tag"><i class="fas fa-globe"></i> BROWSER GAME</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About Veck.io</a>
+            <a href="#">Contact Us</a>
+            <a href="#">DMCA</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-copyright">© 2024 Veck.io - Free Online Shooter Games. All rights reserved.</div>
+    </footer>
+
+    <!-- 游戏数据 -->
+    <script src="js/game_data/games.js"></script>
+    <script src="js/game_data/action.js"></script>
+    <script src="js/game_data/battleRoyale.js"></script>
+    <script src="js/game_data/fps.js"></script>
+    <script src="js/game_data/multiplayer.js"></script>
+    <script src="js/game_data/sniper.js"></script>
+    <!-- 主脚本 -->
+    <script src="init.js"></script>
+</body>
+</html>
