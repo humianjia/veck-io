@@ -148,7 +148,9 @@
         }
 
         .ad-section {
-            background: transparent;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
             min-height: 600px;
             display: flex;
             align-items: center;
@@ -180,24 +182,25 @@
             position: absolute;
             bottom: 80px;
             left: 15px;
-            background: rgba(15, 15, 26, 0.9);
-            padding: 8px 12px;
-            border-radius: 8px;
+            background: rgba(15, 15, 26, 0.95);
+            padding: 10px 16px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             z-index: 10;
+            backdrop-filter: blur(5px);
         }
 
         .game-brand-badge svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
         }
 
         .game-brand-badge span {
             color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
         }
 
         .game-iframe {
@@ -278,8 +281,19 @@
         }
 
         .ad-card {
-            background: transparent;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
             height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-card-content {
+            color: var(--text-secondary);
+            font-size: 13px;
+            opacity: 0.6;
         }
 
         /* Featured Games Section */
@@ -635,7 +649,9 @@
     <div class="game-container">
         <div class="game-wrapper">
             <!-- Left Ad -->
-            <div class="ad-section vertical"></div>
+            <div class="ad-section vertical">
+                <div class="ad-card-content">•</div>
+            </div>
             
             <!-- Center Game -->
             <div class="game-frame-container">
@@ -674,15 +690,17 @@
             </div>
             
             <!-- Right Ad -->
-            <div class="ad-section vertical"></div>
+            <div class="ad-section vertical">
+                <div class="ad-card-content">•</div>
+            </div>
         </div>
     </div>
 
     <!-- Below Game Ads -->
     <div class="below-game-ads">
-        <div class="ad-card"></div>
-        <div class="ad-card"></div>
-        <div class="ad-card"></div>
+        <div class="ad-card"><div class="ad-card-content">•</div></div>
+        <div class="ad-card"><div class="ad-card-content">•</div></div>
+        <div class="ad-card"><div class="ad-card-content">•</div></div>
     </div>
 
     <!-- Game Description -->
