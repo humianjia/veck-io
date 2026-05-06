@@ -12,9 +12,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veck.io - Premium Online FPS Games | Play Free Browser Shooter Games</title>
-    <meta name="description" content="Discover the best free online FPS games at Veck.io. Play browser-based multiplayer shooter games with stunning graphics, competitive gameplay, and no downloads required. Join thousands of players worldwide!">
-    <meta name="keywords" content="free online games, FPS games, browser games, multiplayer shooter, online shooter, free FPS, web games, io games, shooting games, action games, battle royale, sniper games">
+    <title>Veck.io - Free FPS Shooter Game | Play Online Browser Game</title>
+    <meta name="description" content="Play Veck.io, the ultimate free FPS shooter game online. Experience fast-paced multiplayer combat, no downloads required. Veck.io delivers intense browser-based action for players worldwide.">
+    <meta name="keywords" content="veck io, veck io game, veck io FPS, veck io shooter, veck io multiplayer, veck io online, veck io free, veck io browser, veck io play, free online games, FPS games, browser games, multiplayer shooter, online shooter, free FPS, web games, io games, shooting games, action games, battle royale, sniper games">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Veck.io Gaming Platform">
     <meta name="theme-color" content="#1a1a2e">
@@ -148,15 +148,11 @@
         }
 
         .ad-section {
-            background: rgba(78, 204, 163, 0.05);
-            border: 1px dashed var(--dark-border);
-            border-radius: 8px;
+            background: transparent;
             min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-size: 14px;
         }
 
         .ad-section.vertical {
@@ -177,6 +173,31 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--dark-border);
+            position: relative;
+        }
+
+        .game-brand-badge {
+            position: absolute;
+            bottom: 80px;
+            left: 15px;
+            background: rgba(15, 15, 26, 0.9);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .game-brand-badge svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .game-brand-badge span {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .game-iframe {
@@ -257,15 +278,8 @@
         }
 
         .ad-card {
-            background: rgba(78, 204, 163, 0.05);
-            border: 1px dashed var(--dark-border);
-            border-radius: 8px;
+            background: transparent;
             height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 14px;
         }
 
         /* Featured Games Section */
@@ -621,16 +635,28 @@
     <div class="game-container">
         <div class="game-wrapper">
             <!-- Left Ad -->
-            <div class="ad-section vertical">
-                <span>Advertisement</span>
-            </div>
+            <div class="ad-section vertical"></div>
             
             <!-- Center Game -->
             <div class="game-frame-container">
-                <iframe id="game-iframe" class="game-iframe" src="https://html5.gamedistribution.com/623baec23d504c83acab0b5250859ba8/?gd_sdk_referrer_url=https%3A%2F%2Fwww.onlinegames.io%2Fcat-runner%2F" allowfullscreen></iframe>
+                <iframe id="game-iframe" class="game-iframe" src="" allowfullscreen></iframe>
+                <div class="game-brand-badge">
+                    <svg viewBox="0 0 50 50">
+                        <defs>
+                            <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4ecca3;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="url(#badgeGrad)" stroke-width="3"/>
+                        <circle cx="25" cy="25" r="12" fill="none" stroke="url(#badgeGrad)" stroke-width="2"/>
+                        <circle cx="25" cy="25" r="4" fill="#4ecca3"/>
+                    </svg>
+                    <span>veck io</span>
+                </div>
                 <div class="game-info-bar">
                     <div class="game-title-info">
-                        <img src="img/icon/FPS/HazmobFPS.jpg" class="game-icon-small" alt="Game Icon">
+                        <img src="img/icon/veckIo.jpg" class="game-icon-small" alt="Veck.io Icon">
                         <div class="game-title-text">
                             <h3>Veck.io</h3>
                             <span>FPS Shooter</span>
@@ -648,18 +674,52 @@
             </div>
             
             <!-- Right Ad -->
-            <div class="ad-section vertical">
-                <span>Advertisement</span>
-            </div>
+            <div class="ad-section vertical"></div>
         </div>
     </div>
 
     <!-- Below Game Ads -->
     <div class="below-game-ads">
-        <div class="ad-card">Advertisement</div>
-        <div class="ad-card">Advertisement</div>
-        <div class="ad-card">Advertisement</div>
+        <div class="ad-card"></div>
+        <div class="ad-card"></div>
+        <div class="ad-card"></div>
     </div>
+
+    <!-- Game Description -->
+    <section class="featured-games">
+        <h2 class="section-title">About Veck.io</h2>
+        <div style="background: var(--dark-card); padding: 40px; border-radius: 12px; border: 1px solid var(--dark-border);">
+            <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--text-primary);">Veck.io: The Ultimate Browser FPS Experience</h3>
+            <p style="color: var(--text-secondary); font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                Veck.io is a fast-paced, browser-based first-person shooter that brings intense multiplayer combat directly to your web browser. 
+                With no downloads required, you can jump straight into competitive matches against players from around the world. 
+                The game features smooth low-poly visuals, responsive controls, and compact maps designed for constant action.
+            </p>
+            <p style="color: var(--text-secondary); font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                Whether you're looking for quick solo battles in Free For All mode, intense 1v1 duels, or team-based combat with friends, 
+                Veck.io delivers an accessible yet competitive shooting experience. Master your reflexes, perfect your aim, and climb the ranks 
+                in this exciting online FPS game.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div style="background: rgba(78, 204, 163, 0.1); padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; color: var(--primary-color); margin-bottom: 10px;">⚡</div>
+                    <div style="color: var(--text-primary); font-weight: 600;">Fast-Paced</div>
+                </div>
+                <div style="background: rgba(78, 204, 163, 0.1); padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; color: var(--primary-color); margin-bottom: 10px;">🎮</div>
+                    <div style="color: var(--text-primary); font-weight: 600;">Multiplayer</div>
+                </div>
+                <div style="background: rgba(78, 204, 163, 0.1); padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; color: var(--primary-color); margin-bottom: 10px;">🚀</div>
+                    <div style="color: var(--text-primary); font-weight: 600;">No Download</div>
+                </div>
+                <div style="background: rgba(78, 204, 163, 0.1); padding: 20px; border-radius: 8px; text-align: center;">
+                    <div style="font-size: 32px; color: var(--primary-color); margin-bottom: 10px;">🏆</div>
+                    <div style="color: var(--text-primary); font-weight: 600;">Competitive</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Featured Games -->
     <section class="featured-games" id="games">
@@ -805,9 +865,15 @@
     <script src="js/game_data/sniper.js"></script>
     
     <script>
-        // Load popular games
+        // Load popular games and set game iframe
         document.addEventListener('DOMContentLoaded', function() {
             const gamesContainer = document.getElementById('games-container');
+            const gameIframe = document.getElementById('game-iframe');
+            
+            // Set iframe URL from gamesData
+            if (typeof gamesData !== 'undefined' && gamesData.length > 0) {
+                gameIframe.src = gamesData[0].iframeUrl;
+            }
             
             // Get all games
             let allGames = [];
