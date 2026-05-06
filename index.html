@@ -148,9 +148,7 @@
         }
 
         .ad-section {
-            background: var(--dark-card);
-            border: 1px solid var(--dark-border);
-            border-radius: 12px;
+            background: transparent;
             min-height: 600px;
             display: flex;
             align-items: center;
@@ -281,19 +279,8 @@
         }
 
         .ad-card {
-            background: var(--dark-card);
-            border: 1px solid var(--dark-border);
-            border-radius: 8px;
+            background: transparent;
             height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ad-card-content {
-            color: var(--text-secondary);
-            font-size: 13px;
-            opacity: 0.6;
         }
 
         /* Featured Games Section */
@@ -649,9 +636,7 @@
     <div class="game-container">
         <div class="game-wrapper">
             <!-- Left Ad -->
-            <div class="ad-section vertical">
-                <div class="ad-card-content">•</div>
-            </div>
+            <div class="ad-section vertical"></div>
             
             <!-- Center Game -->
             <div class="game-frame-container">
@@ -690,17 +675,15 @@
             </div>
             
             <!-- Right Ad -->
-            <div class="ad-section vertical">
-                <div class="ad-card-content">•</div>
-            </div>
+            <div class="ad-section vertical"></div>
         </div>
     </div>
 
     <!-- Below Game Ads -->
     <div class="below-game-ads">
-        <div class="ad-card"><div class="ad-card-content">•</div></div>
-        <div class="ad-card"><div class="ad-card-content">•</div></div>
-        <div class="ad-card"><div class="ad-card-content">•</div></div>
+        <div class="ad-card"></div>
+        <div class="ad-card"></div>
+        <div class="ad-card"></div>
     </div>
 
     <!-- Game Description -->
