@@ -1,195 +1,930 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.goagletagmanager.com/gtag/js?id=G-GHQS0XRZ6D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-GHQS0XRZ6D');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHQS0XRZ6D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GHQS0XRZ6D');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veck.io - Free Online FPS Shooter Game | Multiplayer Browser Game</title>
-    <meta name="description" content="Veck.io is a fast, browser-based FPS that delivers quick, intense multiplayer battles without downloads. Play veck io for free - smooth low-poly visuals, tight gunplay, and compact maps. Join solo fights or coordinate with friends in this accessible competitive shooter experience.">
-    <meta name="keywords" content="veck io, veck io game, veck io FPS, veck io shooter, veck io multiplayer, veck io online, veck io free, veck io browser, veck io play, veck io action, veck io battle, veck io combat, veck io io games, veck io shooting, veck io first person shooter, veck io competitive, veck io reflex, veck io skill, veck io fast paced, veck io no download">
+    <title>Veck.io - Premium Online FPS Games | Play Free Browser Shooter Games</title>
+    <meta name="description" content="Discover the best free online FPS games at Veck.io. Play browser-based multiplayer shooter games with stunning graphics, competitive gameplay, and no downloads required. Join thousands of players worldwide!">
+    <meta name="keywords" content="free online games, FPS games, browser games, multiplayer shooter, online shooter, free FPS, web games, io games, shooting games, action games, battle royale, sniper games">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Veck.io">
+    <meta name="author" content="Veck.io Gaming Platform">
+    <meta name="theme-color" content="#1a1a2e">
     <link rel="canonical" href="https://veckio.space/">
-    <meta property="og:title" content="Veck.io - Free Online FPS Shooter Game">
-    <meta property="og:description" content="Play veck io - a fast browser-based FPS multiplayer game. No download required, instant action!">
+    <meta property="og:title" content="Veck.io - Premium Online FPS Games">
+    <meta property="og:description" content="Play the best free browser-based FPS games. No downloads, instant action!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://veckio.space/">
+    <meta property="og:image" content="https://veckio.space/img/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Veck.io - Free Online FPS Shooter Game">
-    <meta name="twitter:description" content="Play veck io - a fast browser-based FPS multiplayer game. No download required, instant action!">
+    <meta name="twitter:title" content="Veck.io - Free Online FPS Games">
+    <meta name="twitter:description" content="Experience the ultimate browser-based FPS gaming experience.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/css.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4ecca3;
+            --secondary-color: #00d4ff;
+            --accent-color: #ffd700;
+            --dark-bg: #0f0f1a;
+            --dark-card: #1a1a2e;
+            --dark-border: #2a2a4a;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0f0f1a 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234ecca3' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(78, 204, 163, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .navbar-logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 10px 40px 10px 15px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            width: 200px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            width: 250px;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: var(--dark-card);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--dark-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(78, 204, 163, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #000;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Games Section */
+        .games-section {
+            padding: 80px 20px;
+            background: var(--dark-bg);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: var(--dark-card);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: 0 25px 50px rgba(78, 204, 163, 0.15);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #2a2a4a, #1a1a2e);
+            position: relative;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-rating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .game-category {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(78, 204, 163, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .game-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .play-btn i {
+            margin-left: 8px;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 20px;
+            background: var(--dark-card);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .step h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 80px 20px;
+            background: var(--dark-bg);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, var(--dark-card), #252540);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--dark-border);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .category-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .category-count {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-card);
+            padding: 60px 20px;
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .search-box input {
+                width: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 粒子背景 -->
-    <div class="particles" id="particles"></div>
-    <!-- 鼠标跟随光效 -->
-    <div class="cursor-glow" id="cursorGlow"></div>
-    <!-- 顶部导航 -->
-    <header class="header">
-        <div class="logo">
-            <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#4ecca3;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <circle cx="25" cy="25" r="20" fill="none" stroke="url(#grad1)" stroke-width="3"/>
-                <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
-                <circle cx="25" cy="25" r="4" fill="#4ecca3"/>
-                <line x1="25" y1="0" x2="25" y2="15" stroke="#4ecca3" stroke-width="2"/>
-                <line x1="25" y1="35" x2="25" y2="50" stroke="#4ecca3" stroke-width="2"/>
-                <line x1="0" y1="25" x2="15" y2="25" stroke="#4ecca3" stroke-width="2"/>
-                <line x1="35" y1="25" x2="50" y2="25" stroke="#4ecca3" stroke-width="2"/>
-            </svg>
-            <span class="logo-text">Veck<span class="logo-io">.io</span></span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-logo">
+                <svg viewBox="0 0 50 50">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4ecca3;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="url(#grad1)" stroke-width="3"/>
+                    <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="4" fill="#4ecca3"/>
+                </svg>
+                <span style="font-weight: 700;">Veck<span style="color: #4ecca3;">.io</span></span>
+            </a>
+            
+            <div class="navbar-links">
+                <a href="#games">Games</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#categories">Categories</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search games...">
+                <i class="fas fa-search"></i>
+            </div>
         </div>
-        <nav class="nav-categories"> 
-            <a href="categories.html?category=fps" class="nav-item">FPS</a>
-            <a href="categories.html?category=battle-royale" class="nav-item">Battle Royale</a>
-            <a href="categories.html?category=sniper" class="nav-item">Sniper</a>
-            <a href="categories.html?category=multiplayer" class="nav-item">Multiplayer</a>
-            <a href="categories.html?category=action" class="nav-item">Action</a>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search games...">
-            <i class="fas fa-search"></i>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 50 50">
+                    <defs>
+                        <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4ecca3;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="url(#heroGrad)" stroke-width="3"/>
+                    <circle cx="25" cy="25" r="12" fill="none" stroke="url(#heroGrad)" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="4" fill="#4ecca3"/>
+                    <line x1="25" y1="0" x2="25" y2="15" stroke="#4ecca3" stroke-width="2"/>
+                    <line x1="25" y1="35" x2="25" y2="50" stroke="#4ecca3" stroke-width="2"/>
+                    <line x1="0" y1="25" x2="15" y2="25" stroke="#4ecca3" stroke-width="2"/>
+                    <line x1="35" y1="25" x2="50" y2="25" stroke="#4ecca3" stroke-width="2"/>
+                </svg>
+            </div>
+            
+            <h1>Welcome to Veck.io</h1>
+            <p class="hero-subtitle">Experience the ultimate browser-based FPS gaming platform. Play hundreds of free online shooter games with no downloads required. Join thousands of players worldwide in intense multiplayer battles!</p>
+            
+            <div class="hero-buttons">
+                <a href="#games" class="btn-primary">Play Now</a>
+                <a href="#features" class="btn-secondary">Learn More</a>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Games</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Active Players</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <!-- 主容器 -->
-    <div class="main-container">
-        <!-- 中间主内容 -->
-        <main class="main-content">
-            <!-- 游戏展示区 -->
-            <div class="game-showcase">
-                <div class="game-frame">
-                    <iframe id="game-iframe" src="" allowfullscreen></iframe>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Veck.io?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>No Downloads Required</h3>
+                    <p>Play all our games directly in your browser. No installations, no updates, no hassle. Just click and play!</p>
                 </div>
-                <div class="game-controls">
-                    <div class="game-title-section">
-                        <img src="" id="game-icon" class="game-icon" alt="Icon">
-                        <span class="game-title" id="current-game-title">Gummy merge</span>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="game-actions">
-                        <i class="fas fa-expand" onclick="toggleFullscreen()"></i>
-                    </div>
+                    <h3>Multiplayer Action</h3>
+                    <p>Battle real players from around the world in real-time. Experience intense multiplayer combat with instant matchmaking.</p>
                 </div>
-            </div>
-
-            <!-- 相关推荐 -->
-            <div class="related-games">
-                <h3 class="section-title">Popular Shooter Games</h3>
-                <div class="games-grid" id="related-games-container">
-                    <!-- 21个游戏卡片将由JavaScript动态生成 -->
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Competitive Gameplay</h3>
+                    <p>Climb global leaderboards, earn achievements, and prove your skills against the best players worldwide.</p>
                 </div>
-            </div>
-
-            <!-- 内容区域 - 游戏介绍 -->
-            <div class="content-section">
-                <div class="game-info">
-                    <div class="info-header">Welcome to Veck.io - A fast, browser-based 3D multiplayer FPS that delivers quick, intense arena battles. No downloads or installations required - just jump in and start shooting!</div>
-                    <div class="info-content">
-                        <h2>WHAT IS VECK.IO?</h2>
-                        <p><strong>Veck.io</strong> is a browser-based 3D first-person shooter inspired by classic arena FPS games. It focuses on <strong>speed, accuracy, and movement</strong> rather than complex progression systems. Every match is short, intense, and action-packed, making Veck.io ideal for quick gaming sessions at school, work, or home.</p>
-                        <p>As an <strong>.io shooter game</strong>, Veck.io emphasizes multiplayer combat, instant matchmaking, and lightweight performance. Built with modern web technologies, it delivers clean <strong>low-poly 3D graphics</strong> while remaining lightweight and smooth on both high-end and low-end devices.</p>
-
-                        <h3>VECK.IO GAMEPLAY</h3>
-                        <p>In Veck.io, you spawn into <strong>compact arena maps</strong> where quick reflexes decide the outcome. You can <strong>run, jump, strafe, and slide</strong> to outplay opponents while mastering different weapons. The controls feel familiar to anyone who has played modern FPS games, making Veck.io easy to learn but hard to master.</p>
-                        <p>The fast respawn system ensures <strong>non-stop action</strong>, so you spend more time playing and less time waiting. The gameplay rewards aggressive yet smart play - constant motion makes you harder to hit, while good positioning lets you peek angles, control chokepoints, and catch opponents off guard.</p>
-
-                        <h3>VECK.IO GAME MODES</h3>
-                        <ul>
-                            <li><strong>Free For All:</strong> Every player fights for themselves - eliminate as many opponents as possible using pure skill and fast reflexes</li>
-                            <li><strong>1v1 Duel:</strong> Face a single opponent in intense duels where aim, movement, and reaction time decide the winner</li>
-                            <li><strong>2v2 Team:</strong> Teamwork becomes essential - coordinate attacks, positioning, and strategy with your teammate</li>
-                            <li><strong>3v3 Team:</strong> Balanced team-based combat with increased intensity - work together to control the map</li>
-                            <li><strong>4v4 Team:</strong> Large-scale team action with more chaos and strategic depth</li>
-                            <li><strong>Private Rooms:</strong> Create or join private rooms, invite friends, and customize match rules</li>
-                            <li><strong>Gun Game:</strong> Fast-paced weapon progression mode</li>
-                        </ul>
-
-                        <h3>VECK.IO WEAPONS</h3>
-                        <p>Veck.io features <strong>40+ weapons</strong> across different categories:</p>
-                        <ul>
-                            <li><strong>Guns:</strong> Assault Rifle, Burst Rifle, Handgun, Sniper Rifle, Rocket Launcher, AK-47</li>
-                            <li><strong>Melee:</strong> Stabber, Scythe, Karambit, Katana, War Axe, Shield</li>
-                            <li><strong>Special:</strong> Shurikens, Split Fang, War Horn, Grenades, Flash, Smoke</li>
-                            <li><strong>Armory:</strong> Snowball Gun, Water Gun, Slingshot, Grenade Launcher, Paintball Gun</li>
-                            <li><strong>Quick Switch:</strong> Shotgun, SMG, Bow - use keys 1-9 for instant weapon swaps</li>
-                        </ul>
-
-                        <h3>VECK.IO KEY FEATURES</h3>
-                        <ul>
-                            <li><strong>Browser-Based:</strong> Play directly online with no download or installation required</li>
-                            <li><strong>Fast-Paced FPS:</strong> Quick matches with constant action in compact, competitive maps</li>
-                            <li><strong>Multiplayer Combat:</strong> Battle real players in online arenas with instant matchmaking</li>
-                            <li><strong>Low-Poly 3D Graphics:</strong> Clean visuals optimized for smooth performance</li>
-                            <li><strong>Skins & Cosmetics:</strong> Customize your character with skins like Karambit Gold, Meme Frog Suit, and more - all cosmetic items ensure fairness</li>
-                            <li><strong>Daily Rewards:</strong> Earn coins and unlock new skins by playing regularly</li>
-                            <li><strong>Global Leaderboards:</strong> Compete with players worldwide and climb the ranks</li>
-                            <li><strong>Social Features:</strong> Join clans, create private rooms, and chat with other players</li>
-                            <li><strong>Multiple Servers:</strong> Join servers across United States, Europe, Asia, and more</li>
-                        </ul>
-
-                        <h3>VECK.IO CONTROLS</h3>
-                        <ul>
-                            <li><strong>Move:</strong> W, A, S, D or Arrow Keys</li>
-                            <li><strong>Aim:</strong> Mouse</li>
-                            <li><strong>Shoot:</strong> Left Mouse Button</li>
-                            <li><strong>Scope:</strong> Right Mouse Button</li>
-                            <li><strong>Jump:</strong> Space Bar</li>
-                            <li><strong>Slide:</strong> Shift</li>
-                            <li><strong>Reload:</strong> R</li>
-                            <li><strong>Switch Weapons:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9</li>
-                            <li><strong>Scoreboard:</strong> Tab</li>
-                        </ul>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <div class="tags">
-                        <span class="tag"><i class="fas fa-bullseye"></i> VECK IO</span>
-                        <span class="tag"><i class="fas fa-gamepad"></i> FPS</span>
-                        <span class="tag"><i class="fas fa-crosshairs"></i> SHOOTER</span>
-                        <span class="tag"><i class="fas fa-users"></i> MULTIPLAYER</span>
-                        <span class="tag"><i class="fas fa-gun"></i> ACTION</span>
-                        <span class="tag"><i class="fas fa-rocket"></i> BATTLE</span>
-                        <span class="tag"><i class="fas fa-gamepad"></i> 3D GAME</span>
-                        <span class="tag"><i class="fas fa-globe"></i> BROWSER GAME</span>
+                    <h3>Cross-Platform</h3>
+                    <p>Play on any device - PC, Mac, mobile, or tablet. Our games are optimized for all screen sizes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
+                    <h3>Safe & Secure</h3>
+                    <p>Your safety is our priority. We use advanced security measures to protect your data and ensure fair play.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Free to Play</h3>
+                    <p>All games are completely free with no hidden costs. Enjoy premium gaming experience without spending a dime.</p>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
-    <!-- 页脚 -->
+    <!-- Games Section -->
+    <section class="games-section" id="games">
+        <div class="container">
+            <h2 class="section-title">Popular Games</h2>
+            
+            <div class="games-grid" id="games-container">
+                <!-- Games will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Game</h3>
+                    <p>Browse our extensive library of games and find the perfect one for you. With categories like FPS, Battle Royale, and more, there's something for everyone.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Click & Play</h3>
+                    <p>No downloads or installations required. Just click the "Play Now" button and jump straight into the action.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Battle & Win</h3>
+                    <p>Compete against real players, climb the leaderboards, and become the ultimate champion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Game Categories</h2>
+            
+            <div class="categories-grid">
+                <div class="category-card" onclick="window.location.href='categories.html?category=fps'">
+                    <div class="category-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="category-name">FPS</div>
+                    <div class="category-count">27 Games</div>
+                </div>
+                
+                <div class="category-card" onclick="window.location.href='categories.html?category=battle-royale'">
+                    <div class="category-icon"><i class="fas fa-skull-crossbones"></i></div>
+                    <div class="category-name">Battle Royale</div>
+                    <div class="category-count">10 Games</div>
+                </div>
+                
+                <div class="category-card" onclick="window.location.href='categories.html?category=sniper'">
+                    <div class="category-icon"><i class="fas fa-target"></i></div>
+                    <div class="category-name">Sniper</div>
+                    <div class="category-count">5 Games</div>
+                </div>
+                
+                <div class="category-card" onclick="window.location.href='categories.html?category=multiplayer'">
+                    <div class="category-icon"><i class="fas fa-users"></i></div>
+                    <div class="category-name">Multiplayer</div>
+                    <div class="category-count">6 Games</div>
+                </div>
+                
+                <div class="category-card" onclick="window.location.href='categories.html?category=action'">
+                    <div class="category-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="category-name">Action</div>
+                    <div class="category-count">6 Games</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-links">
-            <a href="about.html">About Veck.io</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="#">DMCA</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Veck.io</h3>
+                    <p>Veck.io is the ultimate destination for free online FPS games. Play browser-based multiplayer shooter games with no downloads required.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Game Categories</h3>
+                    <ul>
+                        <li><a href="categories.html?category=fps">FPS Games</a></li>
+                        <li><a href="categories.html?category=battle-royale">Battle Royale</a></li>
+                        <li><a href="categories.html?category=sniper">Sniper Games</a></li>
+                        <li><a href="categories.html?category=multiplayer">Multiplayer</a></li>
+                        <li><a href="categories.html?category=action">Action Games</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get the latest game updates and exclusive offers.</p>
+                    <div style="margin-top: 15px;">
+                        <input type="email" placeholder="Enter your email" style="padding: 10px 15px; width: 200px; border-radius: 25px; background: var(--dark-bg); border: 1px solid var(--dark-border); color: var(--text-primary);">
+                        <button style="padding: 10px 20px; background: var(--primary-color); border: none; border-radius: 25px; color: #000; font-weight: 600; cursor: pointer; margin-left: 10px;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Veck.io. All rights reserved. Made with ❤️ for gamers worldwide.</p>
+            </div>
         </div>
-        <div class="footer-copyright">© 2024 Veck.io - Free Online Shooter Games. All rights reserved.</div>
     </footer>
 
-    <!-- 游戏数据 -->
+    <!-- Game Data Scripts -->
     <script src="js/game_data/games.js"></script>
     <script src="js/game_data/action.js"></script>
     <script src="js/game_data/battleRoyale.js"></script>
     <script src="js/game_data/fps.js"></script>
     <script src="js/game_data/multiplayer.js"></script>
     <script src="js/game_data/sniper.js"></script>
-    <!-- 主脚本 -->
-    <script src="init.js"></script>
+    
+    <script>
+        // Load popular games
+        document.addEventListener('DOMContentLoaded', function() {
+            const gamesContainer = document.getElementById('games-container');
+            
+            // Get all games
+            let allGames = [];
+            if (typeof actionGames !== 'undefined') allGames = allGames.concat(actionGames);
+            if (typeof battleRoyaleGames !== 'undefined') allGames = allGames.concat(battleRoyaleGames);
+            if (typeof fpsGames !== 'undefined') allGames = allGames.concat(fpsGames);
+            if (typeof multiplayerGames !== 'undefined') allGames = allGames.concat(multiplayerGames);
+            if (typeof sniperGames !== 'undefined') allGames = allGames.concat(sniperGames);
+            
+            // Shuffle and take top 8
+            allGames.sort(() => Math.random() - 0.5);
+            const featuredGames = allGames.slice(0, 8);
+            
+            featuredGames.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.onclick = () => window.location.href = game.link;
+                
+                gameCard.innerHTML = `
+                    <div class="game-image">
+                        <img src="${game.imageUrl}" alt="${game.name}" onerror="this.style.display='none'">
+                        <div class="game-rating">${game.rating} ⭐</div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">${game.name}</h3>
+                        <span class="game-category">${game.gameType}</span>
+                        <p class="game-desc">${game.description ? game.description.substring(0, 100) + '...' : 'Click to play this exciting game!'}</p>
+                        <a href="${game.link}" class="play-btn">Play Now <i class="fas fa-play"></i></a>
+                    </div>
+                `;
+                
+                gamesContainer.appendChild(gameCard);
+            });
+        });
+    </script>
 </body>
 </html>
