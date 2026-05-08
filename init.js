@@ -22,6 +22,32 @@ function sanitizeDisplayText(value) {
         .trim();
 }
 
+function toCleanPath(value) {
+    const input = String(value || '');
+    const match = input.match(/^([^?#]+)(\?[^#]*)?(#.*)?$/);
+    if (!match) {
+        return input;
+    }
+
+    let [, pathPart, query = '', hash = ''] = match;
+
+    if (pathPart === 'index.html') {
+        pathPart = '/';
+    } else if (pathPart.endsWith('/index.html')) {
+        pathPart = pathPart.slice(0, -'index.html'.length);
+    } else {
+        pathPart = pathPart.replace(/\.html$/, '');
+    }
+
+    return `${pathPart}${query}${hash}`;
+}
+
+function getRelativePageLink(pageName) {
+    const depth = window.location.pathname.split('/').filter(Boolean).length;
+    const prefix = depth > 1 ? '../' : '';
+    return toCleanPath(`${prefix}${pageName}`);
+}
+
 function getCategoryCounts() {
     return {
         fps: (window.fpsData || []).length,
@@ -57,7 +83,7 @@ function createGameCard(game, options = {}) {
 
     const openGame = () => {
         if (game.link) {
-            window.location.href = options.prefixLink ? options.prefixLink + game.link : game.link;
+            window.location.href = toCleanPath(options.prefixLink ? options.prefixLink + game.link : game.link);
         }
     };
 
@@ -96,7 +122,7 @@ function initSiteSearch() {
 
             const query = input.value.trim().toLowerCase();
             if (!query) {
-                window.location.href = `${input.dataset.searchBase || ""}categories.html?category=all`;
+                window.location.href = toCleanPath(`${input.dataset.searchBase || ""}categories.html?category=all`);
                 return;
             }
 
@@ -110,11 +136,11 @@ function initSiteSearch() {
             });
 
             if (match && match.link) {
-                window.location.href = `${input.dataset.searchBase || ""}${match.link}`;
+                window.location.href = toCleanPath(`${input.dataset.searchBase || ""}${match.link}`);
                 return;
             }
 
-            window.location.href = `${input.dataset.searchBase || ""}categories.html?category=all&search=${encodeURIComponent(query)}`;
+            window.location.href = toCleanPath(`${input.dataset.searchBase || ""}categories.html?category=all&search=${encodeURIComponent(query)}`);
         });
     });
 }
@@ -130,7 +156,7 @@ function initCookieNotice() {
     banner.innerHTML = `
         <div class="consent-banner__text">
             Veck.io may use analytics, ads, cookies, and third-party game embeds to run the site.
-            <a href="${window.location.pathname.includes('/') && window.location.pathname !== '/index.html' && window.location.pathname !== '/categories.html' && window.location.pathname.split('/').length > 2 ? '../privacy.html' : 'privacy.html'}">Learn more</a>.
+            <a href="${getRelativePageLink('privacy.html')}">Learn more</a>.
         </div>
         <button class="consent-banner__button" type="button">OK</button>
     `;

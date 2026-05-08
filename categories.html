@@ -16,11 +16,11 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="Veck.io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
-    <link rel="canonical" href="https://veckio.space/categories.html">
+    <link rel="canonical" href="https://veckio.space/categories">
     <meta property="og:title" content="Game Categories - Veck.io">
     <meta property="og:description" content="Browse categorized browser game pages on Veck.io.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://veckio.space/categories.html">
+    <meta property="og:url" content="https://veckio.space/categories">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/css.css">
@@ -31,7 +31,7 @@
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="site-shell">
         <header class="header">
-            <a href="index.html" class="logo" aria-label="Veck.io home">
+            <a href="/" class="logo" aria-label="Veck.io home">
                 <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
                     <defs>
                         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -46,12 +46,12 @@
                 <span class="logo-text">Veck<span class="logo-io">.io</span></span>
             </a>
             <nav class="nav-categories" aria-label="Primary">
-                <a href="categories.html?category=all" class="nav-item" data-nav-category="all">All Games</a>
-                <a href="categories.html?category=fps" class="nav-item" data-nav-category="fps">FPS</a>
-                <a href="categories.html?category=battle-royale" class="nav-item" data-nav-category="battle-royale">Battle Royale</a>
-                <a href="categories.html?category=sniper" class="nav-item" data-nav-category="sniper">Sniper</a>
-                <a href="categories.html?category=multiplayer" class="nav-item" data-nav-category="multiplayer">Multiplayer</a>
-                <a href="categories.html?category=action" class="nav-item" data-nav-category="action">Action</a>
+                <a href="/categories?category=all" class="nav-item" data-nav-category="all">All Games</a>
+                <a href="/categories?category=fps" class="nav-item" data-nav-category="fps">FPS</a>
+                <a href="/categories?category=battle-royale" class="nav-item" data-nav-category="battle-royale">Battle Royale</a>
+                <a href="/categories?category=sniper" class="nav-item" data-nav-category="sniper">Sniper</a>
+                <a href="/categories?category=multiplayer" class="nav-item" data-nav-category="multiplayer">Multiplayer</a>
+                <a href="/categories?category=action" class="nav-item" data-nav-category="action">Action</a>
             </nav>
             <div class="search-bar">
                 <label class="visually-hidden" for="category-search">Search games</label>
@@ -68,26 +68,32 @@
                     <p class="page-subtitle">Use the category chips or the search box to jump to a specific title. Each destination page includes a short overview and related recommendations.</p>
                 </div>
                 <div class="categories-grid" id="top-category-grid"></div>
-                <div class="info-banner">Search results on this page are filtered locally from the available game data, so visitors can browse without loading unnecessary pages first.</div>
+                <div class="info-banner">Search results on this page are filtered locally from the available game data, so visitors can browse without loading unnecessary pages first. Review and update notes are published separately so the library stays easier to evaluate.</div>
             </section>
 
             <section class="page-section" aria-labelledby="category-guides">
                 <h2 class="section-title" id="category-guides">Need help choosing what to open?</h2>
-                <p class="section-lead">These original editorial pages explain how to browse the library more intentionally instead of opening titles at random.</p>
+                <p class="section-lead">These original editorial pages explain how to browse the library intentionally, how pages are maintained, and what to expect when a page is corrected or updated.</p>
                 <div class="guide-grid">
-                    <a class="guide-card" href="browser-fps-guide.html">
+                    <a class="guide-card" href="/browser-fps-guide">
                         <div class="guide-kicker"><i class="fas fa-crosshairs"></i> Player Guide</div>
                         <h3>How to choose the right browser FPS</h3>
                         <p>Use session length, pace, and device comfort to decide whether FPS, sniper, or multiplayer is the better first click.</p>
                         <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
                     </a>
-                    <a class="guide-card" href="how-we-select-browser-games.html">
+                    <a class="guide-card" href="/how-we-select-browser-games">
                         <div class="guide-kicker"><i class="fas fa-list-check"></i> Editorial Guide</div>
                         <h3>How we select and maintain pages</h3>
                         <p>See the standards behind category fit, page quality, and why Veck.io adds context around embedded gameplay.</p>
                         <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
                     </a>
-                    <a class="guide-card" href="browser-game-safety-guide.html">
+                    <a class="guide-card" href="/editorial-review-and-updates">
+                        <div class="guide-kicker"><i class="fas fa-arrows-rotate"></i> Review Process</div>
+                        <h3>How pages are reviewed and updated</h3>
+                        <p>See which page issues trigger updates, how corrections are handled, and why support signals remain visible across the site.</p>
+                        <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a class="guide-card" href="/browser-game-safety-guide">
                         <div class="guide-kicker"><i class="fas fa-shield-heart"></i> Safety Guide</div>
                         <h3>Safety, privacy, and performance basics</h3>
                         <p>Understand how to browse third-party embeds more carefully and what to do if a page feels heavy or unclear.</p>
@@ -116,27 +122,28 @@
                 <div class="footer-section">
                     <h3>Browse</h3>
                     <ul>
-                        <li><a href="index.html">Homepage</a></li>
-                        <li><a href="categories.html?category=all">All Games</a></li>
-                        <li><a href="categories.html?category=fps">FPS Games</a></li>
-                        <li><a href="categories.html?category=multiplayer">Multiplayer Games</a></li>
+                        <li><a href="/">Homepage</a></li>
+                        <li><a href="/categories?category=all">All Games</a></li>
+                        <li><a href="/categories?category=fps">FPS Games</a></li>
+                        <li><a href="/categories?category=multiplayer">Multiplayer Games</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Policies</h3>
                     <ul>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Guides</h3>
                     <ul>
-                        <li><a href="browser-fps-guide.html">Choosing a Browser FPS</a></li>
-                        <li><a href="how-we-select-browser-games.html">How We Select Games</a></li>
-                        <li><a href="browser-game-safety-guide.html">Safety and Privacy Guide</a></li>
+                        <li><a href="/browser-fps-guide">Choosing a Browser FPS</a></li>
+                        <li><a href="/how-we-select-browser-games">How We Select Games</a></li>
+                        <li><a href="/editorial-review-and-updates">Editorial Review and Updates</a></li>
+                        <li><a href="/browser-game-safety-guide">Safety and Privacy Guide</a></li>
                     </ul>
                 </div>
             </div>
@@ -205,7 +212,7 @@
                 { key: 'action', label: 'Action', icon: 'fa-bolt' }
             ].forEach((category) => {
                 const card = document.createElement('a');
-                card.href = `categories.html?category=${category.key}`;
+                card.href = `/categories?category=${category.key}`;
                 card.className = 'category-card';
                 card.innerHTML = `
                     <div class="category-icon"><i class="fas ${category.icon}" aria-hidden="true"></i></div>

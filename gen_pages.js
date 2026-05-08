@@ -3,6 +3,18 @@ const path = require('path');
 
 const SITE_URL = 'https://veckio.space';
 const ROOT = __dirname;
+const STATIC_PAGE_ROUTES = {
+    'index.html': '/',
+    'categories.html': '/categories',
+    'about.html': '/about',
+    'contact.html': '/contact',
+    'privacy.html': '/privacy',
+    'terms.html': '/terms',
+    'browser-fps-guide.html': '/browser-fps-guide',
+    'how-we-select-browser-games.html': '/how-we-select-browser-games',
+    'browser-game-safety-guide.html': '/browser-game-safety-guide',
+    'editorial-review-and-updates.html': '/editorial-review-and-updates'
+};
 
 const DATASETS = [
     { file: 'js/game_data/action.js', dir: 'Action', label: 'Action' },
@@ -43,6 +55,32 @@ function escapeHtml(value) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
+}
+
+function toCleanRoute(filePath) {
+    const normalized = String(filePath || '').replace(/\\/g, '/');
+    if (STATIC_PAGE_ROUTES[normalized]) {
+        return STATIC_PAGE_ROUTES[normalized];
+    }
+
+    return `/${normalized.replace(/\.html$/, '')}`;
+}
+
+function toSiteUrl(filePath) {
+    return `${SITE_URL}${toCleanRoute(filePath)}`;
+}
+
+function toRelativeRoute(filePath, relativePrefix = '') {
+    const route = toCleanRoute(filePath);
+    if (route === '/') {
+        return relativePrefix || '/';
+    }
+
+    return `${relativePrefix}${route.replace(/^\//, '')}`;
+}
+
+function buildCategoryHref(category, relativePrefix = '') {
+    return `${toRelativeRoute('categories.html', relativePrefix)}?category=${category}`;
 }
 
 function makeShortDescription(game) {
@@ -117,32 +155,33 @@ function buildFooter(relativePrefix) {
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About Veck.io</h3>
-                    <p>Veck.io organizes browser game pages with short context, category navigation, and policy pages that stay easy to find.</p>
+                    <p>Veck.io organizes browser game pages with short context, clear navigation, and visible review and support signals.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Browse</h3>
                     <ul>
-                        <li><a href="${relativePrefix}index.html">Homepage</a></li>
-                        <li><a href="${relativePrefix}categories.html?category=all">All Games</a></li>
-                        <li><a href="${relativePrefix}categories.html?category=fps">FPS Games</a></li>
-                        <li><a href="${relativePrefix}categories.html?category=multiplayer">Multiplayer Games</a></li>
+                        <li><a href="${toRelativeRoute('index.html', relativePrefix)}">Homepage</a></li>
+                        <li><a href="${buildCategoryHref('all', relativePrefix)}">All Games</a></li>
+                        <li><a href="${buildCategoryHref('fps', relativePrefix)}">FPS Games</a></li>
+                        <li><a href="${buildCategoryHref('multiplayer', relativePrefix)}">Multiplayer Games</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Policies</h3>
                     <ul>
-                        <li><a href="${relativePrefix}about.html">About</a></li>
-                        <li><a href="${relativePrefix}contact.html">Contact</a></li>
-                        <li><a href="${relativePrefix}privacy.html">Privacy Policy</a></li>
-                        <li><a href="${relativePrefix}terms.html">Terms of Service</a></li>
+                        <li><a href="${toRelativeRoute('about.html', relativePrefix)}">About</a></li>
+                        <li><a href="${toRelativeRoute('contact.html', relativePrefix)}">Contact</a></li>
+                        <li><a href="${toRelativeRoute('privacy.html', relativePrefix)}">Privacy Policy</a></li>
+                        <li><a href="${toRelativeRoute('terms.html', relativePrefix)}">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Guides</h3>
                     <ul>
-                        <li><a href="${relativePrefix}browser-fps-guide.html">Choosing a Browser FPS</a></li>
-                        <li><a href="${relativePrefix}how-we-select-browser-games.html">How We Select Games</a></li>
-                        <li><a href="${relativePrefix}browser-game-safety-guide.html">Safety and Privacy Guide</a></li>
+                        <li><a href="${toRelativeRoute('browser-fps-guide.html', relativePrefix)}">Choosing a Browser FPS</a></li>
+                        <li><a href="${toRelativeRoute('how-we-select-browser-games.html', relativePrefix)}">How We Select Games</a></li>
+                        <li><a href="${toRelativeRoute('editorial-review-and-updates.html', relativePrefix)}">Editorial Review and Updates</a></li>
+                        <li><a href="${toRelativeRoute('browser-game-safety-guide.html', relativePrefix)}">Safety and Privacy Guide</a></li>
                     </ul>
                 </div>
             </div>
@@ -152,7 +191,7 @@ function buildFooter(relativePrefix) {
 }
 
 function buildPage(game, categoryDir, categoryLabel, allGames) {
-    const pageUrl = `${SITE_URL}/${game.link}`;
+    const pageUrl = toSiteUrl(game.link);
     const relativePrefix = '../';
     const imageUrl = (game.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/');
     const description = sanitizeGameDescription(game.description || `${game.name} is playable in your browser on Veck.io.`);
@@ -198,7 +237,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="site-shell">
         <header class="header">
-            <a href="../index.html" class="logo" aria-label="Veck.io home">
+            <a href="${toRelativeRoute('index.html', relativePrefix)}" class="logo" aria-label="Veck.io home">
                 <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
                     <defs>
                         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -213,12 +252,12 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 <span class="logo-text">Veck<span class="logo-io">.io</span></span>
             </a>
             <nav class="nav-categories" aria-label="Primary">
-                <a href="../categories.html?category=all" class="nav-item">All Games</a>
-                <a href="../categories.html?category=fps" class="nav-item">FPS</a>
-                <a href="../categories.html?category=battle-royale" class="nav-item">Battle Royale</a>
-                <a href="../categories.html?category=sniper" class="nav-item">Sniper</a>
-                <a href="../categories.html?category=multiplayer" class="nav-item">Multiplayer</a>
-                <a href="../categories.html?category=action" class="nav-item">Action</a>
+                <a href="${buildCategoryHref('all', relativePrefix)}" class="nav-item">All Games</a>
+                <a href="${buildCategoryHref('fps', relativePrefix)}" class="nav-item">FPS</a>
+                <a href="${buildCategoryHref('battle-royale', relativePrefix)}" class="nav-item">Battle Royale</a>
+                <a href="${buildCategoryHref('sniper', relativePrefix)}" class="nav-item">Sniper</a>
+                <a href="${buildCategoryHref('multiplayer', relativePrefix)}" class="nav-item">Multiplayer</a>
+                <a href="${buildCategoryHref('action', relativePrefix)}" class="nav-item">Action</a>
             </nav>
             <div class="search-bar">
                 <label class="visually-hidden" for="site-search">Search games</label>
@@ -290,6 +329,9 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                         ${tags.slice(0, 5).map((tag) => `<span class="tag"><i class="fas fa-tag"></i> ${escapeHtml(tag)}</span>`).join('')}
                     </div>
                 </div>
+                <div class="success-card">
+                    <strong>Editorial review note:</strong> Veck.io reviews summaries, category placement, support links, and external play access when a page changes, breaks, or is reported. <a href="${toRelativeRoute('editorial-review-and-updates.html', relativePrefix)}">See how pages are reviewed and updated</a>.
+                </div>
             </section>
 
             <section class="related-games">
@@ -297,7 +339,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     ${relatedGames.map((relatedGame) => `
-                    <article class="game-card" tabindex="0" data-link="../${escapeHtml(relatedGame.link)}">
+                    <article class="game-card" tabindex="0" data-link="${toRelativeRoute(relatedGame.link, relativePrefix)}">
                         <div class="game-card-image">
                             <img src="${escapeHtml((relatedGame.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/'))}" alt="${escapeHtml(relatedGame.name)}" loading="lazy">
                         </div>
@@ -397,18 +439,19 @@ function writeGamePages() {
 function buildSitemap(allGames) {
     const urls = [
         { loc: `${SITE_URL}/`, priority: '1.0', changefreq: 'weekly' },
-        { loc: `${SITE_URL}/categories.html`, priority: '0.9', changefreq: 'weekly' },
-        { loc: `${SITE_URL}/about.html`, priority: '0.4', changefreq: 'monthly' },
-        { loc: `${SITE_URL}/contact.html`, priority: '0.4', changefreq: 'monthly' },
-        { loc: `${SITE_URL}/privacy.html`, priority: '0.3', changefreq: 'monthly' },
-        { loc: `${SITE_URL}/terms.html`, priority: '0.3', changefreq: 'monthly' },
-        { loc: `${SITE_URL}/browser-fps-guide.html`, priority: '0.6', changefreq: 'monthly' },
-        { loc: `${SITE_URL}/how-we-select-browser-games.html`, priority: '0.6', changefreq: 'monthly' },
-        { loc: `${SITE_URL}/browser-game-safety-guide.html`, priority: '0.6', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/categories`, priority: '0.9', changefreq: 'weekly' },
+        { loc: `${SITE_URL}/about`, priority: '0.4', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/contact`, priority: '0.4', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/privacy`, priority: '0.3', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/terms`, priority: '0.3', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/browser-fps-guide`, priority: '0.6', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/how-we-select-browser-games`, priority: '0.6', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/browser-game-safety-guide`, priority: '0.6', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/editorial-review-and-updates`, priority: '0.6', changefreq: 'monthly' },
         ...allGames
             .filter((game) => game.link && game.link !== 'index.html')
             .map((game) => ({
-                loc: `${SITE_URL}/${game.link}`,
+                loc: toSiteUrl(game.link),
                 priority: '0.7',
                 changefreq: 'monthly'
             }))
