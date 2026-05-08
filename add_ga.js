@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const gaCode = `<!-- Google tag (gtag.js) -->
-<script async src="https://www.goagletagmanager.com/gtag/js?id=G-GHQS0XRZ6D"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GHQS0XRZ6D"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

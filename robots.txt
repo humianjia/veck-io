@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /js/
-Disallow: /css/
-Disallow: /img/
-
 Sitemap: https://veckio.space/sitemap.xml

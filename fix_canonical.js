@@ -13,8 +13,8 @@ function fixCanonical(filePath) {
         modified = true;
     }
 
-    if (content.includes('https://veck.io/')) {
-        content = content.replace(/https:\/\/veck\.io\//g, 'https://veckio.space/');
+    if (content.includes('https://vortex.io/')) {
+        content = content.replace(/https:\/\/vortex\.io\//g, 'https://veckio.space/');
         modified = true;
     }
 

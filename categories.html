@@ -1,255 +1,190 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.goagletagmanager.com/gtag/js?id=G-GHQS0XRZ6D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-GHQS0XRZ6D');
-</script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHQS0XRZ6D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GHQS0XRZ6D');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Categories - VORTEX.io | Free Online Shooter Games</title>
-    <meta name="description" content="Browse all game categories at VORTEX.io - .io Games, FPS, Battle Royale, Sniper, Multiplayer, Action games and more!">
-    <meta name="keywords" content="vortex io, game categories, io games, FPS games, battle royale, sniper games, multiplayer games, action games">
+    <title>Game Categories - Veck.io</title>
+    <meta name="description" content="Browse FPS, battle royale, sniper, multiplayer, and action game pages on Veck.io. Filter by category or search by title and tag.">
+    <meta name="keywords" content="Veck.io categories, FPS games, battle royale games, sniper games, multiplayer games, action games">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="VORTEX.io">
-    <link rel="canonical" href="https://vortex.io/categories">
-    <meta property="og:title" content="Game Categories - VORTEX.io">
-    <meta property="og:description" content="Browse all game categories - .io Games, FPS, Battle Royale, Sniper, Multiplayer and more!">
+    <meta name="author" content="Veck.io">
+    <link rel="canonical" href="https://veckio.space/categories.html">
+    <meta property="og:title" content="Game Categories - Veck.io">
+    <meta property="og:description" content="Browse categorized browser game pages on Veck.io.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vortex.io/categories">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%234ecca3'/><stop offset='100%25' stop-color='%2300d4ff'/></linearGradient></defs><circle cx='25' cy='25' r='20' fill='none' stroke='url(%23g)' stroke-width='3'/><circle cx='25' cy='25' r='12' fill='none' stroke='url(%23g)' stroke-width='2'/><circle cx='25' cy='25' r='4' fill='%234ecca3'/></svg>">
+    <meta property="og:url" content="https://veckio.space/categories.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/css.css">
     <link rel="stylesheet" href="categories.css">
 </head>
 <body>
-    <!-- 粒子背景 -->
     <div class="particles" id="particles"></div>
-    <!-- 鼠标跟随光效 -->
     <div class="cursor-glow" id="cursorGlow"></div>
-    
-    <!-- 顶部导航 -->
-    <header class="header">
-        <a href="index.html" class="logo">
-            <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#4ecca3;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <circle cx="25" cy="25" r="20" fill="none" stroke="url(#grad1)" stroke-width="3"/>
-                <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
-                <circle cx="25" cy="25" r="4" fill="#4ecca3"/>
-                <line x1="25" y1="0" x2="25" y2="15" stroke="#4ecca3" stroke-width="2"/>
-                <line x1="25" y1="35" x2="25" y2="50" stroke="#4ecca3" stroke-width="2"/>
-                <line x1="0" y1="25" x2="15" y2="25" stroke="#4ecca3" stroke-width="2"/>
-                <line x1="35" y1="25" x2="50" y2="25" stroke="#4ecca3" stroke-width="2"/>
-            </svg>
-            <span class="logo-text">Veck<span class="logo-io">.io</span></span>
-        </a>
-        <nav class="nav-categories"> 
-            <a href="categories.html?category=all" class="nav-item">All Games</a>
-            <a href="categories.html?category=fps" class="nav-item">FPS</a>
-            <a href="categories.html?category=battle-royale" class="nav-item">Battle Royale</a>
-            <a href="categories.html?category=sniper" class="nav-item">Sniper</a>
-            <a href="categories.html?category=multiplayer" class="nav-item">Multiplayer</a>
-            <a href="categories.html?category=action" class="nav-item">Action</a>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search games...">
-            <i class="fas fa-search"></i>
-        </div>
-    </header>
-
-    <!-- 主容器 -->
-    <div class="main-container">
-        <main class="main-content">
-            <!-- 页面标题 -->
-            <div class="page-header">
-                <h1 class="page-title">Game Categories</h1>
-                <p class="page-subtitle">Explore our collection of free online shooter games</p>
+    <div class="site-shell">
+        <header class="header">
+            <a href="index.html" class="logo" aria-label="Veck.io home">
+                <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#78c4ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#5df0c1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="url(#grad1)" stroke-width="3"/>
+                    <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
+                    <circle cx="25" cy="25" r="4" fill="#5df0c1"/>
+                </svg>
+                <span class="logo-text">Veck<span class="logo-io">.io</span></span>
+            </a>
+            <nav class="nav-categories" aria-label="Primary">
+                <a href="categories.html?category=all" class="nav-item" data-nav-category="all">All Games</a>
+                <a href="categories.html?category=fps" class="nav-item" data-nav-category="fps">FPS</a>
+                <a href="categories.html?category=battle-royale" class="nav-item" data-nav-category="battle-royale">Battle Royale</a>
+                <a href="categories.html?category=sniper" class="nav-item" data-nav-category="sniper">Sniper</a>
+                <a href="categories.html?category=multiplayer" class="nav-item" data-nav-category="multiplayer">Multiplayer</a>
+                <a href="categories.html?category=action" class="nav-item" data-nav-category="action">Action</a>
+            </nav>
+            <div class="search-bar">
+                <label class="visually-hidden" for="category-search">Search games</label>
+                <input id="category-search" type="text" placeholder="Search this library" data-site-search>
+                <i class="fas fa-search" aria-hidden="true"></i>
             </div>
+        </header>
 
-            <!-- 分类网格 -->
-            <section class="categories-grid">
-                <a href="categories.html?category=all" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>All Games</h3>
-                    <p>1000+ Games</p>
-                    <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <a href="categories.html?category=fps" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-crosshairs"></i>
-                    </div>
-                    <h3>FPS</h3>
-                    <p>150+ Games</p>
-                    <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <a href="categories.html?category=battle-royale" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-skull"></i>
-                    </div>
-                    <h3>Battle Royale</h3>
-                    <p>80+ Games</p>
-                    <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <a href="categories.html?category=sniper" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3>Sniper</h3>
-                    <p>120+ Games</p>
-                    <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <a href="categories.html?category=multiplayer" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Multiplayer</h3>
-                    <p>300+ Games</p>
-                    <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-
-                <a href="categories.html?category=action" class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-fist-raised"></i>
-                    </div>
-                    <h3>Action</h3>
-                    <p>250+ Games</p>
-                    <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
+        <main class="page-container">
+            <section class="page-card">
+                <div class="page-header">
+                    <span class="eyebrow"><i class="fas fa-layer-group"></i> Game Library</span>
+                    <h1 class="page-title">Browse game pages by category</h1>
+                    <p class="page-subtitle">Use the category chips or the search box to jump to a specific title. Each destination page includes a short overview and related recommendations.</p>
+                </div>
+                <div class="categories-grid" id="top-category-grid"></div>
+                <div class="info-banner">Search results on this page are filtered locally from the available game data, so visitors can browse without loading unnecessary pages first.</div>
             </section>
 
-            <!-- 游戏列表 -->
-            <section class="games-section">
-                <h3 class="section-title" id="games-section-title">All Games</h3>
-                <div class="games-list" id="games-list-container">
-                    <!-- 游戏列表将由JavaScript动态生成 -->
+            <section class="games-section page-section">
+                <div class="series-header">
+                    <div>
+                        <h2 class="section-title" id="games-section-title">All Games</h2>
+                        <p class="section-lead" id="games-section-lead">A complete view of the current game pages on Veck.io.</p>
+                    </div>
                 </div>
+                <div class="games-grid" id="games-list-container"></div>
             </section>
         </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>Veck.io groups browser game pages by theme so players can quickly scan the library and open a suitable title.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Browse</h3>
+                    <ul>
+                        <li><a href="index.html">Homepage</a></li>
+                        <li><a href="categories.html?category=all">All Games</a></li>
+                        <li><a href="categories.html?category=fps">FPS Games</a></li>
+                        <li><a href="categories.html?category=multiplayer">Multiplayer Games</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">Copyright 2026 Veck.io. All rights reserved.</div>
+        </footer>
     </div>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#">About VORTEX.io</a>
-            <a href="#">Contact Us</a>
-            <a href="#">DMCA</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
-        <div class="footer-copyright">© 2024 VORTEX.io - Free Online Shooter Games. All rights reserved.</div>
-    </footer>
-
-    <!-- 游戏数据 -->
     <script src="js/game_data/games.js"></script>
     <script src="js/game_data/action.js"></script>
     <script src="js/game_data/battleRoyale.js"></script>
     <script src="js/game_data/fps.js"></script>
     <script src="js/game_data/multiplayer.js"></script>
     <script src="js/game_data/sniper.js"></script>
-    <!-- 主脚本 -->
     <script src="init.js"></script>
-    <!-- 分类页面脚本 -->
     <script>
-        // 获取URL参数
         function getURLParam(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
 
-        // 分类配置
         const categories = {
-            'all': 'All Games',
-            'fps': 'FPS',
-            'battle-royale': 'Battle Royale',
-            'sniper': 'Sniper',
-            'multiplayer': 'Multiplayer',
-            'action': 'Action'
-        };
-
-        // 分类到数据的映射
-        const categoryDataMap = {
-            'all': [...(window.gamesData || []), ...(window.actionGames || []), ...(window.battleRoyaleData || []), ...(window.fpsData || []), ...(window.multiplayerGames || []), ...(window.sniperData || [])],
-            'fps': window.fpsData || [],
-            'battle-royale': window.battleRoyaleData || [],
-            'sniper': window.sniperData || [],
-            'multiplayer': window.multiplayerGames || [],
-            'action': window.actionGames || []
-        };
-
-        // 加载游戏列表
-        function loadGamesByCategory() {
-            const container = document.getElementById('games-list-container');
-            const titleElement = document.getElementById('games-section-title');
-            if (!container || !titleElement) {
-                console.error('Container or title element not found');
-                return;
+            all: {
+                title: 'All Games',
+                lead: 'Every currently published game page on Veck.io.'
+            },
+            fps: {
+                title: 'FPS',
+                lead: 'First-person shooter focused pages with quick browser access.'
+            },
+            'battle-royale': {
+                title: 'Battle Royale',
+                lead: 'Last-player-standing and survival-flavored picks.'
+            },
+            sniper: {
+                title: 'Sniper',
+                lead: 'Precision-oriented pages with scoped or tactical play themes.'
+            },
+            multiplayer: {
+                title: 'Multiplayer',
+                lead: 'Competitive or social game pages built around matches with others.'
+            },
+            action: {
+                title: 'Action',
+                lead: 'Faster arcade, obstacle, or reflex-based browser game pages.'
             }
+        };
 
-            // 获取当前分类
-            const currentCategory = getURLParam('category') || 'all';
-            const categoryName = categories[currentCategory] || 'All Games';
-            console.log('Current category:', currentCategory, 'Games data:', window.multiplayerGames);
+        const categoryDataMap = {
+            all: getAllSiteGames().filter((game) => game.link && game.link !== 'index.html'),
+            fps: window.fpsData || [],
+            'battle-royale': window.battleRoyaleData || [],
+            sniper: window.sniperData || [],
+            multiplayer: window.multiplayerGames || [],
+            action: window.actionGames || []
+        };
 
-            // 更新标题
-            titleElement.textContent = categoryName;
-
-            // 根据真实分类数据获取游戏
-            const allGames = categoryDataMap[currentCategory] || [];
-            console.log('Games loaded:', allGames.length, 'Games:', allGames);
-
-            container.innerHTML = '';
-            allGames.forEach((game, index) => {
-                const gameItem = document.createElement('div');
-                gameItem.className = 'game-item';
-                gameItem.innerHTML = `
-                    <div class="game-item-image">
-                        <img src="${game.imageUrl}" alt="${game.name}" onerror="console.error('Image failed:', '${game.imageUrl}')">
-                    </div>
-                    <div class="game-item-info">
-                        <h4 class="game-item-title">${game.name}</h4>
-                        <div class="game-item-category">${categoryName}</div>
-                        <div class="game-item-stats">
-                            <span><i class="fas fa-play"></i> ${Math.floor(Math.random() * 100000)}</span>
-                            <span><i class="fas fa-star"></i> ${(4 + Math.random()).toFixed(1)}</span>
-                        </div>
-                    </div>
+        function renderTopCategories() {
+            const container = document.getElementById('top-category-grid');
+            const counts = getCategoryCounts();
+            [
+                { key: 'all', label: 'All Games', icon: 'fa-gamepad' },
+                { key: 'fps', label: 'FPS', icon: 'fa-crosshairs' },
+                { key: 'battle-royale', label: 'Battle Royale', icon: 'fa-mountain-sun' },
+                { key: 'sniper', label: 'Sniper', icon: 'fa-bullseye' },
+                { key: 'multiplayer', label: 'Multiplayer', icon: 'fa-users' },
+                { key: 'action', label: 'Action', icon: 'fa-bolt' }
+            ].forEach((category) => {
+                const card = document.createElement('a');
+                card.href = `categories.html?category=${category.key}`;
+                card.className = 'category-card';
+                card.innerHTML = `
+                    <div class="category-icon"><i class="fas ${category.icon}" aria-hidden="true"></i></div>
+                    <div class="category-name">${category.label}</div>
+                    <div class="category-count">${counts[category.key]} pages</div>
                 `;
-                gameItem.addEventListener('click', () => {
-                    if (game.link) {
-                        window.location.href = game.link;
-                    } else if (window.parent.loadGame) {
-                        window.parent.loadGame(game.originalIndex || index);
-                    } else {
-                        window.location.href = `index.html?game=${game.originalIndex || index}`;
-                    }
-                });
-                container.appendChild(gameItem);
+                container.appendChild(card);
             });
         }
 
-        // 高亮当前分类导航
-        function highlightCurrentCategory() {
-            const currentCategory = getURLParam('category') || 'all';
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                const href = item.getAttribute('href');
-                if (href.includes(`category=${currentCategory}`)) {
+        function highlightCurrentCategory(currentCategory) {
+            document.querySelectorAll('[data-nav-category]').forEach((item) => {
+                if (item.dataset.navCategory === currentCategory) {
                     item.classList.add('active');
                 } else {
                     item.classList.remove('active');
@@ -257,13 +192,52 @@
             });
         }
 
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 延迟初始化，提高页面加载速度
-            setTimeout(() => {
-                loadGamesByCategory();
-                highlightCurrentCategory();
-            }, 100);
+        function loadGamesByCategory() {
+            const container = document.getElementById('games-list-container');
+            const titleElement = document.getElementById('games-section-title');
+            const leadElement = document.getElementById('games-section-lead');
+            const currentCategory = getURLParam('category') || 'all';
+            const currentSearch = (getURLParam('search') || '').trim().toLowerCase();
+            const categoryConfig = categories[currentCategory] || categories.all;
+            const allGames = categoryDataMap[currentCategory] || categoryDataMap.all;
+            const filteredGames = currentSearch
+                ? allGames.filter((game) => {
+                    const haystack = [game.name, game.description, ...(game.tags || [])].join(' ').toLowerCase();
+                    return haystack.includes(currentSearch);
+                })
+                : allGames;
+
+            titleElement.textContent = currentSearch ? `${categoryConfig.title} results` : categoryConfig.title;
+            leadElement.textContent = currentSearch
+                ? `Showing matches for "${currentSearch}" in ${categoryConfig.title.toLowerCase()}.`
+                : categoryConfig.lead;
+
+            container.innerHTML = '';
+            if (!filteredGames.length) {
+                const empty = document.createElement('div');
+                empty.className = 'page-card';
+                empty.innerHTML = `
+                    <h3>No matching game pages found</h3>
+                    <p class="section-lead">Try a shorter keyword, switch categories, or open the full library.</p>
+                `;
+                container.appendChild(empty);
+                return;
+            }
+
+            filteredGames.forEach((game) => {
+                container.appendChild(createGameCard(game));
+            });
+
+            highlightCurrentCategory(currentCategory);
+            const searchInput = document.getElementById('category-search');
+            if (searchInput && currentSearch) {
+                searchInput.value = currentSearch;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            renderTopCategories();
+            loadGamesByCategory();
         });
     </script>
 </body>

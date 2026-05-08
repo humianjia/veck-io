@@ -1,190 +1,190 @@
-// 加载游戏到主页 iframe
-function loadMainGame() {
-    if (gamesData && gamesData.length > 0) {
-        const firstGame = gamesData[0];
-        const iframe = document.getElementById('game-iframe');
-        const title = document.getElementById('current-game-title');
-        const icon = document.getElementById('game-icon');
-        
-        if (iframe && firstGame.iframeUrl) {
-            iframe.src = firstGame.iframeUrl;
-        }
-        
-        if (title) {
-            title.textContent = firstGame.name || 'Game';
-        }
-        
-        if (icon && firstGame.imageUrl) {
-            icon.src = firstGame.imageUrl.replace('game_icon', 'icon');
-        }
-    }
+function getAllSiteGames() {
+    return [
+        ...(window.gamesData || []),
+        ...(window.actionGames || []),
+        ...(window.battleRoyaleData || []),
+        ...(window.fpsData || []),
+        ...(window.multiplayerGames || []),
+        ...(window.sniperData || [])
+    ];
 }
 
-// 加载游戏（用于点击游戏卡片）
-function loadGame(gameIndex) {
-    if (gamesData && gamesData[gameIndex]) {
-        const game = gamesData[gameIndex];
-        const iframe = document.getElementById('game-iframe');
-        const title = document.getElementById('current-game-title');
-        const icon = document.getElementById('game-icon');
-        
-        if (iframe) {
-            iframe.src = game.iframeUrl || '';
-        }
-        
-        if (title) {
-            title.textContent = game.name || 'Game';
-        }
-        
-        if (icon && game.imageUrl) {
-            icon.src = game.imageUrl.replace('game_icon', 'icon');
-        }
-    }
+function sanitizeDisplayText(value) {
+    return String(value || '')
+        .replace(/\bterrorist\b/gi, 'enemy')
+        .replace(/\bassassination\b/gi, 'mission objective')
+        .replace(/\bcriminal underworld\b/gi, 'crime-fiction setting')
+        .replace(/\bgang-themed\b/gi, 'urban-themed')
+        .replace(/\bgangs?\b/gi, 'factions')
+        .replace(/\bmafia\b/gi, 'crime-fiction')
+        .replace(/\bweapons\b/gi, 'loadout options')
+        .replace(/\s+/g, ' ')
+        .trim();
 }
 
-// 全屏切换
-function toggleFullscreen() {
-    const iframe = document.getElementById('game-iframe');
-    if (iframe) {
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-        } else if (iframe.webkitRequestFullscreen) {
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) {
-            iframe.msRequestFullscreen();
-        }
-    }
+function getCategoryCounts() {
+    return {
+        fps: (window.fpsData || []).length,
+        "battle-royale": (window.battleRoyaleData || []).length,
+        sniper: (window.sniperData || []).length,
+        multiplayer: (window.multiplayerGames || []).length,
+        action: (window.actionGames || []).length,
+        all: getAllSiteGames().length
+    };
 }
 
-// 打乱数组顺序（用于随机排序）
+function createGameCard(game, options = {}) {
+    const card = document.createElement("article");
+    card.className = options.className || "game-card";
+    card.tabIndex = 0;
+
+    const imageUrl = options.imageUrlTransform ? options.imageUrlTransform(game.imageUrl) : game.imageUrl;
+    const description = sanitizeDisplayText(
+        game.shortDescription || game.description || "Open this game page for a short overview, tips, and browser-play details."
+    );
+    const category = game.gameType || "Game";
+
+    card.innerHTML = `
+        <div class="game-card-image">
+            <img src="${imageUrl}" alt="${game.name}" loading="lazy">
+        </div>
+        <div class="game-card-info">
+            <div class="game-card-category">${category}</div>
+            <h3 class="game-card-title">${game.name}</h3>
+            <p class="game-card-desc">${description}</p>
+        </div>
+    `;
+
+    const openGame = () => {
+        if (game.link) {
+            window.location.href = options.prefixLink ? options.prefixLink + game.link : game.link;
+        }
+    };
+
+    card.addEventListener("click", openGame);
+    card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openGame();
+        }
+    });
+
+    return card;
+}
+
 function shuffleArray(array) {
     const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
+    for (let i = shuffled.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
 }
 
-// 动态生成21个随机游戏卡片
-function loadRelatedGames() {
-    const container = document.getElementById('related-games-container');
-    if (!container) return;
-    
-    // 合并所有分类的游戏数据
-    const allGames = [
-        ...(window.gamesData || []),
-        ...(window.actionGames || []),
-        ...(window.battleRoyaleData || []),
-        ...(window.fpsData || []),
-        ...(window.multiplayerGames || []),
-        ...(window.sniperData || [])
-    ];
-    
-    if (allGames.length === 0) return;
-    
-    // 随机打乱游戏数据，取前21个
-    const shuffledGames = shuffleArray(allGames).slice(0, 21);
-    
-    // 清空容器
-    container.innerHTML = '';
-    
-    // 生成游戏卡片
-    shuffledGames.forEach((game) => {
-        const card = document.createElement('div');
-        card.className = 'game-card';
-        card.setAttribute('data-game', game.id);
-        const imageUrl = game.imageUrl;
-        card.innerHTML = `
-            <img src="${imageUrl}" alt="${game.name}" onerror="this.src='img/icon/veckIo.jpg'">
-            <div class="game-card-title">${game.name}</div>
-        `;
-        card.addEventListener('click', function() {
-            loadGameById(game.id);
-        });
-        container.appendChild(card);
-    });
-}
-
-// 根据游戏ID跳转到游戏页面
-function loadGameById(gameId) {
-    // 合并所有分类的游戏数据
-    const allGames = [
-        ...(window.gamesData || []),
-        ...(window.actionGames || []),
-        ...(window.battleRoyaleData || []),
-        ...(window.fpsData || []),
-        ...(window.multiplayerGames || []),
-        ...(window.sniperData || [])
-    ];
-
-    const game = allGames.find(g => g.id === gameId);
-    if (!game) return;
-
-    // 跳转到游戏页面
-    if (game.link) {
-        window.location.href = game.link;
+function initSiteSearch() {
+    const searchInputs = document.querySelectorAll("[data-site-search]");
+    if (!searchInputs.length) {
+        return;
     }
-}
 
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', function() {
-    // 加载主页游戏
-    loadMainGame();
-    
-    // 加载21个随机游戏
-    loadRelatedGames();
-    
-    // 初始化粒子背景
-    initParticles();
-    
-    // 初始化鼠标跟随效果
-    initCursorGlow();
-    
-    // 为新游戏区域的卡片添加点击事件
-    const newGameCards = document.querySelectorAll('.series-game');
-    newGameCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const gameIndex = this.getAttribute('data-game');
-            if (gameIndex !== null) {
-                loadGame(parseInt(gameIndex));
+    const allGames = getAllSiteGames();
+    searchInputs.forEach((input) => {
+        input.addEventListener("keydown", (event) => {
+            if (event.key !== "Enter") {
+                return;
             }
+
+            const query = input.value.trim().toLowerCase();
+            if (!query) {
+                window.location.href = `${input.dataset.searchBase || ""}categories.html?category=all`;
+                return;
+            }
+
+            const match = allGames.find((game) => {
+                const haystack = [
+                    game.name,
+                    game.description,
+                    ...(game.tags || [])
+                ].join(" ").toLowerCase();
+                return haystack.includes(query);
+            });
+
+            if (match && match.link) {
+                window.location.href = `${input.dataset.searchBase || ""}${match.link}`;
+                return;
+            }
+
+            window.location.href = `${input.dataset.searchBase || ""}categories.html?category=all&search=${encodeURIComponent(query)}`;
         });
     });
-});
+}
 
-// 粒子背景效果
+function initCookieNotice() {
+    const storageKey = 'veckio_cookie_notice_dismissed_v1';
+    if (localStorage.getItem(storageKey) === '1') {
+        return;
+    }
+
+    const banner = document.createElement('div');
+    banner.className = 'consent-banner';
+    banner.innerHTML = `
+        <div class="consent-banner__text">
+            Veck.io may use analytics, ads, cookies, and third-party game embeds to run the site.
+            <a href="${window.location.pathname.includes('/') && window.location.pathname !== '/index.html' && window.location.pathname !== '/categories.html' && window.location.pathname.split('/').length > 2 ? '../privacy.html' : 'privacy.html'}">Learn more</a>.
+        </div>
+        <button class="consent-banner__button" type="button">OK</button>
+    `;
+
+    const button = banner.querySelector('button');
+    button.addEventListener('click', () => {
+        localStorage.setItem(storageKey, '1');
+        banner.remove();
+    });
+
+    document.body.appendChild(banner);
+}
+
 function initParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
-    
-    for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-        particle.style.width = (3 + Math.random() * 4) + 'px';
+    const container = document.getElementById("particles");
+    if (!container || container.childElementCount > 0) {
+        return;
+    }
+
+    for (let i = 0; i < 26; i += 1) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 16}s`;
+        particle.style.animationDuration = `${14 + Math.random() * 8}s`;
+        particle.style.width = `${3 + Math.random() * 4}px`;
         particle.style.height = particle.style.width;
         container.appendChild(particle);
     }
 }
 
-// 鼠标跟随光效
 function initCursorGlow() {
-    const glow = document.getElementById('cursorGlow');
-    if (!glow) return;
-    
-    document.addEventListener('mousemove', (e) => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
+    const glow = document.getElementById("cursorGlow");
+    if (!glow) {
+        return;
+    }
+
+    document.addEventListener("mousemove", (event) => {
+        glow.style.left = `${event.clientX}px`;
+        glow.style.top = `${event.clientY}px`;
     });
-    
-    document.addEventListener('mouseleave', () => {
-        glow.style.opacity = '0';
+
+    document.addEventListener("mouseleave", () => {
+        glow.style.opacity = "0";
     });
-    
-    document.addEventListener('mouseenter', () => {
-        glow.style.opacity = '1';
+
+    document.addEventListener("mouseenter", () => {
+        glow.style.opacity = "1";
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initParticles();
+    initCursorGlow();
+    initSiteSearch();
+    initCookieNotice();
+});
