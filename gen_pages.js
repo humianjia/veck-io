@@ -137,6 +137,14 @@ function buildFooter(relativePrefix) {
                         <li><a href="${relativePrefix}terms.html">Terms of Service</a></li>
                     </ul>
                 </div>
+                <div class="footer-section">
+                    <h3>Guides</h3>
+                    <ul>
+                        <li><a href="${relativePrefix}browser-fps-guide.html">Choosing a Browser FPS</a></li>
+                        <li><a href="${relativePrefix}how-we-select-browser-games.html">How We Select Games</a></li>
+                        <li><a href="${relativePrefix}browser-game-safety-guide.html">Safety and Privacy Guide</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">Copyright 2026 Veck.io. All rights reserved.</div>
         </footer>
@@ -172,6 +180,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <meta name="keywords" content="${escapeHtml(keywordContent)}">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Veck.io">
+    <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <link rel="canonical" href="${pageUrl}">
     <meta property="og:title" content="${escapeHtml(game.name)} - Play Online on Veck.io">
     <meta property="og:description" content="${escapeHtml(shortDescription)}">
@@ -393,6 +402,9 @@ function buildSitemap(allGames) {
         { loc: `${SITE_URL}/contact.html`, priority: '0.4', changefreq: 'monthly' },
         { loc: `${SITE_URL}/privacy.html`, priority: '0.3', changefreq: 'monthly' },
         { loc: `${SITE_URL}/terms.html`, priority: '0.3', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/browser-fps-guide.html`, priority: '0.6', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/how-we-select-browser-games.html`, priority: '0.6', changefreq: 'monthly' },
+        { loc: `${SITE_URL}/browser-game-safety-guide.html`, priority: '0.6', changefreq: 'monthly' },
         ...allGames
             .filter((game) => game.link && game.link !== 'index.html')
             .map((game) => ({
