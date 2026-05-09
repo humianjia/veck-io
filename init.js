@@ -155,7 +155,7 @@ function initCookieNotice() {
     banner.className = 'consent-banner';
     banner.innerHTML = `
         <div class="consent-banner__text">
-            Veck.io may use analytics, ads, cookies, and third-party game embeds to run the site.
+            veck io may use analytics, ads, cookies, and third-party game embeds to run the site.
             <a href="${getRelativePageLink('privacy.html')}">Learn more</a>.
         </div>
         <button class="consent-banner__button" type="button">OK</button>

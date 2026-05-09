@@ -106,7 +106,7 @@ function buildHighlights(game, categoryLabel) {
         highlights.push(`Themes include ${tags.slice(0, 3).join(', ')}`);
     }
 
-    highlights.push(`Playable from the ${categoryLabel} section on Veck.io`);
+    highlights.push(`Playable from the ${categoryLabel} section on veck io`);
     return highlights.slice(0, 3);
 }
 
@@ -154,8 +154,8 @@ function buildFooter(relativePrefix) {
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>About Veck.io</h3>
-                    <p>Veck.io organizes browser game pages with short context, clear navigation, and visible review and support signals.</p>
+                    <h3>About veck io</h3>
+                    <p>veck io organizes browser game pages with short context, clear navigation, and visible review and support signals.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Browse</h3>
@@ -185,7 +185,7 @@ function buildFooter(relativePrefix) {
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">Copyright 2026 Veck.io. All rights reserved.</div>
+            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved.</div>
         </footer>
     `;
 }
@@ -194,7 +194,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     const pageUrl = toSiteUrl(game.link);
     const relativePrefix = '../';
     const imageUrl = (game.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/');
-    const description = sanitizeGameDescription(game.description || `${game.name} is playable in your browser on Veck.io.`);
+    const description = sanitizeGameDescription(game.description || `${game.name} is playable in your browser on veck io.`);
     const shortDescription = makeShortDescription({ description });
     const highlights = buildHighlights(game, categoryLabel);
     const tips = buildTips(game);
@@ -214,19 +214,19 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(game.name)} - Play Online on Veck.io</title>
-    <meta name="description" content="${escapeHtml(shortDescription)} Read a quick overview, browser notes, and related picks on Veck.io.">
+    <title>${escapeHtml(game.name)} - Play Online on veck io</title>
+    <meta name="description" content="${escapeHtml(shortDescription)} Read a quick overview, browser notes, and related picks on veck io.">
     <meta name="keywords" content="${escapeHtml(keywordContent)}">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Veck.io">
+    <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <link rel="canonical" href="${pageUrl}">
-    <meta property="og:title" content="${escapeHtml(game.name)} - Play Online on Veck.io">
+    <meta property="og:title" content="${escapeHtml(game.name)} - Play Online on veck io">
     <meta property="og:description" content="${escapeHtml(shortDescription)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${pageUrl}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${escapeHtml(game.name)} - Play Online on Veck.io">
+    <meta name="twitter:title" content="${escapeHtml(game.name)} - Play Online on veck io">
     <meta name="twitter:description" content="${escapeHtml(shortDescription)}">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -237,7 +237,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="site-shell">
         <header class="header">
-            <a href="${toRelativeRoute('index.html', relativePrefix)}" class="logo" aria-label="Veck.io home">
+            <a href="${toRelativeRoute('index.html', relativePrefix)}" class="logo" aria-label="veck io home">
                 <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
                     <defs>
                         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -249,7 +249,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
                     <circle cx="25" cy="25" r="4" fill="#5df0c1"/>
                 </svg>
-                <span class="logo-text">Veck<span class="logo-io">.io</span></span>
+                <span class="logo-text">veck <span class="logo-io">io</span></span>
             </a>
             <nav class="nav-categories" aria-label="Primary">
                 <a href="${buildCategoryHref('all', relativePrefix)}" class="nav-item">All Games</a>
@@ -313,12 +313,12 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
 
             <section class="content-section">
                 <div class="game-info">
-                    <div class="info-header">This page is part of the Veck.io ${escapeHtml(categoryLabel.toLowerCase())} library and is meant to help visitors understand the game quickly before relying on the embedded experience alone.</div>
+                    <div class="info-header">This page is part of the veck io ${escapeHtml(categoryLabel.toLowerCase())} library and is meant to help visitors understand the game quickly before relying on the embedded experience alone.</div>
                     <div class="info-content">
                         <h2>About ${escapeHtml(game.name)}</h2>
                         <p>${escapeHtml(description)}</p>
                         <h3>Why this page exists</h3>
-                        <p>Veck.io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.</p>
+                        <p>veck io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.</p>
                         <h3>Browser play notes</h3>
                         <ul>
                             ${tips.map((tip) => `<li>${escapeHtml(tip)}</li>`).join('')}
@@ -330,7 +330,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     </div>
                 </div>
                 <div class="success-card">
-                    <strong>Editorial review note:</strong> Veck.io reviews summaries, category placement, support links, and external play access when a page changes, breaks, or is reported. <a href="${toRelativeRoute('editorial-review-and-updates.html', relativePrefix)}">See how pages are reviewed and updated</a>.
+                    <strong>Editorial review note:</strong> veck io reviews summaries, category placement, support links, and external play access when a page changes, breaks, or is reported. <a href="${toRelativeRoute('editorial-review-and-updates.html', relativePrefix)}">See how pages are reviewed and updated</a>.
                 </div>
             </section>
 

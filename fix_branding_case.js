@@ -6,10 +6,10 @@ function updateBrandingCase(filePath) {
 
     let content = fs.readFileSync(filePath, 'utf-8');
 
-    // 查找包含branding=veck.io的iframe标签
+    // 查找包含branding=veck%20io的iframe标签
     const oldPattern = /branding=veck\.io/g;
     if (oldPattern.test(content)) {
-        content = content.replace(oldPattern, 'branding=Veck.io');
+        content = content.replace(oldPattern, 'branding=veck%20io');
         fs.writeFileSync(filePath, content, 'utf-8');
         console.log('Updated branding case in:', filePath);
     }

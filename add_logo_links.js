@@ -27,7 +27,7 @@ function addLogoLink(filePath) {
                     <line x1="0" y1="25" x2="15" y2="25" stroke="#4ecca3" stroke-width="2"/>
                     <line x1="35" y1="25" x2="50" y2="25" stroke="#4ecca3" stroke-width="2"/>
                 </svg>
-                <span class="logo-text">Veck<span class="logo-io">.io</span></span>
+                <span class="logo-text">veck <span class="logo-io">io</span></span>
             </a>
         </div>`;
         
