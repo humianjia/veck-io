@@ -9,6 +9,28 @@ function getAllSiteGames() {
     ];
 }
 
+const approvalReadyLinks = new Set([
+    'FPS/Hazmob_FPS.html',
+    'FPS/Subway_FPS.html',
+    'FPS/Dragon_Slayer_FPS.html',
+    'FPS/Crab_Guards.html',
+    'FPS/FPS_Toy_Realism.html',
+    'FPS/3D_FPS_Target_Shooting.html',
+    'Multiplayer/Push.io.html',
+    'Multiplayer/Tic_Tac_Toe_Merge.html',
+    'Multiplayer/Animal_Racing_Idle_Park.html',
+    'Action/Revoxel_3D_-_Voxel_RPG_Shooter.html',
+    'Action/Obby_Football_Soccer_3D.html',
+    'Action/Dessert_DIY.html',
+    'BattleRoyale/Top_Guns_IO.html',
+    'BattleRoyale/Cube_Battle_Royale.html',
+    'Sniper/Aliens_Hunter.html'
+]);
+
+function getApprovalReadyGames() {
+    return getAllSiteGames().filter((game) => approvalReadyLinks.has(game.link));
+}
+
 function sanitizeDisplayText(value) {
     return String(value || '')
         .replace(/\bterrorist\b/gi, 'enemy')
@@ -49,13 +71,14 @@ function getRelativePageLink(pageName) {
 }
 
 function getCategoryCounts() {
+    const approvalReadyGames = getApprovalReadyGames();
     return {
-        fps: (window.fpsData || []).length,
-        "battle-royale": (window.battleRoyaleData || []).length,
-        sniper: (window.sniperData || []).length,
-        multiplayer: (window.multiplayerGames || []).length,
-        action: (window.actionGames || []).length,
-        all: getAllSiteGames().length
+        fps: approvalReadyGames.filter((game) => game.gameType === 'FPS').length,
+        "battle-royale": approvalReadyGames.filter((game) => game.gameType === 'Battle Royale').length,
+        sniper: approvalReadyGames.filter((game) => game.gameType === 'Sniper').length,
+        multiplayer: approvalReadyGames.filter((game) => game.gameType === 'Multiplayer').length,
+        action: approvalReadyGames.filter((game) => game.gameType === 'Action').length,
+        all: approvalReadyGames.length
     };
 }
 
@@ -113,7 +136,7 @@ function initSiteSearch() {
         return;
     }
 
-    const allGames = getAllSiteGames();
+    const allGames = getApprovalReadyGames();
     searchInputs.forEach((input) => {
         input.addEventListener("keydown", (event) => {
             if (event.key !== "Enter") {

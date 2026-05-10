@@ -10,24 +10,24 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>veck io | Input Output Games Online and Browser Game Picks</title>
-    <meta name="description" content="veck io is a browser game hub for players looking for input output games online, with curated FPS, multiplayer, sniper, action, and battle royale pages plus clear navigation and short game notes.">
-    <meta name="keywords" content="veck io, input output games online, skip the games, browser games, FPS games online, multiplayer games online">
+    <title>veck io | Browser Games and Curated Play Picks</title>
+    <meta name="description" content="veck io is a browser games hub with curated FPS, multiplayer, sniper, action, and battle royale pages, clear navigation, and short editorial notes before you play.">
+    <meta name="keywords" content="veck io, browser games, FPS games online, multiplayer browser games, browser game hub">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <meta name="theme-color" content="#09111f">
     <link rel="canonical" href="https://veckio.space/">
-    <meta property="og:title" content="veck io | Input Output Games Online and Browser Game Picks">
-    <meta property="og:description" content="veck io offers curated browser FPS, multiplayer, sniper, action, and battle royale pages with clear navigation and short game notes.">
+    <meta property="og:title" content="veck io | Browser Games and Curated Play Picks">
+    <meta property="og:description" content="veck io offers curated browser FPS, multiplayer, sniper, action, and battle royale pages with clear navigation and short editorial notes.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://veckio.space/">
     <meta property="og:site_name" content="veck io">
     <meta property="og:image" content="https://veckio.space/img/icon/veckIo.jpg">
     <meta property="og:image:alt" content="veck io browser game hub">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="veck io | Input Output Games Online and Browser Game Picks">
-    <meta name="twitter:description" content="Explore veck io for curated browser FPS, multiplayer, sniper, action, and battle royale pages with clear navigation and short game notes.">
+    <meta name="twitter:title" content="veck io | Browser Games and Curated Play Picks">
+    <meta name="twitter:description" content="Explore veck io for curated browser FPS, multiplayer, sniper, action, and battle royale pages with clear navigation and short editorial notes.">
     <meta name="twitter:image" content="https://veckio.space/img/icon/veckIo.jpg">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,7 +39,7 @@
             "name": "veck io",
             "alternateName": "veck io",
             "url": "https://veckio.space/",
-            "description": "veck io is a browser game hub with curated FPS, multiplayer, sniper, action, and battle royale pages, clear navigation, and short game notes."
+            "description": "veck io is a browser games hub with curated FPS, multiplayer, sniper, action, and battle royale pages, clear navigation, and short editorial notes."
         }
     </script>
 </head>
@@ -81,7 +81,7 @@
             <section class="page-card">
                 <span class="eyebrow"><i class="fas fa-compass"></i> veck io Browser Game Hub</span>
                 <h1 class="page-title">Play veck io and browse curated browser game picks.</h1>
-                <p class="page-subtitle">If you are searching for input output games online or even terms like skip the games, this homepage helps you move quickly into curated FPS, action, multiplayer, sniper, and battle royale pages with real context.</p>
+                <p class="page-subtitle">This homepage helps you move quickly into curated FPS, action, multiplayer, sniper, and battle royale pages with clearer context than a bare embed-only game site.</p>
                 <div class="metric-grid page-section" id="home-metrics">
                     <div class="metric-card">
                         <div class="metric-value"><i class="fas fa-gamepad"></i></div>
@@ -184,8 +184,8 @@
             </section>
 
             <section class="featured-games" id="games">
-                <h2 class="section-title">Popular game pages</h2>
-                <p class="section-lead">These cards lead to detail pages with short summaries, quick access to play, and related picks from the same site.</p>
+                <h2 class="section-title">Approval-ready game pages</h2>
+                <p class="section-lead">These are the strongest current browser game pages on the site, with fuller editorial notes, quicker fit guidance, and clearer page maintenance signals.</p>
                 <div class="games-grid" id="games-container"></div>
             </section>
 
@@ -290,7 +290,7 @@
     <script src="init.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const allGames = getAllSiteGames().filter((game) => game.link && game.link !== 'index.html');
+            const allGames = getApprovalReadyGames().filter((game) => game.link && game.link !== 'index.html');
             const gamesContainer = document.getElementById('games-container');
             const categoryGrid = document.getElementById('category-grid');
             const categoryCounts = getCategoryCounts();

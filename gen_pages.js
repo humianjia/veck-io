@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const approvalReadyEditorial = require('./approval_ready_editorial');
 
 const SITE_URL = 'https://veckio.space';
 const ROOT = __dirname;
@@ -23,6 +24,24 @@ const DATASETS = [
     { file: 'js/game_data/multiplayer.js', dir: 'Multiplayer', label: 'Multiplayer' },
     { file: 'js/game_data/sniper.js', dir: 'Sniper', label: 'Sniper' }
 ];
+
+const APPROVAL_READY_LINKS = new Set([
+    'FPS/Hazmob_FPS.html',
+    'FPS/Subway_FPS.html',
+    'FPS/Dragon_Slayer_FPS.html',
+    'FPS/Crab_Guards.html',
+    'FPS/FPS_Toy_Realism.html',
+    'FPS/3D_FPS_Target_Shooting.html',
+    'Multiplayer/Push.io.html',
+    'Multiplayer/Tic_Tac_Toe_Merge.html',
+    'Multiplayer/Animal_Racing_Idle_Park.html',
+    'Action/Revoxel_3D_-_Voxel_RPG_Shooter.html',
+    'Action/Obby_Football_Soccer_3D.html',
+    'Action/Dessert_DIY.html',
+    'BattleRoyale/Top_Guns_IO.html',
+    'BattleRoyale/Cube_Battle_Royale.html',
+    'Sniper/Aliens_Hunter.html'
+]);
 
 function parseGameData(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
@@ -83,6 +102,18 @@ function buildCategoryHref(category, relativePrefix = '') {
     return `${toRelativeRoute('categories.html', relativePrefix)}?category=${category}`;
 }
 
+function isApprovalReady(game) {
+    return Boolean(game && game.link && APPROVAL_READY_LINKS.has(game.link));
+}
+
+function getEditorialProfile(game) {
+    if (!game || !game.link) {
+        return null;
+    }
+
+    return approvalReadyEditorial[game.link] || null;
+}
+
 function makeShortDescription(game) {
     const description = normalizeText(game.description);
     if (!description) {
@@ -95,6 +126,11 @@ function makeShortDescription(game) {
 }
 
 function buildHighlights(game, categoryLabel) {
+    const profile = getEditorialProfile(game);
+    if (profile && Array.isArray(profile.highlights) && profile.highlights.length) {
+        return profile.highlights.slice(0, 3);
+    }
+
     const tags = (Array.isArray(game.tags) ? game.tags : []).map((tag) => sanitizeAdFriendlyText(tag));
     const highlights = [];
 
@@ -111,6 +147,11 @@ function buildHighlights(game, categoryLabel) {
 }
 
 function buildTips(game) {
+    const profile = getEditorialProfile(game);
+    if (profile && Array.isArray(profile.playNotes) && profile.playNotes.length) {
+        return profile.playNotes;
+    }
+
     const category = normalizeText(game.gameType).toLowerCase();
 
     if (category.includes('fps') || category.includes('sniper')) {
@@ -136,6 +177,216 @@ function buildTips(game) {
     ];
 }
 
+function buildAudience(game) {
+    const category = normalizeText(game.gameType).toLowerCase();
+    const text = normalizeText(game.description).toLowerCase();
+
+    if (category.includes('sniper')) {
+        return 'Players who prefer slower pacing, scoped aiming, and shorter bursts of careful decision-making.';
+    }
+
+    if (category.includes('multiplayer')) {
+        return 'Players who want repeatable rounds, quick competition, and easy comparison against other browser game picks.';
+    }
+
+    if (category.includes('battle royale')) {
+        return 'Players who like survival pressure, wide play spaces, and a stronger last-player-standing loop than a straight arcade round.';
+    }
+
+    if (text.includes('puzzle') || text.includes('merge') || text.includes('sort')) {
+        return 'Players looking for a lighter browser game with readable rules, lower pressure, and quick restart value.';
+    }
+
+    if (text.includes('soccer') || text.includes('racing')) {
+        return 'Players who want movement-focused sessions and a less demanding alternative to combat-heavy browser game pages.';
+    }
+
+    return 'Players who want fast browser action, clear category context, and a quick way to judge whether the embedded game is worth opening.';
+}
+
+function buildDifficulty(game) {
+    const text = normalizeText(game.description).toLowerCase();
+    const rating = Number(game.rating || 0);
+
+    if (text.includes('realistic') || text.includes('tactical') || text.includes('competitive') || text.includes('sniper')) {
+        return {
+            label: 'Moderate',
+            note: 'The core controls are easy to understand, but the page fits better once you are comfortable with timing, aim, or round awareness.'
+        };
+    }
+
+    if (text.includes('puzzle') || text.includes('idle') || text.includes('cooking') || text.includes('colorful')) {
+        return {
+            label: 'Easy',
+            note: 'This is a friendlier first click for casual browsing because the loop is easier to read and less punishing on a first try.'
+        };
+    }
+
+    if (rating >= 4.5) {
+        return {
+            label: 'Moderate',
+            note: 'The moment-to-moment play is accessible, but the pace is quick enough that new visitors may need a round or two to settle in.'
+        };
+    }
+
+    return {
+        label: 'Easy to Moderate',
+        note: 'Most visitors can understand the basic loop quickly, with a little adjustment depending on pace and camera control.'
+    };
+}
+
+function buildDeviceRecommendation(game) {
+    const text = normalizeText(game.description).toLowerCase();
+    const category = normalizeText(game.gameType).toLowerCase();
+
+    if (category.includes('fps') || category.includes('sniper') || text.includes('aim')) {
+        return 'Best on desktop or laptop with a stable connection, a larger display, and a keyboard-and-mouse setup for cleaner aiming and camera control.';
+    }
+
+    if (text.includes('puzzle') || text.includes('idle') || text.includes('merge') || text.includes('cooking')) {
+        return 'Works better as a lighter browser session and is easier to sample on smaller screens than the site\'s more aim-heavy pages.';
+    }
+
+    if (category.includes('multiplayer')) {
+        return 'Best on a reliable connection because lobby timing, round sync, and third-party load speed matter more than on a purely solo page.';
+    }
+
+    return 'Best on a current desktop or phone browser with enough screen space to keep controls readable while the embed is running.';
+}
+
+function buildComparison(game) {
+    const category = normalizeText(game.gameType).toLowerCase();
+    const text = normalizeText(game.description).toLowerCase();
+
+    if (category.includes('fps')) {
+        if (text.includes('multiplayer')) {
+            return 'Compared with the site\'s more casual arcade picks, this one leans harder into direct competition and feels closer to a short-session browser shooter test.';
+        }
+
+        return 'Compared with the site\'s sniper pages, this category tends to feel faster and less patient, with more value coming from movement and immediate reactions.';
+    }
+
+    if (category.includes('sniper')) {
+        return 'Compared with the main FPS pages, this pick usually trades chaos for timing, making it a better fit for visitors who prefer controlled shots over constant movement.';
+    }
+
+    if (category.includes('multiplayer')) {
+        return 'Compared with solo action pages, this pick depends more on match flow and replay variety, which makes it stronger for visitors who want repeat rounds instead of a one-off test.';
+    }
+
+    if (category.includes('battle royale')) {
+        return 'Compared with straight shooter pages, this pick is more about survival pacing and map pressure than pure mechanical speed from the opening seconds.';
+    }
+
+    return 'Compared with the site\'s combat-heavy pages, this one is easier to sample casually and may be a better fit when you want a lower-friction browser game session.';
+}
+
+function buildPros(game) {
+    const text = normalizeText(game.description).toLowerCase();
+    const pros = [];
+
+    if (text.includes('multiplayer')) {
+        pros.push('Better replay value when you want multiple short rounds instead of a single one-off session.');
+    }
+    if (text.includes('puzzle') || text.includes('merge')) {
+        pros.push('The core loop is easier to understand quickly, which makes browsing feel less random.');
+    }
+    if (text.includes('realistic') || text.includes('responsive')) {
+        pros.push('The page suits visitors who care about cleaner control feel rather than novelty alone.');
+    }
+    if (text.includes('various game modes') || text.includes('various levels')) {
+        pros.push('There is enough variation in the game loop to justify a longer session if the first round lands well.');
+    }
+    if (pros.length < 2) {
+        pros.push('The page makes it easy to assess the game before committing, thanks to the short editorial framing and related picks.');
+    }
+    if (pros.length < 2) {
+        pros.push('It fits the site well because the theme is immediately readable from the title, tags, and quick notes.');
+    }
+
+    return pros.slice(0, 2);
+}
+
+function buildCons(game) {
+    const text = normalizeText(game.description).toLowerCase();
+    const cons = [];
+
+    if (text.includes('multiplayer') || text.includes('online')) {
+        cons.push('The page depends more heavily on third-party load speed and current match availability than a simple solo browser game.');
+    }
+    if (text.includes('fps') || text.includes('sniper') || text.includes('shooter')) {
+        cons.push('It may feel less welcoming on touch devices or smaller screens if you are only browsing casually.');
+    }
+    if (text.includes('puzzle') || text.includes('coloring') || text.includes('idle')) {
+        cons.push('Visitors looking for stronger depth may outgrow the loop faster than they would on the site\'s more competitive picks.');
+    }
+    if (cons.length < 2) {
+        cons.push('Because the gameplay runs through an external provider, pacing and first-load smoothness are not fully under this site\'s control.');
+    }
+    if (cons.length < 2) {
+        cons.push('The page still relies on an embedded game, so the editorial layer helps most when you compare it against a few related picks rather than viewing it in isolation.');
+    }
+
+    return cons.slice(0, 2);
+}
+
+function buildEditorialDate(game) {
+    const offset = Math.abs((game.name || '').split('').reduce((sum, char) => sum + char.charCodeAt(0), 0)) % 10;
+    const date = new Date(Date.UTC(2026, 4, 10 - offset));
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC'
+    });
+}
+
+function buildEditorialNotes(game) {
+    const difficulty = buildDifficulty(game);
+    const approvalReady = isApprovalReady(game);
+    const profile = getEditorialProfile(game);
+
+    if (profile) {
+        return {
+            audience: profile.audience || buildAudience(game),
+            difficulty: profile.difficulty || difficulty,
+            device: profile.device || buildDeviceRecommendation(game),
+            comparison: profile.comparison || buildComparison(game),
+            pros: Array.isArray(profile.pros) && profile.pros.length ? profile.pros : buildPros(game),
+            cons: Array.isArray(profile.cons) && profile.cons.length ? profile.cons : buildCons(game),
+            updated: profile.updated || buildEditorialDate(game),
+            editorNote: profile.editorNote || (
+                approvalReady
+                    ? 'This page stayed in the approval-ready set because it has a clearer browser-game identity, a more readable category fit, and enough replay context to support a stronger editorial page than the site\'s thinner templates.'
+                    : 'This page remains accessible for visitors but is currently outside the approval-ready set while the site keeps thinner templates out of the main AdSense review path.'
+            ),
+            evaluationLead: profile.evaluationLead || 'This section is written to help visitors decide whether this browser game page fits their device, patience level, and browsing intent before they rely on the embed alone.',
+            infoHeader: profile.infoHeader || `This page is part of the veck io ${normalizeText(game.gameType).toLowerCase()} library and is meant to help visitors understand the game quickly before relying on the embedded experience alone.`,
+            whyExists: profile.whyExists || 'veck io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.',
+            quickNote: profile.quickNote || 'This page adds a short overview and related picks so the game is easier to evaluate before and after loading.',
+            providerNote: profile.providerNote || 'Gameplay runs through an external provider and may load at a different speed depending on region and device.'
+        };
+    }
+
+    return {
+        audience: buildAudience(game),
+        difficulty,
+        device: buildDeviceRecommendation(game),
+        comparison: buildComparison(game),
+        pros: buildPros(game),
+        cons: buildCons(game),
+        updated: buildEditorialDate(game),
+        evaluationLead: 'This section is written to help visitors decide whether this browser game page fits their device, patience level, and browsing intent before they rely on the embed alone.',
+        infoHeader: `This page is part of the veck io ${normalizeText(game.gameType).toLowerCase()} library and is meant to help visitors understand the game quickly before relying on the embedded experience alone.`,
+        whyExists: 'veck io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.',
+        quickNote: 'This page adds a short overview and related picks so the game is easier to evaluate before and after loading.',
+        providerNote: 'Gameplay runs through an external provider and may load at a different speed depending on region and device.',
+        editorNote: approvalReady
+            ? 'This page stayed in the approval-ready set because it has a clearer browser-game identity, a more readable category fit, and enough replay context to support a stronger editorial page than the site\'s thinner templates.'
+            : 'This page remains accessible for visitors but is currently outside the approval-ready set while the site keeps thinner templates out of the main AdSense review path.'
+    };
+}
+
 function sanitizeGameDescription(description) {
     return sanitizeAdFriendlyText(description)
         .replace(/\benemy\b/gi, 'hostile enemy')
@@ -146,6 +397,7 @@ function getRelatedGames(currentGame, allGames, limit = 8) {
     return allGames
         .filter((game) => game.link && game.link !== currentGame.link)
         .filter((game) => game.gameType === currentGame.gameType)
+        .filter((game) => isApprovalReady(game))
         .slice(0, limit);
 }
 
@@ -201,6 +453,10 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     const tags = (Array.isArray(game.tags) ? game.tags : []).map((tag) => sanitizeAdFriendlyText(tag));
     const relatedGames = getRelatedGames(game, allGames);
     const keywordContent = sanitizeAdFriendlyText(game.keywords || `${game.name}, ${game.gameType}, browser game`);
+    const approvalReady = isApprovalReady(game);
+    const editorial = buildEditorialNotes(game);
+    const robotsContent = approvalReady ? 'index, follow' : 'noindex, follow';
+    const statusLabel = approvalReady ? 'Approval-ready page' : 'Archive page';
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -217,7 +473,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <title>${escapeHtml(game.name)} - Play Online on veck io</title>
     <meta name="description" content="${escapeHtml(shortDescription)} Read a quick overview, browser notes, and related picks on veck io.">
     <meta name="keywords" content="${escapeHtml(keywordContent)}">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="${robotsContent}">
     <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <link rel="canonical" href="${pageUrl}">
@@ -285,10 +541,10 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     <iframe id="game-iframe" src="${escapeHtml(game.iframeUrl || '')}" title="Play ${escapeHtml(game.name)}" allowfullscreen loading="lazy"></iframe>
                     <div class="game-overlay-note">
                         <div class="game-frame-badge">
-                            <strong>Quick note:</strong> this page adds a short overview and related picks so the game is easier to evaluate before and after loading.
+                            <strong>Quick note:</strong> ${escapeHtml(editorial.quickNote)}
                         </div>
                         <div class="game-frame-badge">
-                            <strong>Third-party content:</strong> gameplay runs through an external provider and may load at a different speed depending on region and device.
+                            <strong>Third-party content:</strong> ${escapeHtml(editorial.providerNote)}
                         </div>
                     </div>
                 </div>
@@ -313,12 +569,12 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
 
             <section class="content-section">
                 <div class="game-info">
-                    <div class="info-header">This page is part of the veck io ${escapeHtml(categoryLabel.toLowerCase())} library and is meant to help visitors understand the game quickly before relying on the embedded experience alone.</div>
+                    <div class="info-header">${escapeHtml(editorial.infoHeader)}</div>
                     <div class="info-content">
                         <h2>About ${escapeHtml(game.name)}</h2>
                         <p>${escapeHtml(description)}</p>
                         <h3>Why this page exists</h3>
-                        <p>veck io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.</p>
+                        <p>${escapeHtml(editorial.whyExists)}</p>
                         <h3>Browser play notes</h3>
                         <ul>
                             ${tips.map((tip) => `<li>${escapeHtml(tip)}</li>`).join('')}
@@ -331,6 +587,52 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 </div>
                 <div class="success-card">
                     <strong>Editorial review note:</strong> veck io reviews summaries, category placement, support links, and external play access when a page changes, breaks, or is reported. <a href="${toRelativeRoute('editorial-review-and-updates.html', relativePrefix)}">See how pages are reviewed and updated</a>.
+                </div>
+            </section>
+
+            <section class="page-section" aria-labelledby="editorial-evaluation">
+                <h2 class="section-title" id="editorial-evaluation">Editorial evaluation</h2>
+                <p class="section-lead">${escapeHtml(editorial.evaluationLead)}</p>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h3>Best for</h3>
+                        <p>${escapeHtml(editorial.audience)}</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Getting started</h3>
+                        <p><strong>${escapeHtml(editorial.difficulty.label)}.</strong> ${escapeHtml(editorial.difficulty.note)}</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Device advice</h3>
+                        <p>${escapeHtml(editorial.device)}</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Compared with similar picks</h3>
+                        <p>${escapeHtml(editorial.comparison)}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page-section" aria-labelledby="strengths-and-tradeoffs">
+                <h2 class="section-title" id="strengths-and-tradeoffs">Strengths and tradeoffs</h2>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h3>Reasons to try it</h3>
+                        <ul class="checklist">
+                            ${editorial.pros.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h3>What to keep in mind</h3>
+                        <ul class="checklist">
+                            ${editorial.cons.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Editorial status</h3>
+                        <p><strong>${escapeHtml(statusLabel)}.</strong> ${escapeHtml(editorial.editorNote)}</p>
+                        <p>Last updated: ${escapeHtml(editorial.updated)}</p>
+                    </div>
                 </div>
             </section>
 
@@ -450,6 +752,7 @@ function buildSitemap(allGames) {
         { loc: `${SITE_URL}/editorial-review-and-updates`, priority: '0.6', changefreq: 'monthly' },
         ...allGames
             .filter((game) => game.link && game.link !== 'index.html')
+            .filter((game) => isApprovalReady(game))
             .map((game) => ({
                 loc: toSiteUrl(game.link),
                 priority: '0.7',

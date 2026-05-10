@@ -10,23 +10,23 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>veck io Categories | Input Output Games Online Library</title>
-    <meta name="description" content="Browse veck io categories to find input output games online across FPS, battle royale, sniper, multiplayer, and action pages, with search, filters, and short page context.">
-    <meta name="keywords" content="veck io categories, input output games online, skip the games, browser game categories, FPS games, multiplayer games, action games">
+    <title>veck io Categories | Browser Games Library</title>
+    <meta name="description" content="Browse veck io categories to find browser game pages across FPS, battle royale, sniper, multiplayer, and action, with search, filters, and short editorial context.">
+    <meta name="keywords" content="veck io categories, browser game categories, FPS games, multiplayer games, action games">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <link rel="canonical" href="https://veckio.space/categories">
-    <meta property="og:title" content="veck io Categories | Input Output Games Online Library">
-    <meta property="og:description" content="Browse categorized browser game pages on veck io with search, filters, and short page context for FPS, battle royale, sniper, multiplayer, and action picks.">
+    <meta property="og:title" content="veck io Categories | Browser Games Library">
+    <meta property="og:description" content="Browse categorized browser game pages on veck io with search, filters, and short editorial context for FPS, battle royale, sniper, multiplayer, and action picks.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://veckio.space/categories">
     <meta property="og:site_name" content="veck io">
     <meta property="og:image" content="https://veckio.space/img/icon/veckIo.jpg">
     <meta property="og:image:alt" content="veck io game categories">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="veck io Categories | Input Output Games Online Library">
-    <meta name="twitter:description" content="Browse veck io categories for browser FPS, battle royale, sniper, multiplayer, and action pages with search, filters, and short page context.">
+    <meta name="twitter:title" content="veck io Categories | Browser Games Library">
+    <meta name="twitter:description" content="Browse veck io categories for browser FPS, battle royale, sniper, multiplayer, and action pages with search, filters, and short editorial context.">
     <meta name="twitter:image" content="https://veckio.space/img/icon/veckIo.jpg">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -72,10 +72,10 @@
                 <div class="page-header">
                     <span class="eyebrow"><i class="fas fa-layer-group"></i> veck io Game Library</span>
                     <h1 class="page-title">Browse veck io game pages by category</h1>
-                    <p class="page-subtitle">Use the category chips or the search box to jump to a specific title. If you are looking for input output games online or broader terms like skip the games, these category pages help you reach a better-fit browser title faster.</p>
+                    <p class="page-subtitle">Use the category chips or the search box to jump to a specific title. These category pages are trimmed to the site's stronger browser game picks so visitors reach a better-fit page faster.</p>
                 </div>
                 <div class="categories-grid" id="top-category-grid"></div>
-                <div class="info-banner">Search results on this page are filtered locally from the available game data, so visitors can browse without loading unnecessary pages first. Each category is organized to make the veck io library easier to scan, compare, and evaluate before opening a game page.</div>
+                <div class="info-banner">Search results on this page are filtered locally from the current approval-ready library, so visitors can browse stronger pages without wading through thinner templates first. Each category is organized to make the veck io library easier to scan, compare, and evaluate before opening a game page.</div>
             </section>
 
             <section class="page-section" aria-labelledby="category-guides">
@@ -113,7 +113,7 @@
                 <div class="series-header">
                     <div>
                         <h2 class="section-title" id="games-section-title">All Games</h2>
-                        <p class="section-lead" id="games-section-lead">A complete view of the current game pages in the veck io library.</p>
+                        <p class="section-lead" id="games-section-lead">A complete view of the current approval-ready game pages in the veck io library.</p>
                     </div>
                 </div>
                 <div class="games-grid" id="games-list-container"></div>
@@ -174,15 +174,15 @@
         const categories = {
             all: {
                 title: 'All Games',
-                lead: 'Every currently published game page on veck io.'
+                lead: 'Every approval-ready game page currently surfaced on veck io.'
             },
             fps: {
                 title: 'FPS',
-                lead: 'First-person shooter focused pages with quick browser access.'
+                lead: 'First-person shooter focused pages with stronger editorial coverage and quick browser access.'
             },
             'battle-royale': {
                 title: 'Battle Royale',
-                lead: 'Last-player-standing and survival-flavored picks.'
+                lead: 'Last-player-standing and survival-flavored picks from the current approval-ready set.'
             },
             sniper: {
                 title: 'Sniper',
@@ -199,12 +199,12 @@
         };
 
         const categoryDataMap = {
-            all: getAllSiteGames().filter((game) => game.link && game.link !== 'index.html'),
-            fps: window.fpsData || [],
-            'battle-royale': window.battleRoyaleData || [],
-            sniper: window.sniperData || [],
-            multiplayer: window.multiplayerGames || [],
-            action: window.actionGames || []
+            all: getApprovalReadyGames().filter((game) => game.link && game.link !== 'index.html'),
+            fps: getApprovalReadyGames().filter((game) => game.gameType === 'FPS'),
+            'battle-royale': getApprovalReadyGames().filter((game) => game.gameType === 'Battle Royale'),
+            sniper: getApprovalReadyGames().filter((game) => game.gameType === 'Sniper'),
+            multiplayer: getApprovalReadyGames().filter((game) => game.gameType === 'Multiplayer'),
+            action: getApprovalReadyGames().filter((game) => game.gameType === 'Action')
         };
 
         function renderTopCategories() {
