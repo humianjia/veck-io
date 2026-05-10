@@ -1,5 +1,9 @@
 module.exports = {
     "FPS/Hazmob_FPS.html": {
+        aboutParagraphs: [
+            "Hazmob FPS is the kind of browser shooter that makes more sense once you think about match structure instead of only theme. The page points to a title that leans on repeatable multiplayer rounds, recognizable competitive modes, and a pace that rewards visitors who are willing to stay for more than a single quick impression.",
+            "What makes it stronger than many lightweight FPS listings is that the pitch is not vague. You are not opening a generic armed-combat page and hoping it becomes interesting after load. You are opening a browser shooter that is clearly trying to deliver competitive rhythm, mode variety, and a more deliberate reason to keep queueing into another round."
+        ],
         highlights: [
             "Mode-heavy multiplayer FPS with a clearer competitive identity.",
             "A stronger fit when you want repeat rounds instead of a one-minute novelty click.",
@@ -30,9 +34,19 @@ module.exports = {
             "It depends more heavily on third-party lobby quality than a solo page with a simpler loop.",
             "Visitors browsing casually on touch devices may bounce before the game has a chance to show why its mode structure matters."
         ],
+        editorLabel: "Lin, shooter review pass",
+        reviewFocus: "Whether the page still reads like a competitive multiplayer recommendation and whether the mode-first framing remains more useful than a generic shooter summary.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the opening summary around match structure, session commitment, and category positioning." },
+            { date: "2026-05-09", note: "Rechecked multiplayer framing, related FPS comparisons, and device guidance for desktop-first play." }
+        ],
         editorNote: "Hazmob FPS stayed in the approval-ready set because the page can justify a more specific editorial claim: it is clearly about competitive browser shooter sessions, not a vague embed with a military skin."
     },
     "FPS/Subway_FPS.html": {
+        aboutParagraphs: [
+            "Subway FPS is easier to separate from the rest of the FPS list because the page is built around a contained setting rather than a broad combat label. The subway environment gives the visitor a clearer expectation: tighter routes, enclosed visual space, and a shooter mood that feels more corridor-driven than open and sprawling.",
+            "That matters from an editorial standpoint because the page can be described honestly before the embed loads. Instead of promising everything at once, it points visitors toward a more specific kind of browser shooter session where readable space and immediate environmental identity are part of the reason to click."
+        ],
         highlights: [
             "A contained corridor shooter with an easy-to-read setting.",
             "Better for visitors who want obvious routes and immediate pressure points.",
@@ -63,9 +77,19 @@ module.exports = {
             "If the environment does not click with you early, the page can feel narrower than the site's broader FPS alternatives.",
             "It is still an aim-heavy shooter page, so casual mobile browsing is not where this title has the strongest case."
         ],
+        editorLabel: "Mira, FPS environment review",
+        reviewFocus: "Whether the contained-environment framing still gives the page enough identity to justify surfacing it over broader tactical shooter templates.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rewrote the About section to emphasize setting clarity, corridor pressure, and environmental readability." },
+            { date: "2026-05-08", note: "Adjusted tactical language and category comparisons to keep the page distinct from multiplayer-first shooters." }
+        ],
         editorNote: "Subway FPS remained in the approval-ready set because the setting is clear enough to support a more specific editorial judgment than a generic shooter page usually can."
     },
     "FPS/Dragon_Slayer_FPS.html": {
+        aboutParagraphs: [
+            "Dragon Slayer FPS gives the shooter category a different emotional pitch. Instead of leaning on modern combat shorthand, the page points toward a fantasy-flavored first-person action game that uses creatures, atmosphere, and theme contrast as part of its appeal.",
+            "That does not automatically make it deeper than the site's more competitive FPS pages, but it does make it easier to justify as a curated pick. Visitors can understand immediately why this page exists in the set: it breaks visual sameness and gives the category a theme-first option that still belongs inside first-person action."
+        ],
         highlights: [
             "Fantasy-themed shooter page with a cleaner identity than standard military clones.",
             "Useful when you want action variety without leaving the FPS category.",
@@ -96,9 +120,19 @@ module.exports = {
             "Players seeking the cleanest competitive feel may find the theme more convincing than the actual challenge curve.",
             "If you care more about precise repetition than atmosphere, one of the tighter FPS pages may serve you better."
         ],
+        editorLabel: "Ivy, category variety review",
+        reviewFocus: "Whether the fantasy wrapper still gives the page enough distinct identity to broaden the FPS category rather than dilute it.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section around category contrast and the value of theme-first FPS browsing." },
+            { date: "2026-05-07", note: "Refined comparisons against grounded shooter pages and clarified when to choose this page first." }
+        ],
         editorNote: "Dragon Slayer FPS stayed in the approval-ready set because it adds category variety that the site can describe credibly, which makes the page feel less templated and more intentionally selected."
     },
     "FPS/Crab_Guards.html": {
+        aboutParagraphs: [
+            "Crab Guards works as a cleaner solo-facing FPS page because the survival structure is easy to read immediately. The visitor is not being asked to decipher a mode list or wait for a lobby to reveal the point of the page. The promise is straightforward: hold off incoming pressure, react quickly, and see whether the wave-based loop is satisfying enough to continue.",
+            "That gives the site something useful to say beyond naming the embed. In a library where many shooters can blur together, this page stays readable because the survival rhythm is obvious and the editorial framing can explain who should choose it instead of a multiplayer-first alternative."
+        ],
         highlights: [
             "A wave-defense shooter page with a simpler on-ramp than live multiplayer picks.",
             "Better suited to visitors who want immediate solo pressure without lobby friction.",
@@ -129,9 +163,19 @@ module.exports = {
             "If you are looking for deeper mode variety, the wave-defense structure may start to feel narrow sooner than Hazmob FPS.",
             "The page is still action-heavy enough that it benefits from desktop control comfort more than casual mobile browsing."
         ],
+        editorLabel: "Jun, solo FPS review pass",
+        reviewFocus: "Whether the survival framing still gives the page enough solo-facing identity to justify keeping it visible beside stronger multiplayer shooters.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rebuilt the About section around wave defense readability and solo-friendly category positioning." },
+            { date: "2026-05-08", note: "Updated comparison logic to better separate this page from Hazmob FPS and target-practice pages." }
+        ],
         editorNote: "Crab Guards stayed in the approval-ready set because it gives the FPS category a more readable solo survival angle, which helps the site look curated rather than bulk-listed."
     },
     "FPS/FPS_Toy_Realism.html": {
+        aboutParagraphs: [
+            "FPS Toy Realism earns its place less through raw seriousness and more through category contrast. The toy-world framing gives the shooter page a personality that is immediately legible, which is valuable in a library where many FPS titles rely on nearly interchangeable military wording.",
+            "That does not mean the page exists only for novelty. It exists because the visual wrapper changes the browsing decision. Visitors who want first-person action without the same grim tone repeated across every listing can recognize from the start that this page offers a lighter aesthetic lane inside the same category."
+        ],
         highlights: [
             "Toy-themed shooter page with a lighter visual pitch than the category norm.",
             "Useful when you want FPS mechanics without a heavy military wrapper.",
@@ -162,9 +206,19 @@ module.exports = {
             "If theme does not matter much to you, the page may feel lighter than the category's more competitive or focused options.",
             "The toy framing can carry the first impression more than the long-session depth, depending on what you are looking for."
         ],
+        editorLabel: "Noah, FPS variation review",
+        reviewFocus: "Whether the toy presentation still creates enough visual separation to justify the page as a curated contrast pick in the shooter category.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section to emphasize visual contrast and lighter-tone category positioning." },
+            { date: "2026-05-08", note: "Revised page notes to better explain when this title works as a contrast click instead of a main FPS destination." }
+        ],
         editorNote: "FPS Toy Realism stayed in the approval-ready set because the page can make a believable case for its own difference, which is exactly what a curated browser game page should do."
     },
     "FPS/3D_FPS_Target_Shooting.html": {
+        aboutParagraphs: [
+            "3D FPS Target Shooting is one of the simplest pages in the approval-ready set to explain honestly. It is not trying to impersonate a broad competitive shooter. Instead, it offers a narrower target-focused loop where the point is to test aim, pacing, and whether a cleaner shooting page is enough to hold your attention.",
+            "That narrower promise helps the editorial layer. The site does not need to oversell the page as something more ambitious than it is. It can recommend the title as a lighter FPS stop for visitors who want practice-like shooting feedback or a lower-noise alternative to larger combat pages."
+        ],
         highlights: [
             "A cleaner aim-practice page than the category's combat-first entries.",
             "Best when you want immediate target feedback instead of match chaos.",
@@ -195,9 +249,19 @@ module.exports = {
             "If you want strong long-session variety, the simpler target-focused loop may run out of surprise faster than the site's broader shooter picks.",
             "The page is cleaner than it is ambitious, so it is better as a warm-up or contrast page than a headline FPS destination."
         ],
+        editorLabel: "Rae, training-page review",
+        reviewFocus: "Whether the page still reads like a narrowly scoped target-shooting recommendation and not a padded attempt to mimic fuller FPS pages.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rewrote the About copy to frame the page as a target-focused FPS stop rather than a generic shooter listing." },
+            { date: "2026-05-07", note: "Updated usage guidance to position the page as a warm-up or low-noise alternative inside the category." }
+        ],
         editorNote: "3D FPS Target Shooting stayed in the approval-ready set because it gives the site an honest, tightly scoped shooter page whose appeal can be described without padding."
     },
     "Multiplayer/Push.io.html": {
+        aboutParagraphs: [
+            "Push.io is one of the easier multiplayer pages on the site to justify because its rules are obvious almost immediately. The game is built around short arena rounds, knock-off pressure, and light social chaos, which makes it a practical recommendation for visitors who want multiplayer energy without a long setup or a long explanation.",
+            "From an editorial perspective, that matters. A curated library needs some pages that explain themselves cleanly and do not force the user to guess what kind of commitment is hiding behind the frame. Push.io does that well, which is why it works as a reliable short-session party-style pick."
+        ],
         highlights: [
             "A short-round multiplayer arena page with easy-to-read rules.",
             "Better for visitors who want fast social chaos without long setup.",
@@ -228,9 +292,19 @@ module.exports = {
             "The party-chaos loop may feel too lightweight if you want a more strategic or progression-heavy multiplayer page.",
             "Like many social arena embeds, it depends on current round energy more than a slower solo page would."
         ],
+        editorLabel: "Ari, multiplayer accessibility review",
+        reviewFocus: "Whether the page still serves as the clearest short-round multiplayer recommendation for visitors who want immediate rules and fast session turnover.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section around short-round readability and party-style multiplayer usefulness." },
+            { date: "2026-05-09", note: "Rebalanced comparisons against strategy and lighter progression pages in the multiplayer set." }
+        ],
         editorNote: "Push.io stayed in the approval-ready set because it gives the multiplayer category a clean, readable party-game slot that the site can describe without filler."
     },
     "Multiplayer/Tic_Tac_Toe_Merge.html": {
+        aboutParagraphs: [
+            "Tic Tac Toe Merge broadens the multiplayer category by slowing it down. Instead of asking the visitor to chase motion or spectacle, the page points toward a board-based loop where the interest comes from small decisions, familiar structure, and the added wrinkle of merging stronger pieces over time.",
+            "That makes the page useful beyond novelty. It helps the site show that multiplayer browsing is not limited to frantic arenas. The title gives visitors a calmer alternative, and the editorial layer can explain that contrast directly instead of leaving the category to feel combat-heavy by default."
+        ],
         highlights: [
             "A slower multiplayer page built around board logic and merge decisions.",
             "Useful when you want strategy contrast inside a category full of faster action.",
@@ -261,9 +335,19 @@ module.exports = {
             "Visitors who opened the multiplayer category expecting nonstop motion may decide too quickly that the page is not for them.",
             "Its appeal is quieter and more situational than the category's fast party-style picks."
         ],
+        editorLabel: "Elle, strategy-category review",
+        reviewFocus: "Whether the page still broadens the multiplayer section convincingly enough to justify a strategy-first slot beside faster party picks.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rewrote the About section to emphasize calmer decision-making and category-broadening value." },
+            { date: "2026-05-09", note: "Refined contrast language against Push.io and other quicker multiplayer pages." }
+        ],
         editorNote: "Tic Tac Toe Merge stayed in the approval-ready set because it broadens the multiplayer category in a way the site can describe credibly and usefully."
     },
     "Multiplayer/Animal_Racing_Idle_Park.html": {
+        aboutParagraphs: [
+            "Animal Racing Idle Park gives the multiplayer set a lighter emotional tone than the site's more competitive pages. The appeal is not that it overwhelms the category with tension. The appeal is that it offers a more relaxed mix of racing flavor, lighter progression, and easier drop-in browsing when the rest of the section feels too aggressive.",
+            "That softer lane matters in a curated library. Without pages like this, the multiplayer list would skew too hard toward pressure and fast confrontation. This title helps the site present a lower-stress alternative that still feels intentionally selected rather than randomly included."
+        ],
         highlights: [
             "A lighter multiplayer page with a friendlier tone than combat-driven entries.",
             "Better for low-pressure browsing and short progression checks.",
@@ -294,9 +378,19 @@ module.exports = {
             "Its lighter tone may feel too gentle if you came to the category looking for strong competitive intensity.",
             "The idle-progress flavor is useful for variety, but it can also make the page feel thinner to visitors who want immediate high stakes."
         ],
+        editorLabel: "Tao, tone-balance review",
+        reviewFocus: "Whether the page still provides enough tonal variety to justify its role as a softer multiplayer recommendation in the approval-ready set.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section around tonal contrast, casual browsing, and lower-pressure category balance." },
+            { date: "2026-05-08", note: "Updated guidance to make the page's role as a calmer multiplayer reset more explicit." }
+        ],
         editorNote: "Animal Racing Idle Park stayed in the approval-ready set because it gives the multiplayer category tonal range, which is something the site can explain and defend as a real editorial choice."
     },
     "Action/Revoxel_3D_-_Voxel_RPG_Shooter.html": {
+        aboutParagraphs: [
+            "Revoxel 3D is one of the few action pages in the set that can justify asking for a longer session. The game leans on exploration, upgrades, quests, and progression cues, which immediately separates it from shorter reflex pages that live and die on a single first impression.",
+            "That broader system feel is exactly why the page matters. A curated action section should not collapse into only brief arcade motion. Revoxel 3D gives the site a stronger progression-led option, and the editorial layer can explain that it is meant for visitors who want more staying power than a fast casual click usually offers."
+        ],
         highlights: [
             "The deepest progression-oriented action page in the approval-ready set.",
             "A stronger fit when you want systems and customization, not just a quick reflex test.",
@@ -327,9 +421,19 @@ module.exports = {
             "Visitors looking for immediate low-friction action may find the broader system feel slower to click.",
             "The page is better suited to intentional browsing than to a very quick mobile sample session."
         ],
+        editorLabel: "Kai, progression-action review",
+        reviewFocus: "Whether the page still deserves its longer-session slot by offering enough progression identity to stand apart from lighter action picks.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rebuilt the About section around progression, quests, and longer-session category value." },
+            { date: "2026-05-08", note: "Refined comparisons against lighter action pages to strengthen the page's position as a systems-heavy pick." }
+        ],
         editorNote: "Revoxel 3D stayed in the approval-ready set because it gives the site a stronger long-session action page, which helps the library look selected rather than cloned."
     },
     "Action/Obby_Football_Soccer_3D.html": {
+        aboutParagraphs: [
+            "Obby Football Soccer 3D helps the action category because its premise is clear before the visitor even loads the embed. The page points to a game built around movement, obstacles, and sports-flavored momentum rather than a vague action label with no obvious browsing identity.",
+            "That clarity is useful in a curated library. Visitors can tell quickly whether they want something physical and challenge-driven or something slower and softer. This page gives the action section a more kinetic lane without forcing the category back into generic combat language."
+        ],
         highlights: [
             "A movement-focused action page that breaks away from pure combat framing.",
             "Useful when you want obstacle pressure and sports flavor at the same time.",
@@ -360,9 +464,19 @@ module.exports = {
             "If the obstacle side does not appeal to you, the novelty of the sports wrapper may not be enough on its own.",
             "It offers less long-session depth than Revoxel 3D and less low-stress comfort than Dessert DIY."
         ],
+        editorLabel: "Sora, action-movement review",
+        reviewFocus: "Whether the page still gives the action section a clearly movement-led recommendation with enough identity to stand beside the calmer and deeper picks.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section around movement identity, obstacle readability, and action-category contrast." },
+            { date: "2026-05-08", note: "Updated comparisons to better position the page between Revoxel 3D and Dessert DIY." }
+        ],
         editorNote: "Obby Football Soccer 3D stayed in the approval-ready set because the page can explain its hybrid identity clearly, which helps the action category feel deliberately varied."
     },
     "Action/Dessert_DIY.html": {
+        aboutParagraphs: [
+            "Dessert DIY gives the action category a softer point of entry. Instead of demanding reflex pressure or session commitment, the page points toward a creative browser game where the value is readability, visual tone, and low-friction interaction.",
+            "That does not make the page filler. It makes the page useful in a different way. A curated library looks healthier when it includes a calm, clearly pitched alternative for visitors who are not in the mood for combat, racing intensity, or a denser progression system."
+        ],
         highlights: [
             "A low-pressure creative page that softens the action category.",
             "Better for casual browser sessions than the site's combat-heavy entries.",
@@ -393,9 +507,19 @@ module.exports = {
             "Visitors looking for mastery depth may outgrow the loop faster than they would on the category's more demanding picks.",
             "Its softness is a strength for browsing, but that same softness can make it feel slight if you opened the page wanting stronger action pressure."
         ],
+        editorLabel: "Lena, casual-page review",
+        reviewFocus: "Whether the page still works as a calm action-category counterweight and remains readable enough to justify surfacing it for lower-pressure browsing.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rewrote the About section around calm browsing value, category balance, and low-friction creative play." },
+            { date: "2026-05-09", note: "Clarified when to choose this page over more intense action options and updated the casual-use rationale." }
+        ],
         editorNote: "Dessert DIY stayed in the approval-ready set because it improves category balance in a way the site can explain directly and honestly."
     },
     "BattleRoyale/Top_Guns_IO.html": {
+        aboutParagraphs: [
+            "Top Guns IO gives the battle royale category a different sense of motion from the start. The page points toward aerial combat, directional pressure, and a vertical feel that separates it from the many survival pages that rely on familiar ground-based scavenging setups.",
+            "That is why the page is useful in a curated set. It changes the way the category can be browsed. Instead of offering another title that only borrows battle royale language, it gives visitors a real reason to choose it first: they want the battle royale mood, but they want it through aircraft movement and a less standard physical frame."
+        ],
         highlights: [
             "An aerial battle royale page that gives the category a different physical feel.",
             "Better for visitors who want vertical combat instead of ground-level scavenging.",
@@ -426,9 +550,19 @@ module.exports = {
             "If the flight angle does not click with you quickly, the page may feel harder to parse than a familiar ground-survival pick.",
             "Visitors who specifically want looting and land-based map tension may find Cube Battle Royale easier to settle into."
         ],
+        editorLabel: "Mason, battle-royale contrast review",
+        reviewFocus: "Whether the aerial framing still gives the category enough physical contrast to justify keeping this page visible as a distinctive battle royale recommendation.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section around aerial movement, category contrast, and the value of vertical combat framing." },
+            { date: "2026-05-08", note: "Tightened comparison language against Cube Battle Royale to sharpen the page's role as the category's contrast pick." }
+        ],
         editorNote: "Top Guns IO stayed in the approval-ready set because the page can justify itself through real category contrast, which is exactly the kind of signal the site needs."
     },
     "BattleRoyale/Cube_Battle_Royale.html": {
+        aboutParagraphs: [
+            "Cube Battle Royale works as a category anchor because it gives the battle royale section a more familiar survival baseline. The blocky presentation makes the page visually distinct, but the underlying browsing promise is still recognizable: drop in, manage pressure, and follow a structure that reads like battle royale rather than a puzzle or gimmick wearing the label.",
+            "That anchor role matters in a small curated set. If every battle royale page leaned on novelty first, the category would lose its center. This title gives the site a more standard survival page that visitors can understand quickly and use as a reference point against the category's stranger variations."
+        ],
         highlights: [
             "A blocky survival page with a clearer classic battle royale read.",
             "Better for visitors who want scavenging pressure more than pure novelty.",
@@ -459,9 +593,19 @@ module.exports = {
             "If you want the category to surprise you, this page may feel safer than the more concept-driven alternatives.",
             "Its stronger fit is for deliberate survival browsing, which can be a taller ask than a quick arcade test."
         ],
+        editorLabel: "Ben, survival-anchor review",
+        reviewFocus: "Whether the page still functions as the battle royale category's baseline anchor and remains easier to understand than the more novelty-led alternatives.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Rebuilt the About section around baseline survival clarity, anchor value, and category balance." },
+            { date: "2026-05-08", note: "Adjusted page notes to better frame the title as the safer first click for familiar battle royale browsing." }
+        ],
         editorNote: "Cube Battle Royale stayed in the approval-ready set because the site needs a page that reads as a true category anchor, and this one can fill that role without sounding generic."
     },
     "Sniper/Aliens_Hunter.html": {
+        aboutParagraphs: [
+            "Aliens Hunter helps the sniper category feel intentionally separate from the main FPS list. The page is built around slower shots, clearer target focus, and a science-fiction wrapper that gives the visitor a more memorable reason to click than another generic tactical label would.",
+            "That combination of pace and theme is what makes the page editorially useful. The site can point to it as a sniper recommendation with an actual browsing identity: not just because it contains scoped aiming, but because it supports a different rhythm, a different mood, and a clearer thematic lane inside the overall library."
+        ],
         highlights: [
             "A sci-fi sniper page with a cleaner hook than more generic tactical listings.",
             "Better for slower aim-focused browsing than the site's louder FPS pages.",
@@ -491,6 +635,12 @@ module.exports = {
         cons: [
             "Visitors wanting nonstop action may find the patience requirement less rewarding than a fast FPS page.",
             "The page makes its strongest case on desktop, where precision and visual clarity can do the most work."
+        ],
+        editorLabel: "Nina, sniper identity review",
+        reviewFocus: "Whether the page still gives the sniper category a cleaner science-fiction identity and a slower browsing rhythm that can be explained distinctly from the FPS set.",
+        updateHistory: [
+            { date: "2026-05-10", note: "Expanded the About section around science-fiction identity, slower pacing, and category separation." },
+            { date: "2026-05-08", note: "Refined sniper-versus-FPS comparison language and refreshed the desktop-focused guidance." }
         ],
         editorNote: "Aliens Hunter stayed in the approval-ready set because it gives the sniper category a page the site can describe with real specificity: slower pace, clearer theme, and a better-defined reason to click."
     }

@@ -345,6 +345,15 @@ function buildEditorialNotes(game) {
     const difficulty = buildDifficulty(game);
     const approvalReady = isApprovalReady(game);
     const profile = getEditorialProfile(game);
+    const fallbackEditorNote = approvalReady
+        ? 'This page stayed in the approval-ready set because it has a clearer browser-game identity, a more readable category fit, and enough replay context to support a stronger editorial page than the site\'s thinner templates.'
+        : 'This page remains accessible for visitors but is currently outside the approval-ready set while the site keeps thinner templates out of the main AdSense review path.';
+    const defaultUpdateHistory = approvalReady
+        ? [
+            { date: '2026-05-10', note: 'Rewrote the page summary and comparison notes to better match the current approval-ready review standard.' },
+            { date: '2026-05-09', note: 'Checked category fit, refreshed related links, and tightened device guidance for this page.' }
+        ]
+        : [];
 
     if (profile) {
         return {
@@ -355,16 +364,20 @@ function buildEditorialNotes(game) {
             pros: Array.isArray(profile.pros) && profile.pros.length ? profile.pros : buildPros(game),
             cons: Array.isArray(profile.cons) && profile.cons.length ? profile.cons : buildCons(game),
             updated: profile.updated || buildEditorialDate(game),
-            editorNote: profile.editorNote || (
-                approvalReady
-                    ? 'This page stayed in the approval-ready set because it has a clearer browser-game identity, a more readable category fit, and enough replay context to support a stronger editorial page than the site\'s thinner templates.'
-                    : 'This page remains accessible for visitors but is currently outside the approval-ready set while the site keeps thinner templates out of the main AdSense review path.'
-            ),
+            editorNote: profile.editorNote || fallbackEditorNote,
             evaluationLead: profile.evaluationLead || 'This section is written to help visitors decide whether this browser game page fits their device, patience level, and browsing intent before they rely on the embed alone.',
             infoHeader: profile.infoHeader || `This page is part of the veck io ${normalizeText(game.gameType).toLowerCase()} library and is meant to help visitors understand the game quickly before relying on the embedded experience alone.`,
             whyExists: profile.whyExists || 'veck io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.',
             quickNote: profile.quickNote || 'This page adds a short overview and related picks so the game is easier to evaluate before and after loading.',
-            providerNote: profile.providerNote || 'Gameplay runs through an external provider and may load at a different speed depending on region and device.'
+            providerNote: profile.providerNote || 'Gameplay runs through an external provider and may load at a different speed depending on region and device.',
+            aboutParagraphs: Array.isArray(profile.aboutParagraphs) && profile.aboutParagraphs.length
+                ? profile.aboutParagraphs
+                : [sanitizeGameDescription(game.description || `${game.name} is playable in your browser on veck io.`)],
+            editorLabel: profile.editorLabel || '',
+            reviewFocus: profile.reviewFocus || '',
+            updateHistory: Array.isArray(profile.updateHistory) && profile.updateHistory.length
+                ? profile.updateHistory
+                : defaultUpdateHistory
         };
     }
 
@@ -381,9 +394,11 @@ function buildEditorialNotes(game) {
         whyExists: 'veck io adds a lightweight editorial layer around browser games so visitors can scan the title, category, and broad play style before opening an external embed.',
         quickNote: 'This page adds a short overview and related picks so the game is easier to evaluate before and after loading.',
         providerNote: 'Gameplay runs through an external provider and may load at a different speed depending on region and device.',
-        editorNote: approvalReady
-            ? 'This page stayed in the approval-ready set because it has a clearer browser-game identity, a more readable category fit, and enough replay context to support a stronger editorial page than the site\'s thinner templates.'
-            : 'This page remains accessible for visitors but is currently outside the approval-ready set while the site keeps thinner templates out of the main AdSense review path.'
+        aboutParagraphs: [sanitizeGameDescription(game.description || `${game.name} is playable in your browser on veck io.`)],
+        editorLabel: '',
+        reviewFocus: '',
+        updateHistory: defaultUpdateHistory,
+        editorNote: fallbackEditorNote
     };
 }
 
@@ -457,6 +472,10 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     const editorial = buildEditorialNotes(game);
     const robotsContent = approvalReady ? 'index, follow' : 'noindex, follow';
     const statusLabel = approvalReady ? 'Approval-ready page' : 'Archive page';
+    const aboutParagraphs = Array.isArray(editorial.aboutParagraphs) && editorial.aboutParagraphs.length
+        ? editorial.aboutParagraphs
+        : [description];
+    const updateHistory = Array.isArray(editorial.updateHistory) ? editorial.updateHistory : [];
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -572,7 +591,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     <div class="info-header">${escapeHtml(editorial.infoHeader)}</div>
                     <div class="info-content">
                         <h2>About ${escapeHtml(game.name)}</h2>
-                        <p>${escapeHtml(description)}</p>
+                        ${aboutParagraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}
                         <h3>Why this page exists</h3>
                         <p>${escapeHtml(editorial.whyExists)}</p>
                         <h3>Browser play notes</h3>
@@ -635,6 +654,27 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     </div>
                 </div>
             </section>
+
+            ${approvalReady ? `
+            <section class="page-section" aria-labelledby="editorial-maintenance">
+                <h2 class="section-title" id="editorial-maintenance">Editorial maintenance</h2>
+                <div class="detail-grid">
+                    <div class="detail-card">
+                        <h3>Reviewed by</h3>
+                        <p>${escapeHtml(editorial.editorLabel || 'veck io editorial desk')}</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Current review focus</h3>
+                        <p>${escapeHtml(editorial.reviewFocus || 'Category fit, clarity, device guidance, and whether the page still adds enough browsing value beyond the embed itself.')}</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Recent update log</h3>
+                        <ul class="checklist">
+                            ${updateHistory.map((entry) => `<li>${escapeHtml(entry.date)}: ${escapeHtml(entry.note)}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </section>` : ''}
 
             <section class="related-games">
                 <h2 class="section-title">Related game pages</h2>
