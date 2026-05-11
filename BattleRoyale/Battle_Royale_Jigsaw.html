@@ -27,6 +27,48 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Battle Royale Jigsaw",
+    "url": "https://veckio.space/BattleRoyale/Battle_Royale_Jigsaw",
+    "image": "https://veckio.space/img/icon/BattleRoyale/BattleRoyaleJigsaw.jpeg",
+    "genre": "Battle Royale",
+    "description": "Battle Royale Jigsaw is a puzzle game featuring battle royale themes.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "veck io",
+        "url": "https://veckio.space/"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://veckio.space/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Battle Royale",
+            "item": "https://veckio.space/categories?category=battle-royale"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Battle Royale Jigsaw",
+            "item": "https://veckio.space/BattleRoyale/Battle_Royale_Jigsaw"
+        }
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -191,7 +233,7 @@
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     
-                    <article class="game-card" tabindex="0" data-link="../BattleRoyale/Top_Guns_IO">
+                    <a class="game-card game-card-link" href="../BattleRoyale/Top_Guns_IO">
                         <div class="game-card-image">
                             <img src="../img/icon/BattleRoyale/TopGunsIO.jpeg" alt="Top Guns IO" loading="lazy">
                         </div>
@@ -200,8 +242,8 @@
                             <h3 class="game-card-title">Top Guns IO</h3>
                             <p class="game-card-desc">Top Guns IO is an aerial combat battle royale game.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../BattleRoyale/Cube_Battle_Royale">
+                    </a>
+                    <a class="game-card game-card-link" href="../BattleRoyale/Cube_Battle_Royale">
                         <div class="game-card-image">
                             <img src="../img/icon/BattleRoyale/CubeBattleRoyale.jpeg" alt="Cube Battle Royale" loading="lazy">
                         </div>
@@ -210,7 +252,7 @@
                             <h3 class="game-card-title">Cube Battle Royale</h3>
                             <p class="game-card-desc">Cube Battle Royale is a blocky battle royale game.</p>
                         </div>
-                    </article>
+                    </a>
                 </div>
             </section>
         </main>
@@ -276,20 +318,6 @@
 
             refreshButton.addEventListener('click', function () {
                 iframe.src = iframe.src;
-            });
-
-            document.querySelectorAll('[data-link]').forEach((card) => {
-                const open = function () {
-                    window.location.href = card.dataset.link;
-                };
-
-                card.addEventListener('click', open);
-                card.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        open();
-                    }
-                });
             });
         });
     </script>

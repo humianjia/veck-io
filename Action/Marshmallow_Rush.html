@@ -27,6 +27,48 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Marshmallow Rush",
+    "url": "https://veckio.space/Action/Marshmallow_Rush",
+    "image": "https://veckio.space/img/icon/Action/MarshmallowRush.jpg",
+    "genre": "Action",
+    "description": "Marshmallow Rush is a fun action game where players help marshmallows escape through various obstacles.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "veck io",
+        "url": "https://veckio.space/"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://veckio.space/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Action",
+            "item": "https://veckio.space/categories?category=action"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Marshmallow Rush",
+            "item": "https://veckio.space/Action/Marshmallow_Rush"
+        }
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -191,7 +233,7 @@
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     
-                    <article class="game-card" tabindex="0" data-link="../Action/Revoxel_3D_-_Voxel_RPG_Shooter">
+                    <a class="game-card game-card-link" href="../Action/Revoxel_3D_-_Voxel_RPG_Shooter">
                         <div class="game-card-image">
                             <img src="../img/icon/Action/Revoxel3D-VoxelRPGShooter.jpg" alt="Revoxel 3D - Voxel RPG Shooter" loading="lazy">
                         </div>
@@ -200,8 +242,8 @@
                             <h3 class="game-card-title">Revoxel 3D - Voxel RPG Shooter</h3>
                             <p class="game-card-desc">Revoxel 3D - Voxel RPG Shooter is a voxel-style action RPG shooter.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../Action/Dessert_DIY">
+                    </a>
+                    <a class="game-card game-card-link" href="../Action/Dessert_DIY">
                         <div class="game-card-image">
                             <img src="../img/icon/Action/DessertDIY.jpg" alt="Dessert DIY" loading="lazy">
                         </div>
@@ -210,8 +252,8 @@
                             <h3 class="game-card-title">Dessert DIY</h3>
                             <p class="game-card-desc">Dessert DIY is a cooking simulation game where players create and decorate delicious desserts.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../Action/Obby_Football_Soccer_3D">
+                    </a>
+                    <a class="game-card game-card-link" href="../Action/Obby_Football_Soccer_3D">
                         <div class="game-card-image">
                             <img src="../img/icon/Action/ObbyFootballSoccer3D.jpg" alt="Obby Football Soccer 3D" loading="lazy">
                         </div>
@@ -220,7 +262,7 @@
                             <h3 class="game-card-title">Obby Football Soccer 3D</h3>
                             <p class="game-card-desc">Obby Football Soccer 3D is a soccer game with obstacle course elements.</p>
                         </div>
-                    </article>
+                    </a>
                 </div>
             </section>
         </main>
@@ -286,20 +328,6 @@
 
             refreshButton.addEventListener('click', function () {
                 iframe.src = iframe.src;
-            });
-
-            document.querySelectorAll('[data-link]').forEach((card) => {
-                const open = function () {
-                    window.location.href = card.dataset.link;
-                };
-
-                card.addEventListener('click', open);
-                card.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        open();
-                    }
-                });
             });
         });
     </script>

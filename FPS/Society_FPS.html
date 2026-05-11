@@ -27,6 +27,48 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Society FPS",
+    "url": "https://veckio.space/FPS/Society_FPS",
+    "image": "https://veckio.space/img/icon/FPS/SocietyFPS.jpeg",
+    "genre": "FPS",
+    "description": "Society FPS is a social-themed first-person shooter.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "veck io",
+        "url": "https://veckio.space/"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://veckio.space/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "FPS",
+            "item": "https://veckio.space/categories?category=fps"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Society FPS",
+            "item": "https://veckio.space/FPS/Society_FPS"
+        }
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -191,7 +233,7 @@
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     
-                    <article class="game-card" tabindex="0" data-link="../FPS/Crab_Guards">
+                    <a class="game-card game-card-link" href="../FPS/Crab_Guards">
                         <div class="game-card-image">
                             <img src="../img/icon/FPS/CrabGuards.jpg" alt="Crab Guards" loading="lazy">
                         </div>
@@ -200,8 +242,8 @@
                             <h3 class="game-card-title">Crab Guards</h3>
                             <p class="game-card-desc">Crab Guards is an action-packed FPS game where players defend against waves of crab enemies.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../FPS/FPS_Toy_Realism">
+                    </a>
+                    <a class="game-card game-card-link" href="../FPS/FPS_Toy_Realism">
                         <div class="game-card-image">
                             <img src="../img/icon/FPS/FPSToyRealism.jpg" alt="FPS Toy Realism" loading="lazy">
                         </div>
@@ -210,8 +252,8 @@
                             <h3 class="game-card-title">FPS Toy Realism</h3>
                             <p class="game-card-desc">FPS Toy Realism is a first-person shooter game with toy-themed graphics.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../FPS/3D_FPS_Target_Shooting">
+                    </a>
+                    <a class="game-card game-card-link" href="../FPS/3D_FPS_Target_Shooting">
                         <div class="game-card-image">
                             <img src="../img/icon/FPS/3DFPSTargetShooting.jpg" alt="3D FPS Target Shooting" loading="lazy">
                         </div>
@@ -220,8 +262,8 @@
                             <h3 class="game-card-title">3D FPS Target Shooting</h3>
                             <p class="game-card-desc">3D FPS Target Shooting is a target practice game with realistic 3D graphics.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../FPS/Hazmob_FPS">
+                    </a>
+                    <a class="game-card game-card-link" href="../FPS/Hazmob_FPS">
                         <div class="game-card-image">
                             <img src="../img/icon/FPS/HazmobFPS.jpg" alt="Hazmob FPS" loading="lazy">
                         </div>
@@ -230,8 +272,8 @@
                             <h3 class="game-card-title">Hazmob FPS</h3>
                             <p class="game-card-desc">Hazmob FPS is a fast-paced online multiplayer first-person shooter game.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../FPS/Subway_FPS">
+                    </a>
+                    <a class="game-card game-card-link" href="../FPS/Subway_FPS">
                         <div class="game-card-image">
                             <img src="../img/icon/FPS/SubwayFPS.jpeg" alt="Subway FPS" loading="lazy">
                         </div>
@@ -240,8 +282,8 @@
                             <h3 class="game-card-title">Subway FPS</h3>
                             <p class="game-card-desc">Subway FPS is a first-person shooter set in subway environments.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../FPS/Dragon_Slayer_FPS">
+                    </a>
+                    <a class="game-card game-card-link" href="../FPS/Dragon_Slayer_FPS">
                         <div class="game-card-image">
                             <img src="../img/icon/FPS/DragonSlayerFPS.jpeg" alt="Dragon Slayer FPS" loading="lazy">
                         </div>
@@ -250,7 +292,7 @@
                             <h3 class="game-card-title">Dragon Slayer FPS</h3>
                             <p class="game-card-desc">Dragon Slayer FPS is a fantasy first-person shooter.</p>
                         </div>
-                    </article>
+                    </a>
                 </div>
             </section>
         </main>
@@ -316,20 +358,6 @@
 
             refreshButton.addEventListener('click', function () {
                 iframe.src = iframe.src;
-            });
-
-            document.querySelectorAll('[data-link]').forEach((card) => {
-                const open = function () {
-                    window.location.href = card.dataset.link;
-                };
-
-                card.addEventListener('click', open);
-                card.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        open();
-                    }
-                });
             });
         });
     </script>

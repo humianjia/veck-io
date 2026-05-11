@@ -27,6 +27,48 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Brainrots Lava Survive Online",
+    "url": "https://veckio.space/Multiplayer/Brainrots_Lava_Survive_Online",
+    "image": "https://veckio.space/img/icon/Multiplayer/BrainrotsLavaSurviveOnline.jpg",
+    "genre": "Multiplayer",
+    "description": "Brainrots Lava Survive Online is a multiplayer survival game where players must stay on platforms as lava rises.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "veck io",
+        "url": "https://veckio.space/"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://veckio.space/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Multiplayer",
+            "item": "https://veckio.space/categories?category=multiplayer"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Brainrots Lava Survive Online",
+            "item": "https://veckio.space/Multiplayer/Brainrots_Lava_Survive_Online"
+        }
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -191,7 +233,7 @@
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     
-                    <article class="game-card" tabindex="0" data-link="../Multiplayer/Push.io">
+                    <a class="game-card game-card-link" href="../Multiplayer/Push.io">
                         <div class="game-card-image">
                             <img src="../img/icon/Multiplayer/PushIo.jpg" alt="Push.io" loading="lazy">
                         </div>
@@ -200,8 +242,8 @@
                             <h3 class="game-card-title">Push.io</h3>
                             <p class="game-card-desc">Push.io is an online multiplayer arena game where players battle to push each other off the platform using boomerangs.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../Multiplayer/Tic_Tac_Toe_Merge">
+                    </a>
+                    <a class="game-card game-card-link" href="../Multiplayer/Tic_Tac_Toe_Merge">
                         <div class="game-card-image">
                             <img src="../img/icon/Multiplayer/TicTacToeMerge.jpg" alt="Tic Tac Toe Merge" loading="lazy">
                         </div>
@@ -210,8 +252,8 @@
                             <h3 class="game-card-title">Tic Tac Toe Merge</h3>
                             <p class="game-card-desc">Tic Tac Toe Merge combines the classic tic tac toe game with merge mechanics.</p>
                         </div>
-                    </article>
-                    <article class="game-card" tabindex="0" data-link="../Multiplayer/Animal_Racing_Idle_Park">
+                    </a>
+                    <a class="game-card game-card-link" href="../Multiplayer/Animal_Racing_Idle_Park">
                         <div class="game-card-image">
                             <img src="../img/icon/Multiplayer/AnimalRacingIdlePark.jpg" alt="Animal Racing Idle Park" loading="lazy">
                         </div>
@@ -220,7 +262,7 @@
                             <h3 class="game-card-title">Animal Racing Idle Park</h3>
                             <p class="game-card-desc">Animal Racing Idle Park is a fun racing game where players race as different animals.</p>
                         </div>
-                    </article>
+                    </a>
                 </div>
             </section>
         </main>
@@ -286,20 +328,6 @@
 
             refreshButton.addEventListener('click', function () {
                 iframe.src = iframe.src;
-            });
-
-            document.querySelectorAll('[data-link]').forEach((card) => {
-                const open = function () {
-                    window.location.href = card.dataset.link;
-                };
-
-                card.addEventListener('click', open);
-                card.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        open();
-                    }
-                });
             });
         });
     </script>

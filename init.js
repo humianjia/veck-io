@@ -83,9 +83,17 @@ function getCategoryCounts() {
 }
 
 function createGameCard(game, options = {}) {
-    const card = document.createElement("article");
-    card.className = options.className || "game-card";
-    card.tabIndex = 0;
+    const targetHref = game.link
+        ? toCleanPath(options.prefixLink ? options.prefixLink + game.link : game.link)
+        : "";
+    const card = document.createElement(targetHref ? "a" : "article");
+    card.className = `${options.className || "game-card"}${targetHref ? " game-card-link" : ""}`;
+    if (targetHref) {
+        card.href = targetHref;
+        card.setAttribute("aria-label", `${game.name} game page`);
+    } else {
+        card.tabIndex = 0;
+    }
 
     const imageUrl = options.imageUrlTransform ? options.imageUrlTransform(game.imageUrl) : game.imageUrl;
     const description = sanitizeDisplayText(
@@ -104,19 +112,13 @@ function createGameCard(game, options = {}) {
         </div>
     `;
 
-    const openGame = () => {
-        if (game.link) {
-            window.location.href = toCleanPath(options.prefixLink ? options.prefixLink + game.link : game.link);
-        }
-    };
-
-    card.addEventListener("click", openGame);
-    card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openGame();
-        }
-    });
+    if (!targetHref) {
+        card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+            }
+        });
+    }
 
     return card;
 }

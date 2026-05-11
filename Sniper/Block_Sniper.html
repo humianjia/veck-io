@@ -27,6 +27,48 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Block Sniper",
+    "url": "https://veckio.space/Sniper/Block_Sniper",
+    "image": "https://veckio.space/img/icon/Sniper/BlockSniper.jpg",
+    "genre": "Sniper",
+    "description": "Block Sniper is a voxel-style sniper game.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "veck io",
+        "url": "https://veckio.space/"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://veckio.space/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Sniper",
+            "item": "https://veckio.space/categories?category=sniper"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Block Sniper",
+            "item": "https://veckio.space/Sniper/Block_Sniper"
+        }
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -191,7 +233,7 @@
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     
-                    <article class="game-card" tabindex="0" data-link="../Sniper/Aliens_Hunter">
+                    <a class="game-card game-card-link" href="../Sniper/Aliens_Hunter">
                         <div class="game-card-image">
                             <img src="../img/icon/Sniper/AliensHunter.jpg" alt="Aliens Hunter" loading="lazy">
                         </div>
@@ -200,7 +242,7 @@
                             <h3 class="game-card-title">Aliens Hunter</h3>
                             <p class="game-card-desc">Aliens Hunter is a sci-fi sniper game where players hunt alien invaders.</p>
                         </div>
-                    </article>
+                    </a>
                 </div>
             </section>
         </main>
@@ -266,20 +308,6 @@
 
             refreshButton.addEventListener('click', function () {
                 iframe.src = iframe.src;
-            });
-
-            document.querySelectorAll('[data-link]').forEach((card) => {
-                const open = function () {
-                    window.location.href = card.dataset.link;
-                };
-
-                card.addEventListener('click', open);
-                card.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        open();
-                    }
-                });
             });
         });
     </script>

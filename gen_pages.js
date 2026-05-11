@@ -102,6 +102,10 @@ function buildCategoryHref(category, relativePrefix = '') {
     return `${toRelativeRoute('categories.html', relativePrefix)}?category=${category}`;
 }
 
+function buildStructuredDataScript(data) {
+    return `<script type="application/ld+json">\n${JSON.stringify(data, null, 4)}\n    </script>`;
+}
+
 function isApprovalReady(game) {
     return Boolean(game && game.link && APPROVAL_READY_LINKS.has(game.link));
 }
@@ -476,6 +480,44 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
         ? editorial.aboutParagraphs
         : [description];
     const updateHistory = Array.isArray(editorial.updateHistory) ? editorial.updateHistory : [];
+    const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: `${SITE_URL}/`
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: categoryLabel,
+                item: `${SITE_URL}/categories?category=${encodeURIComponent(String(categoryLabel || '').toLowerCase().replace(/\s+/g, '-'))}`
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: game.name,
+                item: pageUrl
+            }
+        ]
+    };
+    const collectionData = {
+        '@context': 'https://schema.org',
+        '@type': 'VideoGame',
+        name: game.name,
+        url: pageUrl,
+        image: `${SITE_URL}/${imageUrl.replace(/^\.\.\//, '')}`,
+        genre: categoryLabel,
+        description: shortDescription,
+        publisher: {
+            '@type': 'Organization',
+            name: 'veck io',
+            url: `${SITE_URL}/`
+        }
+    };
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -506,6 +548,8 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
+    ${buildStructuredDataScript(collectionData)}
+    ${buildStructuredDataScript(breadcrumbData)}
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -681,7 +725,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 <p class="section-lead">More picks from the same site that may suit a similar mood or play style.</p>
                 <div class="games-grid" id="related-games-container">
                     ${relatedGames.map((relatedGame) => `
-                    <article class="game-card" tabindex="0" data-link="${toRelativeRoute(relatedGame.link, relativePrefix)}">
+                    <a class="game-card game-card-link" href="${toRelativeRoute(relatedGame.link, relativePrefix)}">
                         <div class="game-card-image">
                             <img src="${escapeHtml((relatedGame.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/'))}" alt="${escapeHtml(relatedGame.name)}" loading="lazy">
                         </div>
@@ -690,7 +734,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                             <h3 class="game-card-title">${escapeHtml(relatedGame.name)}</h3>
                             <p class="game-card-desc">${escapeHtml(makeShortDescription(relatedGame))}</p>
                         </div>
-                    </article>`).join('')}
+                    </a>`).join('')}
                 </div>
             </section>
         </main>
@@ -719,20 +763,6 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
 
             refreshButton.addEventListener('click', function () {
                 iframe.src = iframe.src;
-            });
-
-            document.querySelectorAll('[data-link]').forEach((card) => {
-                const open = function () {
-                    window.location.href = card.dataset.link;
-                };
-
-                card.addEventListener('click', open);
-                card.addEventListener('keydown', function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        open();
-                    }
-                });
             });
         });
     </script>
