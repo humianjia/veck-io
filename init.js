@@ -1,3 +1,53 @@
+const CATEGORY_DEFINITIONS = [
+    {
+        key: 'all',
+        label: 'All Games',
+        icon: 'fa-gamepad',
+        accent: 'var(--accent)',
+        summary: 'Every playable page currently available on the site.'
+    },
+    {
+        key: 'fps',
+        label: 'FPS',
+        icon: 'fa-crosshairs',
+        accent: 'var(--fps)',
+        match: 'FPS',
+        summary: 'Fast combat, tight aim, and direct browser gunplay.'
+    },
+    {
+        key: 'battle-royale',
+        label: 'Battle Royale',
+        icon: 'fa-mountain-sun',
+        accent: 'var(--battle-royale)',
+        match: 'Battle Royale',
+        summary: 'Drop-in survival loops and last-player-standing chaos.'
+    },
+    {
+        key: 'multiplayer',
+        label: 'Multiplayer',
+        icon: 'fa-users',
+        accent: 'var(--multiplayer)',
+        match: 'Multiplayer',
+        summary: 'Repeatable rounds, shared lobbies, and social pressure.'
+    },
+    {
+        key: 'sniper',
+        label: 'Sniper',
+        icon: 'fa-bullseye',
+        accent: 'var(--sniper)',
+        match: 'Sniper',
+        summary: 'Precision shots, slower pacing, and cleaner lines of sight.'
+    },
+    {
+        key: 'action',
+        label: 'Action',
+        icon: 'fa-bolt',
+        accent: 'var(--action)',
+        match: 'Action',
+        summary: 'Arcade energy, obstacle runs, racing, and quick-play variety.'
+    }
+];
+
 function getAllSiteGames() {
     return [
         ...(window.gamesData || []),
@@ -6,40 +56,15 @@ function getAllSiteGames() {
         ...(window.fpsData || []),
         ...(window.multiplayerGames || []),
         ...(window.sniperData || [])
-    ];
+    ].filter((game) => game && game.link);
 }
 
-const approvalReadyLinks = new Set([
-    'FPS/Hazmob_FPS.html',
-    'FPS/Subway_FPS.html',
-    'FPS/Dragon_Slayer_FPS.html',
-    'FPS/Crab_Guards.html',
-    'FPS/FPS_Toy_Realism.html',
-    'FPS/3D_FPS_Target_Shooting.html',
-    'Multiplayer/Push.io.html',
-    'Multiplayer/Tic_Tac_Toe_Merge.html',
-    'Multiplayer/Animal_Racing_Idle_Park.html',
-    'Action/Revoxel_3D_-_Voxel_RPG_Shooter.html',
-    'Action/Obby_Football_Soccer_3D.html',
-    'Action/Dessert_DIY.html',
-    'BattleRoyale/Top_Guns_IO.html',
-    'BattleRoyale/Cube_Battle_Royale.html',
-    'Sniper/Aliens_Hunter.html'
-]);
-
-function getApprovalReadyGames() {
-    return getAllSiteGames().filter((game) => approvalReadyLinks.has(game.link));
+function getPlayableGames() {
+    return getAllSiteGames().filter((game) => game.link && game.link !== 'index.html');
 }
 
 function sanitizeDisplayText(value) {
     return String(value || '')
-        .replace(/\bterrorist\b/gi, 'enemy')
-        .replace(/\bassassination\b/gi, 'mission objective')
-        .replace(/\bcriminal underworld\b/gi, 'crime-fiction setting')
-        .replace(/\bgang-themed\b/gi, 'urban-themed')
-        .replace(/\bgangs?\b/gi, 'factions')
-        .replace(/\bmafia\b/gi, 'crime-fiction')
-        .replace(/\bweapons\b/gi, 'loadout options')
         .replace(/\s+/g, ' ')
         .trim();
 }
@@ -70,51 +95,123 @@ function getRelativePageLink(pageName) {
     return toCleanPath(`${prefix}${pageName}`);
 }
 
+function getCategorySlug(gameType) {
+    const normalized = String(gameType || '').trim().toLowerCase();
+    if (normalized === 'battle royale') {
+        return 'battle-royale';
+    }
+    return normalized.replace(/\s+/g, '-');
+}
+
+function getCategoryMeta(categoryKey) {
+    return CATEGORY_DEFINITIONS.find((item) => item.key === categoryKey) || CATEGORY_DEFINITIONS[0];
+}
+
 function getCategoryCounts() {
-    const approvalReadyGames = getApprovalReadyGames();
+    const playableGames = getPlayableGames();
     return {
-        fps: approvalReadyGames.filter((game) => game.gameType === 'FPS').length,
-        "battle-royale": approvalReadyGames.filter((game) => game.gameType === 'Battle Royale').length,
-        sniper: approvalReadyGames.filter((game) => game.gameType === 'Sniper').length,
-        multiplayer: approvalReadyGames.filter((game) => game.gameType === 'Multiplayer').length,
-        action: approvalReadyGames.filter((game) => game.gameType === 'Action').length,
-        all: approvalReadyGames.length
+        fps: playableGames.filter((game) => game.gameType === 'FPS').length,
+        'battle-royale': playableGames.filter((game) => game.gameType === 'Battle Royale').length,
+        sniper: playableGames.filter((game) => game.gameType === 'Sniper').length,
+        multiplayer: playableGames.filter((game) => game.gameType === 'Multiplayer').length,
+        action: playableGames.filter((game) => game.gameType === 'Action').length,
+        all: playableGames.length
     };
+}
+
+function filterGamesByCategory(games, categoryKey) {
+    if (!categoryKey || categoryKey === 'all') {
+        return [...games];
+    }
+
+    const meta = getCategoryMeta(categoryKey);
+    if (!meta.match) {
+        return [...games];
+    }
+
+    return games.filter((game) => game.gameType === meta.match);
+}
+
+function buildSearchableText(game) {
+    return [
+        game.name,
+        game.description,
+        game.shortDescription,
+        game.gameType,
+        ...(game.tags || [])
+    ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+}
+
+function getGameDescription(game) {
+    return sanitizeDisplayText(
+        game.shortDescription
+        || game.description
+        || 'Open this game page and jump straight into browser play.'
+    );
 }
 
 function createGameCard(game, options = {}) {
     const targetHref = game.link
         ? toCleanPath(options.prefixLink ? options.prefixLink + game.link : game.link)
-        : "";
-    const card = document.createElement(targetHref ? "a" : "article");
-    card.className = `${options.className || "game-card"}${targetHref ? " game-card-link" : ""}`;
+        : '';
+    const category = game.gameType || 'Game';
+    const categorySlug = getCategorySlug(category);
+    const categoryMeta = getCategoryMeta(categorySlug);
+    const card = document.createElement(targetHref ? 'a' : 'article');
+    const variantClass = options.variant ? ` game-card-${options.variant}` : '';
+    card.className = `${options.className || 'game-card'}${targetHref ? ' game-card-link' : ''}${variantClass}`;
+    card.dataset.gameCategory = categorySlug;
+
     if (targetHref) {
         card.href = targetHref;
-        card.setAttribute("aria-label", `${game.name} game page`);
+        card.setAttribute('aria-label', `${game.name} game page`);
     } else {
         card.tabIndex = 0;
     }
 
     const imageUrl = options.imageUrlTransform ? options.imageUrlTransform(game.imageUrl) : game.imageUrl;
-    const description = sanitizeDisplayText(
-        game.shortDescription || game.description || "Open this game page for a short overview, tips, and browser-play details."
-    );
-    const category = game.gameType || "Game";
+    const description = getGameDescription(game);
+    const showDescription = options.showDescription !== false;
+    const ratingValue = Number(game.rating || 0);
+    const ratingLabel = Number.isFinite(ratingValue) && ratingValue > 0 ? ratingValue.toFixed(1) : 'Play';
+    const cardSummary = options.summary || description;
+    const cardTags = (game.tags || []).slice(0, options.tagLimit || 3);
+    const spotlightLabel = options.label || categoryMeta.label || category;
+    const imageLoading = options.eager ? 'eager' : 'lazy';
+    const minimalClass = !showDescription ? ' game-card-minimal' : '';
+
+    card.className += minimalClass;
 
     card.innerHTML = `
-        <div class="game-card-image">
-            <img src="${imageUrl}" alt="${game.name}" loading="lazy">
+        <div class="game-card-cover">
+            <img src="${imageUrl}" alt="${game.name}" loading="${imageLoading}">
+            <div class="game-card-overlay">
+                <span class="game-card-pill">${spotlightLabel}</span>
+                <span class="game-card-score"><i class="fas fa-star" aria-hidden="true"></i> ${ratingLabel}</span>
+            </div>
         </div>
-        <div class="game-card-info">
-            <div class="game-card-category">${category}</div>
+        <div class="game-card-body">
+            <div class="game-card-topline">
+                <span class="game-card-category">${category}</span>
+                <span class="game-card-route">${categorySlug}</span>
+            </div>
             <h3 class="game-card-title">${game.name}</h3>
-            <p class="game-card-desc">${description}</p>
+            ${showDescription ? `<p class="game-card-desc">${cardSummary}</p>` : ''}
+            <div class="game-card-bottom">
+                <div class="game-card-tags">
+                    ${cardTags.map((tag) => `<span class="game-card-tag">${sanitizeDisplayText(tag)}</span>`).join('')}
+                </div>
+                <span class="game-card-cta">${options.ctaLabel || 'Open Game'} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+            </div>
         </div>
     `;
 
     if (!targetHref) {
-        card.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
             }
         });
@@ -132,40 +229,37 @@ function shuffleArray(array) {
     return shuffled;
 }
 
+function formatGameCount(value) {
+    return `${value} game${value === 1 ? '' : 's'}`;
+}
+
 function initSiteSearch() {
-    const searchInputs = document.querySelectorAll("[data-site-search]");
+    const searchInputs = document.querySelectorAll('[data-site-search]');
     if (!searchInputs.length) {
         return;
     }
 
-    const allGames = getApprovalReadyGames();
+    const allGames = getPlayableGames();
     searchInputs.forEach((input) => {
-        input.addEventListener("keydown", (event) => {
-            if (event.key !== "Enter") {
+        input.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter') {
                 return;
             }
 
             const query = input.value.trim().toLowerCase();
             if (!query) {
-                window.location.href = toCleanPath(`${input.dataset.searchBase || ""}categories.html?category=all`);
+                window.location.href = toCleanPath(`${input.dataset.searchBase || ''}categories.html?category=all`);
                 return;
             }
 
-            const match = allGames.find((game) => {
-                const haystack = [
-                    game.name,
-                    game.description,
-                    ...(game.tags || [])
-                ].join(" ").toLowerCase();
-                return haystack.includes(query);
-            });
+            const match = allGames.find((game) => buildSearchableText(game).includes(query));
 
             if (match && match.link) {
-                window.location.href = toCleanPath(`${input.dataset.searchBase || ""}${match.link}`);
+                window.location.href = toCleanPath(`${input.dataset.searchBase || ''}${match.link}`);
                 return;
             }
 
-            window.location.href = toCleanPath(`${input.dataset.searchBase || ""}categories.html?category=all&search=${encodeURIComponent(query)}`);
+            window.location.href = toCleanPath(`${input.dataset.searchBase || ''}categories.html?category=all&search=${encodeURIComponent(query)}`);
         });
     });
 }
@@ -180,7 +274,7 @@ function initCookieNotice() {
     banner.className = 'consent-banner';
     banner.innerHTML = `
         <div class="consent-banner__text">
-            veck io may use analytics, ads, cookies, and third-party game embeds to run the site.
+            veck io may use analytics, cookies, and third-party game embeds to run the site.
             <a href="${getRelativePageLink('privacy.html')}">Learn more</a>.
         </div>
         <button class="consent-banner__button" type="button">OK</button>
@@ -196,14 +290,14 @@ function initCookieNotice() {
 }
 
 function initParticles() {
-    const container = document.getElementById("particles");
+    const container = document.getElementById('particles');
     if (!container || container.childElementCount > 0) {
         return;
     }
 
     for (let i = 0; i < 26; i += 1) {
-        const particle = document.createElement("div");
-        particle.className = "particle";
+        const particle = document.createElement('div');
+        particle.className = 'particle';
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.animationDelay = `${Math.random() * 16}s`;
         particle.style.animationDuration = `${14 + Math.random() * 8}s`;
@@ -214,28 +308,69 @@ function initParticles() {
 }
 
 function initCursorGlow() {
-    const glow = document.getElementById("cursorGlow");
+    const glow = document.getElementById('cursorGlow');
     if (!glow) {
         return;
     }
 
-    document.addEventListener("mousemove", (event) => {
+    document.addEventListener('mousemove', (event) => {
         glow.style.left = `${event.clientX}px`;
         glow.style.top = `${event.clientY}px`;
     });
 
-    document.addEventListener("mouseleave", () => {
-        glow.style.opacity = "0";
+    document.addEventListener('mouseleave', () => {
+        glow.style.opacity = '0';
     });
 
-    document.addEventListener("mouseenter", () => {
-        glow.style.opacity = "1";
+    document.addEventListener('mouseenter', () => {
+        glow.style.opacity = '1';
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initTopbarState() {
+    const syncState = () => {
+        if (window.scrollY > 12) {
+            document.body.classList.add('is-scrolled');
+        } else {
+            document.body.classList.remove('is-scrolled');
+        }
+    };
+
+    syncState();
+    window.addEventListener('scroll', syncState, { passive: true });
+}
+
+function initCombatFrame(options = {}) {
+    const iframe = document.getElementById(options.iframeId || 'game-iframe');
+    const stage = document.getElementById(options.stageId || 'frame-stage');
+    const loading = document.getElementById(options.loadingId || 'frame-loading');
+
+    if (!iframe || !stage) {
+        return;
+    }
+
+    let resolved = false;
+    const markReady = () => {
+        if (resolved) {
+            return;
+        }
+        resolved = true;
+        stage.classList.remove('is-loading');
+        stage.classList.add('is-live');
+        if (loading) {
+            loading.setAttribute('hidden', 'hidden');
+        }
+    };
+
+    stage.classList.add('is-loading');
+    iframe.addEventListener('load', markReady, { once: true });
+    window.setTimeout(markReady, options.fallbackDelay || 4000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     initCursorGlow();
+    initTopbarState();
     initSiteSearch();
     initCookieNotice();
 });

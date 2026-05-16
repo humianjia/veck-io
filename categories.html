@@ -10,23 +10,24 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>veck io Categories | Browser Games Library</title>
-    <meta name="description" content="Browse veck io categories to find browser game pages across FPS, battle royale, sniper, multiplayer, and action, with search, filters, and short editorial context.">
-    <meta name="keywords" content="veck io categories, browser game categories, FPS games, multiplayer games, action games">
+    <title>Veck.io Mission Board | Shooter Game Collection</title>
+    <meta name="description" content="Browse the Veck.io mission board by FPS, battle royale, sniper, multiplayer, and action categories.">
+    <meta name="keywords" content="Veck.io mission board, browser shooter collection, fps games, survival shooters">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
+    <meta name="theme-color" content="#05080d">
     <link rel="canonical" href="https://veckio.space/categories">
-    <meta property="og:title" content="veck io Categories | Browser Games Library">
-    <meta property="og:description" content="Browse categorized browser game pages on veck io with search, filters, and short editorial context for FPS, battle royale, sniper, multiplayer, and action picks.">
+    <meta property="og:title" content="Veck.io Mission Board | Shooter Game Collection">
+    <meta property="og:description" content="Filter the Veck.io collection through a tactical category board and jump into playable game pages.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://veckio.space/categories">
     <meta property="og:site_name" content="veck io">
     <meta property="og:image" content="https://veckio.space/img/icon/veckIo.jpg">
-    <meta property="og:image:alt" content="veck io game categories">
+    <meta property="og:image:alt" content="Veck.io mission board">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="veck io Categories | Browser Games Library">
-    <meta name="twitter:description" content="Browse veck io categories for browser FPS, battle royale, sniper, multiplayer, and action pages with search, filters, and short editorial context.">
+    <meta name="twitter:title" content="Veck.io Mission Board | Shooter Game Collection">
+    <meta name="twitter:description" content="Open FPS, survival, sniper, multiplayer, and action picks from the Veck.io collection.">
     <meta name="twitter:image" content="https://veckio.space/img/icon/veckIo.jpg">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -36,38 +37,18 @@
         {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "veck io Categories",
+            "name": "Veck.io Mission Board",
             "url": "https://veckio.space/categories",
-            "description": "Browse category-based browser game pages on veck io across FPS, battle royale, sniper, multiplayer, and action."
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://veckio.space/"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Categories",
-                    "item": "https://veckio.space/categories"
-                }
-            ]
+            "description": "A tactical category board for FPS, battle royale, sniper, multiplayer, and action browser games."
         }
     </script>
 </head>
-<body>
+<body class="categories-page">
     <div class="particles" id="particles"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="site-shell">
-        <header class="header">
-            <a href="/" class="logo" aria-label="veck io home">
+        <header class="topbar header">
+            <a href="/" class="logo" aria-label="Veck.io home">
                 <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
                     <defs>
                         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -79,128 +60,82 @@
                     <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
                     <circle cx="25" cy="25" r="4" fill="#5df0c1"/>
                 </svg>
-                <span class="logo-text">veck <span class="logo-io">io</span></span>
+                <span class="logo-text">Veck<span class="logo-io">.io</span></span>
             </a>
-            <nav class="nav-categories" aria-label="Primary">
-                <a href="/categories?category=all" class="nav-item" data-nav-category="all">All Games</a>
-                <a href="/categories?category=fps" class="nav-item" data-nav-category="fps">FPS</a>
-                <a href="/categories?category=battle-royale" class="nav-item" data-nav-category="battle-royale">Battle Royale</a>
-                <a href="/categories?category=sniper" class="nav-item" data-nav-category="sniper">Sniper</a>
-                <a href="/categories?category=multiplayer" class="nav-item" data-nav-category="multiplayer">Multiplayer</a>
-                <a href="/categories?category=action" class="nav-item" data-nav-category="action">Action</a>
+            <nav class="nav-categories topbar-nav" aria-label="Primary">
+                <a href="/" class="nav-item">Home</a>
+                <a href="/categories?category=fps" class="nav-item" data-nav-category="fps">Shooter Games</a>
+                <a href="/categories?category=multiplayer" class="nav-item" data-nav-category="multiplayer">Popular</a>
+                <a href="/categories?category=action" class="nav-item" data-nav-category="action">New</a>
+                <a href="/categories?category=battle-royale" class="nav-item" data-nav-category="battle-royale">Survival</a>
             </nav>
-            <div class="search-bar">
-                <label class="visually-hidden" for="category-search">Search games</label>
-                <input id="category-search" type="text" placeholder="Search this library" data-site-search>
-                <i class="fas fa-search" aria-hidden="true"></i>
+            <div class="topbar-actions">
+                <div class="search-bar topbar-search">
+                    <label class="visually-hidden" for="category-search">Search games</label>
+                    <input id="category-search" type="text" placeholder="Search" data-site-search>
+                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                </div>
             </div>
         </header>
 
-        <main class="page-container">
-            <section class="page-card">
-                <div class="page-header">
-                    <span class="eyebrow"><i class="fas fa-layer-group"></i> veck io Game Library</span>
-                    <h1 class="page-title">Browse veck io game pages by category</h1>
-                    <p class="page-subtitle">Use the category chips or the search box to jump to a specific title. These category pages are trimmed to the site's stronger browser game picks so visitors reach a better-fit page faster.</p>
+        <main class="page-container mission-board">
+            <aside class="mission-sidebar reveal-block">
+                <div class="sidebar-card">
+                    <span class="section-kicker">Mission Board</span>
+                    <h1 class="sidebar-title">Choose your combat lane</h1>
+                    <p class="sidebar-copy">Filter the collection by battle style, then open a playable page without wandering through clutter.</p>
                 </div>
-                <div class="categories-grid" id="top-category-grid"></div>
-                <div class="info-banner">Search results on this page are filtered locally from the current approval-ready library, so visitors can browse stronger pages without wading through thinner templates first. Each category is organized to make the veck io library easier to scan, compare, and evaluate before opening a game page.</div>
-            </section>
-
-            <section class="page-section" aria-labelledby="category-guides">
-                <h2 class="section-title" id="category-guides">Need help choosing what to open?</h2>
-                <p class="section-lead">These original editorial pages explain how to browse the library intentionally, how pages are maintained, and what to expect when a page is corrected or updated.</p>
-                <div class="guide-grid">
-                    <a class="guide-card" href="/browser-fps-guide">
-                        <div class="guide-kicker"><i class="fas fa-crosshairs"></i> Player Guide</div>
-                        <h3>How to choose the right browser FPS</h3>
-                        <p>Use session length, pace, and device comfort to decide whether FPS, sniper, or multiplayer is the better first click.</p>
-                        <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                    <a class="guide-card" href="/how-we-select-browser-games">
-                        <div class="guide-kicker"><i class="fas fa-list-check"></i> Editorial Guide</div>
-                        <h3>How we select and maintain pages</h3>
-                        <p>See the standards behind category fit, page quality, and why veck io adds context around embedded gameplay.</p>
-                        <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                    <a class="guide-card" href="/editorial-review-and-updates">
-                        <div class="guide-kicker"><i class="fas fa-arrows-rotate"></i> Review Process</div>
-                        <h3>How pages are reviewed and updated</h3>
-                        <p>See which page issues trigger updates, how corrections are handled, and why support signals remain visible across the site.</p>
-                        <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                    <a class="guide-card" href="/browser-game-safety-guide">
-                        <div class="guide-kicker"><i class="fas fa-shield-heart"></i> Safety Guide</div>
-                        <h3>Safety, privacy, and performance basics</h3>
-                        <p>Understand how to browse third-party embeds more carefully and what to do if a page feels heavy or unclear.</p>
-                        <span class="guide-arrow">Read the guide <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                </div>
-            </section>
-
-            <section class="games-section page-section">
-                <div class="series-header">
-                    <div>
-                        <h2 class="section-title" id="games-section-title">All Games</h2>
-                        <p class="section-lead" id="games-section-lead">A complete view of the current approval-ready game pages in the veck io library.</p>
+                <div class="sidebar-card category-filter-list" id="category-filter-list"></div>
+                <div class="sidebar-card filter-status">
+                    <div class="status-row">
+                        <span class="status-label">Current Filter</span>
+                        <strong id="active-category-label">All Games</strong>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Results</span>
+                        <strong id="results-pill">0 games</strong>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Search</span>
+                        <strong id="search-status">No keyword</strong>
                     </div>
                 </div>
-                <div class="games-grid" id="games-list-container"></div>
-                <div class="crawlable-link-section">
-                    <h3>Approval-ready links</h3>
-                    <p>These direct links mirror the strongest current pages in the library and give visitors a stable path even if scripts are delayed.</p>
-                    <ul class="crawlable-link-list">
-                        <li><a href="/FPS/Hazmob_FPS">Hazmob FPS</a> <span>FPS page with multiplayer focus.</span></li>
-                        <li><a href="/FPS/Subway_FPS">Subway FPS</a> <span>FPS page with transit-themed action.</span></li>
-                        <li><a href="/FPS/Dragon_Slayer_FPS">Dragon Slayer FPS</a> <span>Fantasy FPS page with quicker context.</span></li>
-                        <li><a href="/FPS/Crab_Guards">Crab Guards</a> <span>Action-heavy defense shooter page.</span></li>
-                        <li><a href="/FPS/FPS_Toy_Realism">FPS Toy Realism</a> <span>Toy-themed shooter page.</span></li>
-                        <li><a href="/FPS/3D_FPS_Target_Shooting">3D FPS Target Shooting</a> <span>Simpler target-shooting browser page.</span></li>
-                        <li><a href="/Multiplayer/Push.io">Push.io</a> <span>Multiplayer arena page.</span></li>
-                        <li><a href="/Multiplayer/Tic_Tac_Toe_Merge">Tic Tac Toe Merge</a> <span>Casual multiplayer merge page.</span></li>
-                        <li><a href="/Multiplayer/Animal_Racing_Idle_Park">Animal Racing Idle Park</a> <span>Animal racing page.</span></li>
-                        <li><a href="/Action/Revoxel_3D_-_Voxel_RPG_Shooter">Revoxel 3D - Voxel RPG Shooter</a> <span>Voxel action RPG shooter page.</span></li>
-                        <li><a href="/Action/Obby_Football_Soccer_3D">Obby Football Soccer 3D</a> <span>Obstacle and soccer-flavored action page.</span></li>
-                        <li><a href="/Action/Dessert_DIY">Dessert DIY</a> <span>Creative action and simulation page.</span></li>
-                        <li><a href="/BattleRoyale/Top_Guns_IO">Top Guns IO</a> <span>Aerial battle royale page.</span></li>
-                        <li><a href="/BattleRoyale/Cube_Battle_Royale">Cube Battle Royale</a> <span>Blocky battle royale page.</span></li>
-                        <li><a href="/Sniper/Aliens_Hunter">Aliens Hunter</a> <span>Sci-fi sniper page.</span></li>
-                    </ul>
+            </aside>
+
+            <section class="mission-results reveal-block">
+                <div class="results-hero">
+                    <div>
+                        <span class="section-kicker">Deployment Feed</span>
+                        <h2 class="section-title" id="games-section-title">All Games</h2>
+                        <p class="section-lead" id="games-section-lead">A complete view of the current Veck.io library.</p>
+                    </div>
+                    <a class="text-link" href="/">Return to live battlefield <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
+                <div class="games-grid mission-grid" id="games-list-container"></div>
             </section>
         </main>
 
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>About</h3>
-                    <p>veck io groups browser game pages by theme so players can quickly scan the library, compare categories, and open a suitable title.</p>
+                    <h3>Mission Board</h3>
+                    <p>A tactical browsing layer for the Veck.io library, built for faster route selection and less wasted motion.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Browse</h3>
+                    <h3>Combat Routes</h3>
                     <ul>
-                        <li><a href="/">Homepage</a></li>
-                        <li><a href="/categories?category=all">All Games</a></li>
-                        <li><a href="/categories?category=fps">FPS Games</a></li>
-                        <li><a href="/categories?category=multiplayer">Multiplayer Games</a></li>
+                        <li><a href="/categories?category=fps">Shooter Games</a></li>
+                        <li><a href="/categories?category=sniper">Sniper</a></li>
+                        <li><a href="/categories?category=battle-royale">Survival</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Policies</h3>
+                    <h3>Support</h3>
                     <ul>
                         <li><a href="/about">About</a></li>
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/privacy">Privacy Policy</a></li>
                         <li><a href="/terms">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Guides</h3>
-                    <ul>
-                        <li><a href="/browser-fps-guide">Choosing a Browser FPS</a></li>
-                        <li><a href="/how-we-select-browser-games">How We Select Games</a></li>
-                        <li><a href="/editorial-review-and-updates">Editorial Review and Updates</a></li>
-                        <li><a href="/browser-game-safety-guide">Safety and Privacy Guide</a></li>
                     </ul>
                 </div>
             </div>
@@ -224,63 +159,52 @@
         const categories = {
             all: {
                 title: 'All Games',
-                lead: 'Every approval-ready game page currently surfaced on veck io.'
+                lead: 'A complete view of the current Veck.io library.'
             },
             fps: {
-                title: 'FPS',
-                lead: 'First-person shooter focused pages with stronger editorial coverage and quick browser access.'
+                title: 'Shooter Games',
+                lead: 'Direct firefights, fast aim checks, and combat-heavy browser picks.'
             },
             'battle-royale': {
-                title: 'Battle Royale',
-                lead: 'Last-player-standing and survival-flavored picks from the current approval-ready set.'
+                title: 'Survival',
+                lead: 'Last-player-standing pressure, open arenas, and survival combat loops.'
             },
             sniper: {
                 title: 'Sniper',
-                lead: 'Precision-oriented pages with scoped or tactical play themes.'
+                lead: 'Precision-heavy pages built around timing, distance, and control.'
             },
             multiplayer: {
-                title: 'Multiplayer',
-                lead: 'Competitive or social game pages built around matches with others.'
+                title: 'Popular',
+                lead: 'Competitive and repeatable online rounds with stronger social pressure.'
             },
             action: {
-                title: 'Action',
-                lead: 'Faster arcade, obstacle, or reflex-based browser game pages.'
+                title: 'New',
+                lead: 'Arcade pace, hard turns, and fast browser action beyond strict shooter lines.'
             }
         };
 
-        const categoryDataMap = {
-            all: getApprovalReadyGames().filter((game) => game.link && game.link !== 'index.html'),
-            fps: getApprovalReadyGames().filter((game) => game.gameType === 'FPS'),
-            'battle-royale': getApprovalReadyGames().filter((game) => game.gameType === 'Battle Royale'),
-            sniper: getApprovalReadyGames().filter((game) => game.gameType === 'Sniper'),
-            multiplayer: getApprovalReadyGames().filter((game) => game.gameType === 'Multiplayer'),
-            action: getApprovalReadyGames().filter((game) => game.gameType === 'Action')
-        };
-
-        function renderTopCategories() {
-            const container = document.getElementById('top-category-grid');
+        function renderSidebarCategories(currentCategory) {
+            const container = document.getElementById('category-filter-list');
             const counts = getCategoryCounts();
-            [
-                { key: 'all', label: 'All Games', icon: 'fa-gamepad' },
-                { key: 'fps', label: 'FPS', icon: 'fa-crosshairs' },
-                { key: 'battle-royale', label: 'Battle Royale', icon: 'fa-mountain-sun' },
-                { key: 'sniper', label: 'Sniper', icon: 'fa-bullseye' },
-                { key: 'multiplayer', label: 'Multiplayer', icon: 'fa-users' },
-                { key: 'action', label: 'Action', icon: 'fa-bolt' }
-            ].forEach((category) => {
+            container.innerHTML = '';
+
+            CATEGORY_DEFINITIONS.forEach((category) => {
                 const card = document.createElement('a');
                 card.href = `/categories?category=${category.key}`;
-                card.className = 'category-card';
+                card.className = `filter-link${currentCategory === category.key ? ' active' : ''}`;
+                card.dataset.category = category.key;
                 card.innerHTML = `
-                    <div class="category-icon"><i class="fas ${category.icon}" aria-hidden="true"></i></div>
-                    <div class="category-name">${category.label}</div>
-                    <div class="category-count">${counts[category.key]} pages</div>
+                    <span class="filter-link-main">
+                        <i class="fas ${category.icon}" aria-hidden="true"></i>
+                        <span>${category.label}</span>
+                    </span>
+                    <span class="filter-link-count">${counts[category.key]}</span>
                 `;
                 container.appendChild(card);
             });
         }
 
-        function highlightCurrentCategory(currentCategory) {
+        function syncPrimaryNav(currentCategory) {
             document.querySelectorAll('[data-nav-category]').forEach((item) => {
                 if (item.dataset.navCategory === currentCategory) {
                     item.classList.add('active');
@@ -291,42 +215,47 @@
         }
 
         function loadGamesByCategory() {
-            const container = document.getElementById('games-list-container');
-            const titleElement = document.getElementById('games-section-title');
-            const leadElement = document.getElementById('games-section-lead');
+            const allGames = getPlayableGames();
             const currentCategory = getURLParam('category') || 'all';
             const currentSearch = (getURLParam('search') || '').trim().toLowerCase();
             const categoryConfig = categories[currentCategory] || categories.all;
-            const allGames = categoryDataMap[currentCategory] || categoryDataMap.all;
+            const availableGames = filterGamesByCategory(allGames, currentCategory);
             const filteredGames = currentSearch
-                ? allGames.filter((game) => {
-                    const haystack = [game.name, game.description, ...(game.tags || [])].join(' ').toLowerCase();
-                    return haystack.includes(currentSearch);
-                })
-                : allGames;
+                ? availableGames.filter((game) => buildSearchableText(game).includes(currentSearch))
+                : availableGames;
 
-            titleElement.textContent = currentSearch ? `${categoryConfig.title} results` : categoryConfig.title;
-            leadElement.textContent = currentSearch
-                ? `Showing matches for "${currentSearch}" in ${categoryConfig.title.toLowerCase()}.`
+            document.getElementById('games-section-title').textContent = categoryConfig.title;
+            document.getElementById('games-section-lead').textContent = currentSearch
+                ? `Matches for "${currentSearch}" inside ${categoryConfig.title.toLowerCase()}.`
                 : categoryConfig.lead;
+            document.getElementById('active-category-label').textContent = categoryConfig.title;
+            document.getElementById('results-pill').textContent = formatGameCount(filteredGames.length);
+            document.getElementById('search-status').textContent = currentSearch || 'No keyword';
 
+            const container = document.getElementById('games-list-container');
             container.innerHTML = '';
+
             if (!filteredGames.length) {
-                const empty = document.createElement('div');
-                empty.className = 'page-card';
+                const empty = document.createElement('article');
+                empty.className = 'sidebar-card empty-state';
                 empty.innerHTML = `
-                    <h3>No matching game pages found</h3>
-                    <p class="section-lead">Try a shorter keyword, switch categories, or open the full library.</p>
+                    <span class="section-kicker">No Match</span>
+                    <h3>No mission matched that search</h3>
+                    <p>Try another keyword or switch category to widen the scan.</p>
                 `;
                 container.appendChild(empty);
-                return;
+            } else {
+                filteredGames.forEach((game) => {
+                    container.appendChild(createGameCard(game, {
+                        ctaLabel: 'Open Mission',
+                        showDescription: false
+                    }));
+                });
             }
 
-            filteredGames.forEach((game) => {
-                container.appendChild(createGameCard(game));
-            });
+            renderSidebarCategories(currentCategory);
+            syncPrimaryNav(currentCategory);
 
-            highlightCurrentCategory(currentCategory);
             const searchInput = document.getElementById('category-search');
             if (searchInput && currentSearch) {
                 searchInput.value = currentSearch;
@@ -334,7 +263,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            renderTopCategories();
             loadGamesByCategory();
         });
     </script>
