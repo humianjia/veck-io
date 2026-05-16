@@ -92,11 +92,11 @@
                 <span class="logo-text">Veck<span class="logo-io">.io</span></span>
             </a>
             <nav class="nav-categories topbar-nav" aria-label="Primary">
-                <a href="../" class="nav-item">Home</a>
-                <a href="../categories?category=fps" class="nav-item">Shooter Games</a>
-                <a href="../categories?category=multiplayer" class="nav-item">Popular</a>
-                <a href="../categories?category=action" class="nav-item">New</a>
-                <a href="../categories?category=battle-royale" class="nav-item">Survival</a>
+                <a href="../categories?category=action" class="nav-item">Action</a>
+                <a href="../categories?category=fps" class="nav-item">FPS</a>
+                <a href="../categories?category=battle-royale" class="nav-item">Battle Royale</a>
+                <a href="../categories?category=multiplayer" class="nav-item">Multiplayer</a>
+                <a href="../categories?category=sniper" class="nav-item active">Sniper</a>
             </nav>
             <div class="topbar-actions">
                 <div class="search-bar topbar-search">
@@ -400,7 +400,7 @@
                 iframeId: 'game-iframe',
                 stageId: 'frame-stage',
                 loadingId: 'frame-loading',
-                fallbackDelay: 4500
+                fallbackDelay: 1200
             });
 
             fullscreenButton.addEventListener('click', function () {
@@ -424,7 +424,7 @@
                     iframeId: 'game-iframe',
                     stageId: 'frame-stage',
                     loadingId: 'frame-loading',
-                    fallbackDelay: 4500
+                    fallbackDelay: 1200
                 });
             });
         });

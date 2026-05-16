@@ -363,8 +363,12 @@ function initCombatFrame(options = {}) {
     };
 
     stage.classList.add('is-loading');
+    stage.classList.add('is-live');
+    if (loading) {
+        loading.removeAttribute('hidden');
+    }
     iframe.addEventListener('load', markReady, { once: true });
-    window.setTimeout(markReady, options.fallbackDelay || 4000);
+    window.setTimeout(markReady, options.fallbackDelay || 1200);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

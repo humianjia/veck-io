@@ -337,11 +337,11 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 <span class="logo-text">Veck<span class="logo-io">.io</span></span>
             </a>
             <nav class="nav-categories topbar-nav" aria-label="Primary">
-                <a href="${toRelativeRoute('index.html', relativePrefix)}" class="nav-item">Home</a>
-                <a href="${buildCategoryHref('fps', relativePrefix)}" class="nav-item${categorySlug === 'fps' ? ' active' : ''}">Shooter Games</a>
-                <a href="${buildCategoryHref('multiplayer', relativePrefix)}" class="nav-item${categorySlug === 'multiplayer' ? ' active' : ''}">Popular</a>
-                <a href="${buildCategoryHref('action', relativePrefix)}" class="nav-item${categorySlug === 'action' ? ' active' : ''}">New</a>
-                <a href="${buildCategoryHref('battle-royale', relativePrefix)}" class="nav-item${categorySlug === 'battle-royale' ? ' active' : ''}">Survival</a>
+                <a href="${buildCategoryHref('action', relativePrefix)}" class="nav-item${categorySlug === 'action' ? ' active' : ''}">Action</a>
+                <a href="${buildCategoryHref('fps', relativePrefix)}" class="nav-item${categorySlug === 'fps' ? ' active' : ''}">FPS</a>
+                <a href="${buildCategoryHref('battle-royale', relativePrefix)}" class="nav-item${categorySlug === 'battle-royale' ? ' active' : ''}">Battle Royale</a>
+                <a href="${buildCategoryHref('multiplayer', relativePrefix)}" class="nav-item${categorySlug === 'multiplayer' ? ' active' : ''}">Multiplayer</a>
+                <a href="${buildCategoryHref('sniper', relativePrefix)}" class="nav-item${categorySlug === 'sniper' ? ' active' : ''}">Sniper</a>
             </nav>
             <div class="topbar-actions">
                 <div class="search-bar topbar-search">
@@ -536,7 +536,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 iframeId: 'game-iframe',
                 stageId: 'frame-stage',
                 loadingId: 'frame-loading',
-                fallbackDelay: 4500
+                fallbackDelay: 1200
             });
 
             fullscreenButton.addEventListener('click', function () {
@@ -560,7 +560,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     iframeId: 'game-iframe',
                     stageId: 'frame-stage',
                     loadingId: 'frame-loading',
-                    fallbackDelay: 4500
+                    fallbackDelay: 1200
                 });
             });
         });
