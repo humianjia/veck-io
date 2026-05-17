@@ -129,7 +129,7 @@
                         <p>Loading Battlefield...</p>
                         <div class="scan-bar"></div>
                     </div>
-                    <iframe id="game-iframe" src="https://html5.gamedistribution.com/a571ac94d1ed4b2e84a3d604856d81e6/?gd_sdk_referrer_url=https%3A%2F%2Fwww.onlinegames.io%2Fcat-runner%2F" title="Play Revoxel 3D - Voxel RPG Shooter" allowfullscreen loading="eager"></iframe>
+                    <iframe id="game-iframe" data-src="https://html5.gamedistribution.com/a571ac94d1ed4b2e84a3d604856d81e6/?gd_sdk_referrer_url=https%3A%2F%2Fwww.onlinegames.io%2Fcat-runner%2F" title="Play Revoxel 3D - Voxel RPG Shooter" allowfullscreen loading="eager"></iframe>
                     <div class="frame-corner-actions">
                         <button class="action-btn frame-floating-btn" id="fullscreen-btn" type="button" title="Fullscreen">
                             <i class="fas fa-expand" aria-hidden="true"></i>
@@ -329,11 +329,13 @@
             const fullscreenButton = document.getElementById('fullscreen-btn');
             const refreshButton = document.getElementById('refresh-btn');
 
-            initCombatFrame({
-                iframeId: 'game-iframe',
-                stageId: 'frame-stage',
-                loadingId: 'frame-loading',
-                fallbackDelay: 1200
+            window.requestAnimationFrame(() => {
+                initCombatFrame({
+                    iframeId: 'game-iframe',
+                    stageId: 'frame-stage',
+                    loadingId: 'frame-loading',
+                    fallbackDelay: 1200
+                });
             });
 
             fullscreenButton.addEventListener('click', function () {

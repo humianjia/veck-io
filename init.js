@@ -348,7 +348,11 @@ function initCombatFrame(options = {}) {
     if (loading) {
         loading.removeAttribute('hidden');
     }
+
     iframe.addEventListener('load', markReady, { once: true });
+    if (iframe.dataset.src && iframe.getAttribute('src') !== iframe.dataset.src) {
+        iframe.setAttribute('src', iframe.dataset.src);
+    }
     window.setTimeout(markReady, options.fallbackDelay || 1200);
 }
 

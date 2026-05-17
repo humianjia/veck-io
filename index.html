@@ -111,7 +111,7 @@
                         <p>Loading Battlefield...</p>
                         <div class="scan-bar"></div>
                     </div>
-                    <iframe id="game-iframe" src="https://veck.io/?cg=true&auto_play=true&isNewUser=false" title="Play veck io in browser" allowfullscreen loading="eager"></iframe>
+                    <iframe id="game-iframe" data-src="https://veck.io/?cg=true&auto_play=true&isNewUser=false" title="Play veck io in browser" allowfullscreen loading="eager"></iframe>
                     <div class="frame-corner-actions">
                         <button class="action-btn frame-floating-btn" id="fullscreen-btn" type="button" title="Fullscreen">
                             <i class="fas fa-expand" aria-hidden="true"></i>
@@ -251,13 +251,6 @@
             const refreshButton = document.getElementById('refresh-btn');
             const iframe = document.getElementById('game-iframe');
 
-            initCombatFrame({
-                iframeId: 'game-iframe',
-                stageId: 'frame-stage',
-                loadingId: 'frame-loading',
-                fallbackDelay: 1200
-            });
-
             CATEGORY_DEFINITIONS.filter((item) => item.key !== 'all').forEach((category) => {
                 const card = document.createElement('a');
                 card.className = 'category-card tactical-category-card';
@@ -288,6 +281,15 @@
                     ctaLabel: 'Enter Match',
                     showDescription: false
                 }));
+            });
+
+            window.requestAnimationFrame(() => {
+                initCombatFrame({
+                    iframeId: 'game-iframe',
+                    stageId: 'frame-stage',
+                    loadingId: 'frame-loading',
+                    fallbackDelay: 1200
+                });
             });
 
             function openFullscreen() {

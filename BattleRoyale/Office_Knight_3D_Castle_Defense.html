@@ -129,7 +129,7 @@
                         <p>Loading Battlefield...</p>
                         <div class="scan-bar"></div>
                     </div>
-                    <iframe id="game-iframe" src="https://html5.gamedistribution.com/1fc5b3cb598b4d52802bb5003e4f1e79/?gd_sdk_referrer_url=https://www.onlinegames.io/cat-runner/" title="Play Office Knight 3D: Castle Defense" allowfullscreen loading="eager"></iframe>
+                    <iframe id="game-iframe" data-src="https://html5.gamedistribution.com/1fc5b3cb598b4d52802bb5003e4f1e79/?gd_sdk_referrer_url=https://www.onlinegames.io/cat-runner/" title="Play Office Knight 3D: Castle Defense" allowfullscreen loading="eager"></iframe>
                     <div class="frame-corner-actions">
                         <button class="action-btn frame-floating-btn" id="fullscreen-btn" type="button" title="Fullscreen">
                             <i class="fas fa-expand" aria-hidden="true"></i>
@@ -329,11 +329,13 @@
             const fullscreenButton = document.getElementById('fullscreen-btn');
             const refreshButton = document.getElementById('refresh-btn');
 
-            initCombatFrame({
-                iframeId: 'game-iframe',
-                stageId: 'frame-stage',
-                loadingId: 'frame-loading',
-                fallbackDelay: 1200
+            window.requestAnimationFrame(() => {
+                initCombatFrame({
+                    iframeId: 'game-iframe',
+                    stageId: 'frame-stage',
+                    loadingId: 'frame-loading',
+                    fallbackDelay: 1200
+                });
             });
 
             fullscreenButton.addEventListener('click', function () {

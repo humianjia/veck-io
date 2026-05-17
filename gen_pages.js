@@ -387,7 +387,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                         <p>Loading Battlefield...</p>
                         <div class="scan-bar"></div>
                     </div>
-                    <iframe id="game-iframe" src="${escapeHtml(game.iframeUrl || '')}" title="Play ${escapeHtml(game.name)}" allowfullscreen loading="eager"></iframe>
+                    <iframe id="game-iframe" data-src="${escapeHtml(game.iframeUrl || '')}" title="Play ${escapeHtml(game.name)}" allowfullscreen loading="eager"></iframe>
                     <div class="frame-corner-actions">
                         <button class="action-btn frame-floating-btn" id="fullscreen-btn" type="button" title="Fullscreen">
                             <i class="fas fa-expand" aria-hidden="true"></i>
@@ -499,11 +499,13 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
             const fullscreenButton = document.getElementById('fullscreen-btn');
             const refreshButton = document.getElementById('refresh-btn');
 
-            initCombatFrame({
-                iframeId: 'game-iframe',
-                stageId: 'frame-stage',
-                loadingId: 'frame-loading',
-                fallbackDelay: 1200
+            window.requestAnimationFrame(() => {
+                initCombatFrame({
+                    iframeId: 'game-iframe',
+                    stageId: 'frame-stage',
+                    loadingId: 'frame-loading',
+                    fallbackDelay: 1200
+                });
             });
 
             fullscreenButton.addEventListener('click', function () {
