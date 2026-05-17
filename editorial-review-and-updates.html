@@ -24,7 +24,7 @@
     <div class="particles" id="particles"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="site-shell">
-        <header class="header">
+        <header class="topbar header">
             <a href="/" class="logo" aria-label="veck io home">
                 <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
                     <defs>
@@ -39,17 +39,19 @@
                 </svg>
                 <span class="logo-text">veck <span class="logo-io">io</span></span>
             </a>
-            <nav class="nav-categories" aria-label="Primary">
+            <nav class="nav-categories topbar-nav" aria-label="Primary">
                 <a href="/categories?category=action" class="nav-item">Action</a>
                 <a href="/categories?category=fps" class="nav-item">FPS</a>
                 <a href="/categories?category=battle-royale" class="nav-item">Battle Royale</a>
                 <a href="/categories?category=multiplayer" class="nav-item">Multiplayer</a>
                 <a href="/categories?category=sniper" class="nav-item">Sniper</a>
             </nav>
-            <div class="search-bar">
-                <label class="visually-hidden" for="editorial-review-search">Search games</label>
-                <input id="editorial-review-search" type="text" placeholder="Search games" data-site-search>
-                <i class="fas fa-search" aria-hidden="true"></i>
+            <div class="topbar-actions">
+                <div class="search-bar topbar-search">
+                    <label class="visually-hidden" for="editorial-review-search">Search games</label>
+                <input id="editorial-review-search" type="text" placeholder="Search" data-site-search>
+                <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                </div>
             </div>
         </header>
 

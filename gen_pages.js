@@ -82,11 +82,24 @@ function getCategorySlug(categoryLabel) {
 function makeShortDescription(game) {
     const description = normalizeText(game.description);
     if (!description) {
-        return `Play ${game.name} instantly in your browser on Veck.io.`;
+        return `Play ${game.name} instantly in your browser on veck io.`;
     }
     const firstSentence = description.match(/.*?[.!?](\s|$)/);
     const summary = firstSentence ? firstSentence[0].trim() : description;
     return summary.length > 160 ? `${summary.slice(0, 157)}...` : summary;
+}
+
+function buildGameKeywordContent(game) {
+    const parts = [
+        'veck io',
+        game.name,
+        normalizeText(game.keywords || ''),
+        game.gameType,
+        'browser game',
+        'online game'
+    ];
+
+    return normalizeText(parts.filter(Boolean).join(', '));
 }
 
 function buildCombatProfile(game, categoryLabel) {
@@ -177,7 +190,7 @@ function buildOverviewText(game, categoryLabel) {
     if (description) {
         return description;
     }
-    return `${game.name} is part of the Veck.io ${categoryLabel} collection and opens directly in your browser with no install step.`;
+    return `${game.name} is part of the veck io ${categoryLabel} collection and opens directly in your browser with no install step.`;
 }
 
 function buildGameIntel(game, categoryLabel) {
@@ -206,7 +219,7 @@ function buildFooter(relativePrefix) {
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Veck.io</h3>
+                    <h3>veck io</h3>
                     <p>A browser shooter hub built around quick deployment, competitive pressure, and cleaner tactical browsing.</p>
                 </div>
                 <div class="footer-section">
@@ -236,7 +249,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     const pageUrl = toSiteUrl(game.link);
     const relativePrefix = '../';
     const imageUrl = (game.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/');
-    const keywordContent = normalizeText(game.keywords || `${game.name}, ${game.gameType}, browser game`);
+    const keywordContent = buildGameKeywordContent(game);
     const shortDescription = makeShortDescription(game);
     const intel = buildGameIntel(game, categoryLabel);
     const relatedGames = getRelatedGames(game, allGames);
@@ -275,7 +288,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
         url: pageUrl,
         image: `${SITE_URL}/${imageUrl.replace(/^\.\.\//, '')}`,
         genre: categoryLabel,
-        description: shortDescription,
+        description: `${shortDescription} Play on veck io.`,
         publisher: {
             '@type': 'Organization',
             name: 'veck io',
@@ -295,22 +308,24 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(game.name)} | Play Online on Veck.io</title>
-    <meta name="description" content="${escapeHtml(shortDescription)} Play instantly on Veck.io and move through related shooter pages without losing momentum.">
+    <title>${escapeHtml(game.name)} | Play on veck io</title>
+    <meta name="description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)} Browse more ${escapeHtml(categoryLabel)} games without leaving the veck io collection.">
     <meta name="keywords" content="${escapeHtml(keywordContent)}">
     <meta name="robots" content="index, follow">
     <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <meta name="theme-color" content="#05080d">
     <link rel="canonical" href="${pageUrl}">
-    <meta property="og:title" content="${escapeHtml(game.name)} | Play Online on Veck.io">
-    <meta property="og:description" content="${escapeHtml(shortDescription)}">
+    <meta property="og:title" content="${escapeHtml(game.name)} | Play on veck io">
+    <meta property="og:description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${pageUrl}">
+    <meta property="og:site_name" content="veck io">
     <meta property="og:image" content="${SITE_URL}/${imageUrl.replace(/^\.\.\//, '')}">
+    <meta property="og:image:alt" content="${escapeHtml(game.name)} on veck io">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${escapeHtml(game.name)} | Play Online on Veck.io">
-    <meta name="twitter:description" content="${escapeHtml(shortDescription)}">
+    <meta name="twitter:title" content="${escapeHtml(game.name)} | Play on veck io">
+    <meta name="twitter:description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)}">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/css.css">
@@ -322,7 +337,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <div class="cursor-glow" id="cursorGlow"></div>
     <div class="site-shell">
         <header class="topbar header">
-            <a href="${toRelativeRoute('index.html', relativePrefix)}" class="logo" aria-label="Veck.io home">
+            <a href="${toRelativeRoute('index.html', relativePrefix)}" class="logo" aria-label="veck io home">
                 <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45" aria-hidden="true">
                     <defs>
                         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -334,7 +349,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     <circle cx="25" cy="25" r="12" fill="none" stroke="url(#grad1)" stroke-width="2"/>
                     <circle cx="25" cy="25" r="4" fill="#5df0c1"/>
                 </svg>
-                <span class="logo-text">Veck<span class="logo-io">.io</span></span>
+                <span class="logo-text">veck <span class="logo-io">io</span></span>
             </a>
             <nav class="nav-categories topbar-nav" aria-label="Primary">
                 <a href="${buildCategoryHref('action', relativePrefix)}" class="nav-item${categorySlug === 'action' ? ' active' : ''}">Action</a>
@@ -360,7 +375,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                         ${escapeHtml(categoryLabel)} Deployment
                     </span>
                     <h1 class="page-title">${escapeHtml(game.name)}</h1>
-                    <p class="page-subtitle">${escapeHtml(shortDescription)}</p>
+                    <p class="page-subtitle">Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)}</p>
                     <div class="hero-actions">
                         <a class="hero-btn hero-btn-primary" href="#frame-stage">Play Instantly</a>
                         <a class="hero-btn hero-btn-secondary" href="${buildCategoryHref(categorySlug, relativePrefix)}">More ${escapeHtml(categoryLabel)}</a>
@@ -493,23 +508,10 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                     <a class="game-card game-card-link" href="${toRelativeRoute(relatedGame.link, relativePrefix)}">
                         <div class="game-card-cover">
                             <img src="${escapeHtml((relatedGame.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/'))}" alt="${escapeHtml(relatedGame.name)}" loading="lazy">
-                            <div class="game-card-overlay">
-                                <span class="game-card-pill">${escapeHtml(relatedGame.gameType || 'Game')}</span>
-                                <span class="game-card-score"><i class="fas fa-star" aria-hidden="true"></i> ${escapeHtml(Number(relatedGame.rating || 0).toFixed ? Number(relatedGame.rating || 0).toFixed(1) : 'Play')}</span>
-                            </div>
                         </div>
                         <div class="game-card-body">
-                            <div class="game-card-topline">
-                                <span class="game-card-category">${escapeHtml(relatedGame.gameType || 'Game')}</span>
-                                <span class="game-card-route">${escapeHtml(getCategorySlug(relatedGame.gameType || 'game'))}</span>
-                            </div>
+                            <span class="game-card-category">${escapeHtml(relatedGame.gameType || 'Game')}</span>
                             <h3 class="game-card-title">${escapeHtml(relatedGame.name)}</h3>
-                            <div class="game-card-bottom">
-                                <div class="game-card-tags">
-                                    ${((relatedGame.tags || []).slice(0, 2)).map((tag) => `<span class="game-card-tag">${escapeHtml(tag)}</span>`).join('')}
-                                </div>
-                                <span class="game-card-cta">Open Match <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-                            </div>
                         </div>
                     </a>`).join('')}
                 </div>

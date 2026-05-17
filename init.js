@@ -173,39 +173,15 @@ function createGameCard(game, options = {}) {
     }
 
     const imageUrl = options.imageUrlTransform ? options.imageUrlTransform(game.imageUrl) : game.imageUrl;
-    const description = getGameDescription(game);
-    const showDescription = options.showDescription !== false;
-    const ratingValue = Number(game.rating || 0);
-    const ratingLabel = Number.isFinite(ratingValue) && ratingValue > 0 ? ratingValue.toFixed(1) : 'Play';
-    const cardSummary = options.summary || description;
-    const cardTags = (game.tags || []).slice(0, options.tagLimit || 2);
-    const spotlightLabel = options.label || categoryMeta.label || category;
     const imageLoading = options.eager ? 'eager' : 'lazy';
-    const minimalClass = !showDescription ? ' game-card-minimal' : '';
-
-    card.className += minimalClass;
 
     card.innerHTML = `
         <div class="game-card-cover">
             <img src="${imageUrl}" alt="${game.name}" loading="${imageLoading}">
-            <div class="game-card-overlay">
-                <span class="game-card-pill">${spotlightLabel}</span>
-                <span class="game-card-score"><i class="fas fa-star" aria-hidden="true"></i> ${ratingLabel}</span>
-            </div>
         </div>
         <div class="game-card-body">
-            <div class="game-card-topline">
-                <span class="game-card-category">${category}</span>
-                <span class="game-card-route">${categorySlug}</span>
-            </div>
+            <span class="game-card-category">${categoryMeta.label || category}</span>
             <h3 class="game-card-title">${game.name}</h3>
-            ${showDescription ? `<p class="game-card-desc">${cardSummary}</p>` : ''}
-            <div class="game-card-bottom">
-                <div class="game-card-tags">
-                    ${cardTags.map((tag) => `<span class="game-card-tag">${sanitizeDisplayText(tag)}</span>`).join('')}
-                </div>
-                <span class="game-card-cta">${options.ctaLabel || 'Open Game'} <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-            </div>
         </div>
     `;
 

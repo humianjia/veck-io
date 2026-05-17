@@ -475,7 +475,6 @@ body.is-scrolled .topbar {
 .section-lead,
 .sidebar-copy,
 .category-blurb,
-.game-card-desc,
 .content-prose p,
 .content-prose li,
 .footer-section p,
@@ -991,21 +990,7 @@ body.is-scrolled .topbar {
     filter: saturate(1.08);
 }
 
-.game-card-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 12px;
-    background: linear-gradient(180deg, rgba(5, 8, 12, 0.55), transparent 55%, rgba(5, 8, 12, 0.72));
-}
-
-.game-card-pill,
-.game-card-score,
 .game-card-category,
-.game-card-route,
-.game-card-tag,
 .category-count,
 .filter-link-count {
     display: inline-flex;
@@ -1020,15 +1005,9 @@ body.is-scrolled .topbar {
     letter-spacing: 0.06em;
 }
 
-.game-card-pill,
-.game-card-score,
 .category-count {
     background: rgba(7, 11, 16, 0.74);
     border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.game-card-score i {
-    color: var(--accent);
 }
 
 .game-card-body {
@@ -1037,84 +1016,16 @@ body.is-scrolled .topbar {
     padding: 12px;
 }
 
-.game-card-topline,
-.game-card-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
 .game-card-category {
     background: rgba(92, 255, 145, 0.08);
     border: 1px solid rgba(92, 255, 145, 0.2);
     color: var(--accent);
 }
 
-.game-card-route {
-    color: var(--text-soft);
-    background: rgba(255, 255, 255, 0.03);
-}
-
 .game-card-title {
     font-size: 1rem;
     line-height: 1.2;
     font-weight: 900;
-}
-
-.game-card-desc {
-    font-size: 0.92rem;
-}
-
-.game-card-minimal .game-card-body {
-    gap: 8px;
-}
-
-.game-card-minimal .game-card-title {
-    display: -webkit-box;
-    min-height: 2.5em;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-
-.game-card-minimal .game-card-bottom {
-    align-items: flex-end;
-    margin-top: 0;
-}
-
-.game-card-minimal .game-card-tags {
-    gap: 6px;
-    max-width: calc(100% - 88px);
-}
-
-.game-card-minimal .game-card-cta {
-    font-size: 0.72rem;
-}
-
-.game-card-minimal .game-card-tag:nth-child(n + 3) {
-    display: none;
-}
-
-.game-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.game-card-tag {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    color: var(--text-muted);
-}
-
-.game-card-cta {
-    color: var(--accent);
-    font-size: 0.78rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
 }
 
 .game-card-compact .game-card-cover {
