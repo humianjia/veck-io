@@ -308,15 +308,15 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(game.name)} | Play on veck io</title>
-    <meta name="description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)} Browse more ${escapeHtml(categoryLabel)} games without leaving the veck io collection.">
+    <title>${escapeHtml(game.name)} | veck io</title>
+    <meta name="description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)} Browse more ${escapeHtml(categoryLabel)} games on veck io.">
     <meta name="keywords" content="${escapeHtml(keywordContent)}">
     <meta name="robots" content="index, follow">
     <meta name="author" content="veck io">
     <meta name="google-adsense-account" content="ca-pub-7534347140708021">
     <meta name="theme-color" content="#05080d">
     <link rel="canonical" href="${pageUrl}">
-    <meta property="og:title" content="${escapeHtml(game.name)} | Play on veck io">
+    <meta property="og:title" content="${escapeHtml(game.name)} | veck io">
     <meta property="og:description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${pageUrl}">
@@ -324,7 +324,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <meta property="og:image" content="${SITE_URL}/${imageUrl.replace(/^\.\.\//, '')}">
     <meta property="og:image:alt" content="${escapeHtml(game.name)} on veck io">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${escapeHtml(game.name)} | Play on veck io">
+    <meta name="twitter:title" content="${escapeHtml(game.name)} | veck io">
     <meta name="twitter:description" content="Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)}">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -368,47 +368,12 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
         </header>
 
         <main class="page-container combat-home">
-            <section class="hero-info reveal-block">
-                <div class="hero-copy compact">
-                    <span class="eyebrow">
-                        <i class="fas fa-crosshairs" aria-hidden="true"></i>
-                        ${escapeHtml(categoryLabel)} Deployment
-                    </span>
-                    <h1 class="page-title">${escapeHtml(game.name)}</h1>
-                    <p class="page-subtitle">Play ${escapeHtml(game.name)} on veck io. ${escapeHtml(shortDescription)}</p>
-                    <div class="hero-actions">
-                        <a class="hero-btn hero-btn-primary" href="#frame-stage">Play Instantly</a>
-                        <a class="hero-btn hero-btn-secondary" href="${buildCategoryHref(categorySlug, relativePrefix)}">More ${escapeHtml(categoryLabel)}</a>
-                    </div>
-                </div>
-                <aside class="hero-side-panel reveal-block">
-                    <div class="status-card">
-                        <div class="status-row">
-                            <span class="status-label">Game Type</span>
-                            <strong>${escapeHtml(intel.profile.gameType)}</strong>
-                        </div>
-                        <div class="status-row">
-                            <span class="status-label">Platform</span>
-                            <strong>${escapeHtml(intel.profile.platform)}</strong>
-                        </div>
-                        <div class="status-row">
-                            <span class="status-label">Controls</span>
-                            <strong>${escapeHtml(intel.profile.controls)}</strong>
-                        </div>
-                        <div class="status-row">
-                            <span class="status-label">Mode</span>
-                            <strong>${escapeHtml(intel.profile.mode)}</strong>
-                        </div>
-                    </div>
-                </aside>
-            </section>
-
             <section class="game-frame-section reveal-block">
                 <div class="section-heading">
                     <div>
-                        <span class="section-kicker">Live Combat Feed</span>
+                        <span class="section-kicker">${escapeHtml(categoryLabel)}</span>
                         <h2 class="section-title">Launch ${escapeHtml(game.name)}</h2>
-                        <p class="section-lead">Open the match immediately, then scan the tactical panel if you want extra context.</p>
+                        <p class="section-lead">Play ${escapeHtml(game.name)} instantly on veck io, then switch back to the ${escapeHtml(categoryLabel)} category for more games.</p>
                     </div>
                 </div>
 
@@ -505,7 +470,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 </div>
                 <div class="games-grid">
                     ${relatedGames.map((relatedGame) => `
-                    <a class="game-card game-card-link" href="${toRelativeRoute(relatedGame.link, relativePrefix)}">
+                    <a class="game-card game-card-link" href="${relatedGame.link}">
                         <div class="game-card-cover">
                             <img src="${escapeHtml((relatedGame.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/'))}" alt="${escapeHtml(relatedGame.name)}" loading="lazy">
                         </div>

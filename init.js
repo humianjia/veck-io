@@ -95,6 +95,11 @@ function getRelativePageLink(pageName) {
     return toCleanPath(`${prefix}${pageName}`);
 }
 
+function getGamePageHref(link, prefix = '') {
+    const normalized = String(link || '').replace(/\\/g, '/');
+    return `${prefix}${normalized}`;
+}
+
 function getCategorySlug(gameType) {
     const normalized = String(gameType || '').trim().toLowerCase();
     if (normalized === 'battle royale') {
@@ -155,7 +160,7 @@ function getGameDescription(game) {
 
 function createGameCard(game, options = {}) {
     const targetHref = game.link
-        ? toCleanPath(options.prefixLink ? options.prefixLink + game.link : game.link)
+        ? getGamePageHref(game.link, options.prefixLink || '')
         : '';
     const category = game.gameType || 'Game';
     const categorySlug = getCategorySlug(category);
@@ -231,7 +236,7 @@ function initSiteSearch() {
             const match = allGames.find((game) => buildSearchableText(game).includes(query));
 
             if (match && match.link) {
-                window.location.href = toCleanPath(`${input.dataset.searchBase || ''}${match.link}`);
+                window.location.href = getGamePageHref(match.link, input.dataset.searchBase || '');
                 return;
             }
 
