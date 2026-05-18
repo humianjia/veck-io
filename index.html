@@ -197,11 +197,23 @@
                 <div class="section-heading">
                     <div>
                         <span class="section-kicker">More Firepower</span>
-                        <h2 class="section-title">Additional playable fronts</h2>
-                        <p class="section-lead">Quick access to more categories without burying the main battle stage.</p>
+                        <h2 class="section-title">More games ready to open</h2>
+                        <p class="section-lead">Show a wider slice of the library right on the homepage so visitors can spot something worth clicking faster.</p>
+                    </div>
+                    <a class="text-link" href="/categories?category=all">See all games <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="games-grid home-expanded-grid" id="games-container"></div>
+            </section>
+
+            <section class="home-category-section reveal-block">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Browse By Mood</span>
+                        <h2 class="section-title">More picks from each category</h2>
+                        <p class="section-lead">Give every major category a visible lane so people can jump into the style they already want.</p>
                     </div>
                 </div>
-                <div class="games-grid" id="games-container"></div>
+                <div class="home-list-stack" id="home-category-lists"></div>
             </section>
         </main>
 
@@ -229,7 +241,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved.</div>
+            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved. <a href="https://veckio.space/" rel="follow">veckio.space</a></div>
         </footer>
     </div>
 
@@ -246,10 +258,20 @@
             const featuredContainer = document.getElementById('featured-games-container');
             const gamesContainer = document.getElementById('games-container');
             const categoryGrid = document.getElementById('category-grid');
+            const homeCategoryLists = document.getElementById('home-category-lists');
             const categoryCounts = getCategoryCounts();
             const fullscreenButton = document.getElementById('fullscreen-btn');
             const refreshButton = document.getElementById('refresh-btn');
             const iframe = document.getElementById('game-iframe');
+            const uniqueGames = Array.from(new Map(allGames.map((game) => [game.link, game])).values());
+
+            const homepageCategorySections = [
+                'fps',
+                'multiplayer',
+                'battle-royale',
+                'sniper',
+                'action'
+            ];
 
             CATEGORY_DEFINITIONS.filter((item) => item.key !== 'all').forEach((category) => {
                 const card = document.createElement('a');
@@ -267,20 +289,57 @@
                 categoryGrid.appendChild(card);
             });
 
-            shuffleArray(filterGamesByCategory(allGames, 'fps')).slice(0, 4).forEach((game, index) => {
+            shuffleArray(filterGamesByCategory(uniqueGames, 'fps')).slice(0, 6).forEach((game, index) => {
                 featuredContainer.appendChild(createGameCard(game, {
                     variant: 'compact',
                     eager: index === 0,
                     ctaLabel: 'Deploy',
-                    showDescription: false
+                    showDescription: true,
+                    descriptionLength: 88,
+                    showRating: true
                 }));
             });
 
-            shuffleArray(allGames).slice(0, 8).forEach((game) => {
+            shuffleArray(uniqueGames).slice(0, 16).forEach((game, index) => {
                 gamesContainer.appendChild(createGameCard(game, {
                     ctaLabel: 'Enter Match',
-                    showDescription: false
+                    showDescription: true,
+                    descriptionLength: 96,
+                    showRating: true,
+                    eager: index < 4
                 }));
+            });
+
+            homepageCategorySections.forEach((categoryKey) => {
+                const meta = getCategoryMeta(categoryKey);
+                const section = document.createElement('section');
+                section.className = 'tactical-panel';
+
+                const heading = document.createElement('div');
+                heading.className = 'section-heading';
+                heading.innerHTML = `
+                    <div>
+                        <span class="section-kicker">${meta.label}</span>
+                        <h3 class="section-title">${meta.label} picks</h3>
+                        <p class="section-lead">${meta.summary}</p>
+                    </div>
+                    <a class="text-link" href="/categories?category=${meta.key}">Open ${meta.label} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                `;
+                section.appendChild(heading);
+
+                const grid = document.createElement('div');
+                grid.className = 'home-category-strip';
+
+                shuffleArray(filterGamesByCategory(uniqueGames, categoryKey)).slice(0, 4).forEach((game) => {
+                    grid.appendChild(createGameCard(game, {
+                        showDescription: true,
+                        descriptionLength: 90,
+                        showRating: true
+                    }));
+                });
+
+                section.appendChild(grid);
+                homeCategoryLists.appendChild(section);
             });
 
             window.requestAnimationFrame(() => {

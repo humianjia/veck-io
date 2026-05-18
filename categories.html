@@ -139,7 +139,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved.</div>
+            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved. <a href="https://veckio.space/" rel="follow">veckio.space</a></div>
         </footer>
     </div>
 
@@ -148,6 +148,7 @@
     <script src="js/game_data/battleRoyale.js"></script>
     <script src="js/game_data/fps.js"></script>
     <script src="js/game_data/multiplayer.js"></script>
+    <script src="js/game_data/gdExpansion.js"></script>
     <script src="js/game_data/sniper.js"></script>
     <script src="init.js"></script>
     <script>
@@ -248,7 +249,8 @@
                 filteredGames.forEach((game) => {
                     container.appendChild(createGameCard(game, {
                         ctaLabel: 'Open Mission',
-                        showDescription: false
+                        showDescription: true,
+                        showRating: true
                     }));
                 });
             }

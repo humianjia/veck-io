@@ -985,6 +985,12 @@ body.is-scrolled .topbar {
     transition: transform 0.28s ease, filter 0.28s ease;
 }
 
+.game-card-cover img.is-image-fallback-missing {
+    object-fit: contain;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(11, 18, 29, 0.88), rgba(5, 8, 13, 0.98));
+}
+
 .game-card:hover .game-card-cover img {
     transform: scale(1.05);
     filter: saturate(1.08);
@@ -1028,8 +1034,48 @@ body.is-scrolled .topbar {
     font-weight: 900;
 }
 
+.game-card-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffd666;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.game-card-description {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .game-card-compact .game-card-cover {
     aspect-ratio: 16 / 9;
+}
+
+.home-expanded-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-list-stack {
+    display: grid;
+    gap: 18px;
+}
+
+.home-category-section {
+    margin-top: 18px;
+}
+
+.home-category-strip {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .mission-board {
@@ -1435,7 +1481,9 @@ body.is-scrolled .topbar {
 
 @media (max-width: 1200px) {
     .games-grid,
-    .mission-grid {
+    .mission-grid,
+    .home-expanded-grid,
+    .home-category-strip {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -1478,6 +1526,8 @@ body.is-scrolled .topbar {
     .intel-grid,
     .games-grid,
     .compact-grid,
+    .home-expanded-grid,
+    .home-category-strip,
     .detail-grid,
     .support-grid,
     .metric-grid,

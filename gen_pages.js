@@ -21,7 +21,8 @@ const DATASETS = [
     { file: 'js/game_data/battleRoyale.js', dir: 'BattleRoyale', label: 'Battle Royale', navLabel: 'Survival' },
     { file: 'js/game_data/fps.js', dir: 'FPS', label: 'FPS', navLabel: 'Shooter Games' },
     { file: 'js/game_data/multiplayer.js', dir: 'Multiplayer', label: 'Multiplayer', navLabel: 'Popular' },
-    { file: 'js/game_data/sniper.js', dir: 'Sniper', label: 'Sniper', navLabel: 'Sniper' }
+    { file: 'js/game_data/sniper.js', dir: 'Sniper', label: 'Sniper', navLabel: 'Sniper' },
+    { file: 'js/game_data/gdExpansion.js', dir: '', label: '', navLabel: '' }
 ];
 
 function parseGameData(filePath) {
@@ -240,15 +241,86 @@ function buildFooter(relativePrefix) {
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved.</div>
+            <div class="footer-bottom">Copyright 2026 veck io. All rights reserved. <a href="https://veckio.space/" rel="follow">veckio.space</a></div>
         </footer>
     `;
+}
+
+function extractGdGameId(game) {
+    const match = String(game?.iframeUrl || '').match(/gamedistribution\.com\/([^/?]+)/i);
+    return match ? match[1] : '';
+}
+
+function toPageImagePath(imageUrl, relativePrefix = '../') {
+    const value = normalizeText(imageUrl);
+    if (!value) {
+        return '';
+    }
+
+    if (/^https?:\/\//i.test(value)) {
+        return value;
+    }
+
+    return value.replace(/^img\//, `${relativePrefix}img/`);
+}
+
+function getPageImageCandidates(game, relativePrefix = '../', fallbackImage = '') {
+    const candidates = [];
+    const pushCandidate = (value) => {
+        const candidate = toPageImagePath(value, relativePrefix);
+        if (candidate && !candidates.includes(candidate)) {
+            candidates.push(candidate);
+        }
+    };
+
+    pushCandidate(game.imageUrl);
+
+    const gdGameId = extractGdGameId(game);
+    if (gdGameId) {
+        pushCandidate(`https://img.gamedistribution.com/${gdGameId}-512x512.jpg`);
+    }
+
+    pushCandidate(fallbackImage);
+    return candidates;
+}
+
+function buildImageFallbackAttributes(candidates) {
+    const normalized = candidates.filter(Boolean);
+    const initialSrc = normalized[0] || '';
+    const fallbackQueue = normalized.slice(1);
+    const serializedQueue = escapeHtml(JSON.stringify(fallbackQueue));
+    const onErrorScript = "const queue=JSON.parse(this.dataset.fallbackQueue||'[]');const next=queue.shift();this.dataset.fallbackQueue=JSON.stringify(queue);if(next){this.src=next;}else{this.removeAttribute('src');this.classList.add('is-image-fallback-missing');}";
+
+    return {
+        src: initialSrc,
+        queue: serializedQueue,
+        onerror: onErrorScript
+    };
+}
+
+function toAbsoluteImageUrl(imageUrl) {
+    const value = normalizeText(imageUrl);
+    if (!value) {
+        return '';
+    }
+
+    if (/^https?:\/\//i.test(value)) {
+        return value;
+    }
+
+    return `${SITE_URL}/${value.replace(/^\.\.\//, '')}`;
+}
+
+function resolvePageImageUrl(game, relativePrefix = '../') {
+    return getPageImageCandidates(game, relativePrefix)[0] || '';
 }
 
 function buildPage(game, categoryDir, categoryLabel, allGames) {
     const pageUrl = toSiteUrl(game.link);
     const relativePrefix = '../';
-    const imageUrl = (game.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/');
+    const imageCandidates = getPageImageCandidates(game, relativePrefix);
+    const imageUrl = imageCandidates[0] || '';
+    const imageAttrs = buildImageFallbackAttributes(imageCandidates);
     const keywordContent = buildGameKeywordContent(game);
     const shortDescription = makeShortDescription(game);
     const intel = buildGameIntel(game, categoryLabel);
@@ -286,7 +358,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
         '@type': 'VideoGame',
         name: game.name,
         url: pageUrl,
-        image: `${SITE_URL}/${imageUrl.replace(/^\.\.\//, '')}`,
+        image: toAbsoluteImageUrl(imageUrl),
         genre: categoryLabel,
         description: `${shortDescription} Play on veck io.`,
         publisher: {
@@ -321,7 +393,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
     <meta property="og:type" content="website">
     <meta property="og:url" content="${pageUrl}">
     <meta property="og:site_name" content="veck io">
-    <meta property="og:image" content="${SITE_URL}/${imageUrl.replace(/^\.\.\//, '')}">
+    <meta property="og:image" content="${escapeHtml(toAbsoluteImageUrl(imageUrl))}">
     <meta property="og:image:alt" content="${escapeHtml(game.name)} on veck io">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeHtml(game.name)} | veck io">
@@ -399,7 +471,7 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 <div class="frame-console">
                     <div class="frame-console-main">
                         <div class="game-title-section">
-                            <img src="${escapeHtml(imageUrl)}" id="game-icon" class="game-icon" alt="${escapeHtml(game.name)}">
+                            <img src="${escapeHtml(imageAttrs.src)}" data-fallback-queue="${imageAttrs.queue}" onerror="${imageAttrs.onerror}" id="game-icon" class="game-icon" alt="${escapeHtml(game.name)}">
                             <div>
                                 <span class="game-title">${escapeHtml(game.name)}</span>
                                 <span class="game-subtitle">${escapeHtml(categoryLabel)} mission page</span>
@@ -470,15 +542,19 @@ function buildPage(game, categoryDir, categoryLabel, allGames) {
                 </div>
                 <div class="games-grid">
                     ${relatedGames.map((relatedGame) => `
+                    ${(() => {
+                        const relatedImageAttrs = buildImageFallbackAttributes(getPageImageCandidates(relatedGame, relativePrefix));
+                        return `
                     <a class="game-card game-card-link" href="${relatedGame.link}">
                         <div class="game-card-cover">
-                            <img src="${escapeHtml((relatedGame.imageUrl || 'img/icon/veckIo.jpg').replace(/^img\//, '../img/'))}" alt="${escapeHtml(relatedGame.name)}" loading="lazy">
+                            <img src="${escapeHtml(relatedImageAttrs.src)}" data-fallback-queue="${relatedImageAttrs.queue}" onerror="${relatedImageAttrs.onerror}" alt="${escapeHtml(relatedGame.name)}" loading="lazy">
                         </div>
                         <div class="game-card-body">
                             <span class="game-card-category">${escapeHtml(relatedGame.gameType || 'Game')}</span>
                             <h3 class="game-card-title">${escapeHtml(relatedGame.name)}</h3>
                         </div>
-                    </a>`).join('')}
+                    </a>`;
+                    })()}`).join('')}
                 </div>
             </section>
         </main>
@@ -545,6 +621,21 @@ function writeGamePages() {
 
     DATASETS.forEach(({ file, dir, label }) => {
         const games = parseGameData(path.join(ROOT, file));
+        if (!dir) {
+            games.forEach((game) => {
+                if (!game.link) {
+                    return;
+                }
+
+                const outputPath = path.join(ROOT, game.link);
+                expectedLinks.add(game.link.replaceAll('/', path.sep));
+                const page = buildPage(game, path.dirname(game.link), game.gameType, allGames);
+                fs.writeFileSync(outputPath, page, 'utf8');
+                total += 1;
+            });
+            return;
+        }
+
         const outputDir = path.join(ROOT, dir);
 
         if (!fs.existsSync(outputDir)) {

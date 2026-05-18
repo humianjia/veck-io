@@ -55,6 +55,7 @@ function getAllSiteGames() {
         ...(window.battleRoyaleData || []),
         ...(window.fpsData || []),
         ...(window.multiplayerGames || []),
+        ...(window.gdExpansionGames || []),
         ...(window.sniperData || [])
     ].filter((game) => game && game.link);
 }
@@ -158,6 +159,72 @@ function getGameDescription(game) {
     );
 }
 
+function getShortGameDescription(game, maxLength = 110) {
+    const description = getGameDescription(game)
+        .replace(/&amp;/g, '&')
+        .replace(/&#39;/g, "'")
+        .replace(/[^\x00-\x7F]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+    if (description.length <= maxLength) {
+        return description;
+    }
+
+    const trimmed = description.slice(0, maxLength).replace(/\s+\S*$/, '').trim();
+    return `${trimmed}...`;
+}
+
+function extractGdGameId(game) {
+    const match = String(game?.iframeUrl || '').match(/gamedistribution\.com\/([^/?]+)/i);
+    return match ? match[1] : '';
+}
+
+function getGameImageCandidates(game, imageUrl, fallbackImageUrl = '') {
+    const candidates = [];
+    const pushCandidate = (value) => {
+        const candidate = sanitizeDisplayText(value);
+        if (candidate && !candidates.includes(candidate)) {
+            candidates.push(candidate);
+        }
+    };
+
+    pushCandidate(imageUrl);
+    pushCandidate(game?.imageUrl);
+
+    const gdGameId = extractGdGameId(game);
+    if (gdGameId) {
+        pushCandidate(`https://img.gamedistribution.com/${gdGameId}-512x512.jpg`);
+    }
+
+    pushCandidate(fallbackImageUrl);
+    return candidates;
+}
+
+function applyImageFallbacks(image, candidates) {
+    const queue = candidates.filter(Boolean);
+    if (!queue.length) {
+        return;
+    }
+
+    let currentIndex = 0;
+    image.src = queue[currentIndex];
+    image.addEventListener('error', () => {
+        currentIndex += 1;
+        if (currentIndex >= queue.length) {
+            image.removeAttribute('src');
+            image.classList.add('is-image-fallback-missing');
+            return;
+        }
+
+        image.src = queue[currentIndex];
+    });
+}
+
+function resolveGameImageUrl(game, imageUrl) {
+    return sanitizeDisplayText(imageUrl || game?.imageUrl || '');
+}
+
 function createGameCard(game, options = {}) {
     const targetHref = game.link
         ? getGamePageHref(game.link, options.prefixLink || '')
@@ -177,18 +244,54 @@ function createGameCard(game, options = {}) {
         card.tabIndex = 0;
     }
 
-    const imageUrl = options.imageUrlTransform ? options.imageUrlTransform(game.imageUrl) : game.imageUrl;
+    const imageUrl = resolveGameImageUrl(
+        game,
+        options.imageUrlTransform ? options.imageUrlTransform(game.imageUrl) : game.imageUrl
+    );
     const imageLoading = options.eager ? 'eager' : 'lazy';
+    const imageFallback = options.fallbackImageUrl || '';
+    const cover = document.createElement('div');
+    cover.className = 'game-card-cover';
 
-    card.innerHTML = `
-        <div class="game-card-cover">
-            <img src="${imageUrl}" alt="${game.name}" loading="${imageLoading}">
-        </div>
-        <div class="game-card-body">
-            <span class="game-card-category">${categoryMeta.label || category}</span>
-            <h3 class="game-card-title">${game.name}</h3>
-        </div>
-    `;
+    const image = document.createElement('img');
+    image.alt = game.name;
+    image.loading = imageLoading;
+    applyImageFallbacks(image, getGameImageCandidates(game, imageUrl, imageFallback));
+    cover.appendChild(image);
+
+    const body = document.createElement('div');
+    body.className = 'game-card-body';
+
+    const categoryLabel = document.createElement('span');
+    categoryLabel.className = 'game-card-category';
+    categoryLabel.textContent = categoryMeta.label || category;
+    body.appendChild(categoryLabel);
+
+    const title = document.createElement('h3');
+    title.className = 'game-card-title';
+    title.textContent = game.name;
+    body.appendChild(title);
+
+    if (options.showRating && game.rating) {
+        const rating = document.createElement('div');
+        rating.className = 'game-card-rating';
+        rating.innerHTML = '<i class="fas fa-star" aria-hidden="true"></i>';
+
+        const ratingValue = document.createElement('span');
+        ratingValue.textContent = game.rating;
+        rating.appendChild(ratingValue);
+        body.appendChild(rating);
+    }
+
+    if (options.showDescription) {
+        const description = document.createElement('p');
+        description.className = 'game-card-description';
+        description.textContent = getShortGameDescription(game, options.descriptionLength || 110);
+        body.appendChild(description);
+    }
+
+    card.appendChild(cover);
+    card.appendChild(body);
 
     if (!targetHref) {
         card.addEventListener('keydown', (event) => {
